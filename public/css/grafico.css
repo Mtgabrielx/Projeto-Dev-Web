@@ -1,0 +1,63 @@
+#Conteudo-Principal{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.card{
+    height: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    margin: 0 10px;
+    flex-direction: column;
+    width: 500px;
+}
+
+h1{
+    padding: 5px 0 15px 0;
+}
+
+.Projetos{
+    text-align: center;
+}
+
+li{
+    text-align: start;
+}
+
+li::marker{
+    padding: 0 0 0 10px;
+}
+.pie-chart {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background: lightgray; 
+}
+
+.legend-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.legend {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.legend span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 50%;
+}

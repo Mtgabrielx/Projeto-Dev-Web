@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador - Cadastro</title>
+    <link rel="stylesheet" href="css/sing-in-up.css">
+    <script src="./js/sing-up.js"></script>
+</head>
+<body>
+    <div id="card-form">
+        <form class=card action="/cadastro">
+            <div class="card-header">
+                <h2>Sign up</h2>
+            </div>
+            <div class="card-content">
+                <div class="card-content-area">
+                    <label for="usuário">Usuário</label>
+                    <input type="text" id="usuario" autocomplete="off">
+                </div>
+                <div class="card-content-area">
+                    <label for="usuario">Grupo</label>
+                    <input type="text" id="Grupo" autocomplete="off">
+                </div>
+                <div class="card-content-area">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" autocomplete="off">
+                </div>
+                <div class="card-content-area">
+                    <label for="password">Repetir a Senha</label>
+                    <input type="password" id="re-password" autocomplete="off">
+                </div>
+                <span id="erroSenha" class="error" hidden="True">As senhas não coincidem.</span><br><br>
+            </div>
+            <div class="card-footer">
+                <input type="submit" value="Sing-up" class="submit">
+                <!-- <a href="Cadastro.html" class="recuperar_senha">Esqueceu a senha?</a> -->
+            </div>
+        </form>
+    </div>
+    <footer id="footer">
+        <p>Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

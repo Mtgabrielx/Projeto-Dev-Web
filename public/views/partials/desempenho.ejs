@@ -1,0 +1,21 @@
+<div class="card">
+    <h1>Desempenho individual</h1>
+    <div class="pie-chart" id="pieChart" data-items='<%- JSON.stringify(desempenho) %>'></div>
+    <div class="legend-container">
+    <% desempenho.forEach(item => { %>
+        <div class="legend">
+            <span style="background-color: <%= item.color %>"></span>
+            <%= item.name %> (<%= item.value %>)
+        </div>
+        <% }) %>
+    </div>  
+</div>
+
+<div class="card">
+    <h1>Projetos Ativos</h1>
+    <ul class="Projetos">
+        <% tarefa.forEach(item => { %>
+        <li><%= item.nome %></li>
+        <% }) %>
+    </ul>
+</div>

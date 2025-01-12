@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #e1e1e1;  
+}
+
+a{
+    text-decoration: none;
+}
+
+#Tela-Inicio{
+    display: flex;
+}
+
+#Side-Bar{
+    font-size: 20px;
+    flex: 0 0 20%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #fff;
+    background-color: #1a1a1a;
+}
+
+#Menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.Menu-Item {
+    text-decoration: none;
+    color: #ccc;
+    padding: 10px 0;
+    border-left: 4px solid transparent;
+    text-align: center;
+}
+
+.Menu-Configuracao {
+    text-decoration: none;
+    color: #ccc;
+    padding: 10px 0;
+    border-left: 4px solid transparent;
+    text-align: center;
+}
+
+#Configuracao{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#Conteudo-Principal{
+    height: 100vh;
+    flex: 0 0 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.Item{
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 100vh;
+    padding: 5px;
+    margin: 5px;
+    background-color: #ffffff85;
+}
+
+.Item a{
+    color: black;
+    text-decoration: none;
+}

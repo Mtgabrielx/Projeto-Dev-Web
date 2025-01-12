@@ -1,0 +1,12 @@
+<div id="Nome-Projeto">
+    <h1> <%= Projeto[0].name %> </h1>
+<div>
+<div id="Lista-Projeto">
+    <% if (Object.keys(Projeto[0].Partes).length > 0 ) {%>
+        <% Object.entries(Projeto[0].Partes).forEach(([parte, responsavel]) => { %>
+            <p class="Item">Parte <%= parte %>:<%= responsavel %></p>
+        <% }) %>
+        <% } else { %>
+            <p>Nenhuma</p>
+        <% } %>    
+</div>

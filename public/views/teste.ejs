@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/teste.css">
+  <title>Lançamentos</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Lançamentos</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome da Atividade</th>
+          <th>Descrição</th>
+          <th>Funcionário Responsável</th>
+          <th>Data Final Programada</th>
+          <th>Data Início</th>
+          <th>Data Final</th>
+          <th>Status</th>
+          <th>Observações</th>
+          <th>Mês</th>
+          <th>Ano</th>
+          <th>Área</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tasks.forEach(task => { %>
+          <tr>
+            <td><%= task.nome %></td>
+            <td><%= task.descricao %></td>
+            <td><%= task.responsavel %></td>
+            <td><%= task.data_final_programada %></td>
+            <td><%= task.data_inicio %></td>
+            <td><%= task.data_final %></td>
+            <td class="<%= task.status.toLowerCase().replace(/ /g, '-') %>"><%= task.status %></td>
+            <td><%= task.observacoes %></td>
+            <td><%= task.mes %></td>
+            <td><%= task.ano %></td>
+            <td><%= task.area %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <script src="/js/teste.js"></script>
+</body>
+</html>
