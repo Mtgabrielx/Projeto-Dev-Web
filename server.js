@@ -9,22 +9,9 @@ app.set('view engine','ejs')
 app.set('views', path.join(__dirname, 'public', 'views'));
 
 app.get('/', (req, res) => {
-    // const jsonPath = path.join(__dirname, 'public', 'data', 'data.json'); // Caminho para o arquivo JSON
-
-    // // Ler o arquivo JSON
-    // fs.readFile(jsonPath, 'utf8', (err, data) => {
-    //     if (err) {
-    //     console.error('Erro ao ler o arquivo JSON:', err);
-    //     return res.status(500).send('Erro ao carregar os dados.');
-    //     }
-
-    //     const items = JSON.parse(data); // Converter JSON em objeto
-    //     res.render('inicio', { items }); // Renderizar template com os dados
-    // });
     res.render('inicio')
 });
 
-// Rota para "Tarefas"
 app.get('/index', (req, res) => {
   const jsonPath = path.join(__dirname, 'public', 'data', 'data.json');
 
@@ -34,13 +21,11 @@ app.get('/index', (req, res) => {
           return res.status(500).send('Erro ao carregar os dados.');
       }
 
-      const items = JSON.parse(data); // Parse JSON
-      res.render('index', { items }); // Renderiza somente o conteúdo
+      const items = JSON.parse(data);
+      res.render('index', { items });
   });
 });
 
-// Rota para "Tarefas"
-// app.get(['/index','/Tarefas'], (req, res) => {
 app.get('/Tarefas', (req, res) => {
 
   const dataPath = path.join(__dirname, 'public', 'data', 'tasks.json');
@@ -60,7 +45,7 @@ app.get('/Tarefas', (req, res) => {
       }
       res.json({
         html,
-        css: "/css/table.css",
+        css: "/css/table-alternativo.css",
         js: "/js/table.js"
       });
     });
@@ -89,7 +74,7 @@ app.get('/Desempenho', (req, res) => {
         }
         res.json({
           html,
-          css: "/css/grafico.css",
+          css: "/css/grafico-alternativo.css",
           js: "/js/grafico.js"
         });
       });
@@ -97,7 +82,6 @@ app.get('/Desempenho', (req, res) => {
   });
 });
 
-// Rota para "Projetos"
 app.get('/Projetos', (req, res) => {
   const dataPath = path.join(__dirname, 'public', 'data', 'projeto.json');
   fs.readFile(dataPath, 'utf8', (err, jsonData) => {
@@ -107,15 +91,15 @@ app.get('/Projetos', (req, res) => {
       return;
     }
 
-    const Projeto = JSON.parse(jsonData);
-    res.render('partials/projetos', { Projeto }, (err, html) => {
+    const Projetos = JSON.parse(jsonData);
+    res.render('partials/projetos', { Projetos }, (err, html) => {
       if (err) {
         console.error('Erro ao renderizar EJS:', err);
         return res.status(500).json({ error: 'Erro ao renderizar o conteúdo.' });
       }
       res.json({
         html,
-        css: "/css/projeto.css",
+        css: "/css/projeto-alternativo.css",
         js: "/js/projeto.js"
       });
     });
@@ -130,8 +114,8 @@ app.get('/Login', (req, res) => {
     return res.status(500).send('Erro ao carregar os dados.');
     }
 
-    const items = JSON.parse(data); // Converter JSON em objeto
-    res.render('login', { items }); // Renderizar template com os dados
+    const items = JSON.parse(data); 
+    res.render('login', { items }); 
   });
 });
 
@@ -143,29 +127,12 @@ app.get('/Cadastro', (req, res) => {
     return res.status(500).send('Erro ao carregar os dados.');
     }
 
-    const items = JSON.parse(data); // Converter JSON em objeto
-    res.render('cadastro', { items }); // Renderizar template com os dados
+    const items = JSON.parse(data); 
+    res.render('cadastro', { items }); 
   });
 });
 
-app.get('/teste', (req, res) => {
-  res.render('teste')
-})
 
-app.get('/tico', (req, res) => {
-    // const jsonPath = path.join(__dirname, 'public', 'data', 'data.json');
-
-  // fs.readFile(jsonPath, 'utf8', (err, data) => {
-  //     if (err) {
-  //         console.error('Erro ao ler o arquivo JSON:', err);
-  //         return res.status(500).send('Erro ao carregar os dados.');
-  //     }
-
-  //     const items = JSON.parse(data); // Parse JSON
-  //     res.render('partials/tarefas', { items }); // Renderiza somente o conteúdo
-  // });
-  res.send('Página do Tico - Projeto 1');
-});
 
 app.listen(port, () => {
 console.log(`Servidor rodando em http://localhost:${port}`);

@@ -1,12 +1,14 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, sans-serif;
+    line-height: 1.6; 
+    font-size: 18px;
 }
 
 body {
-    background-color: #e1e1e1;  
-    color: #1a1a1a;
+    background-color: rgba(0, 0, 0, 0.74);  
+    color: white;
 }
 
 a{
@@ -24,8 +26,8 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    color: #fff;
-    background-color: #1a1a1a;
+    color: white;
+    background-color: black;
 }
 
 #Menu {
@@ -35,17 +37,16 @@ a{
 
 .Menu-Item,.Menu-Configuracao {
     text-decoration: none;
-    background-color: #1a1a1a;
-    color: #ccc;
+    color: white;
+    background-color: black;
     padding: 10px 0;
     border-left: 4px solid transparent;
     text-align: center;
 }
 
 .Menu-Item:hover, .Menu-Configuracao:hover {
-    background-color: #444;
-    color: #ffdd57;
-    border-left: 4px solid #ffdd57;
+    background-color: white;
+    color: black;
 }
 
 #Configuracao{

@@ -1,6 +1,46 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#Card{
+    height: 300px;
+    background-color: #fff;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    margin: 0 10px;
+    flex-direction: column;
+    width: 500px;
+    justify-content: center; 
+    align-items: center; 
+}
+
 #Nome-Projeto{
     height: 100vh;
+    text-align: center;
 }
 #Lista-Projeto{
-    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+}
+.Item{
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    width: 300px;
+    text-decoration: none;
+    background-color: #fff;
+    color: black;
+    margin: 5px 0; 
+}
+
+.Item a{
+    color: black;
+    background-color: #fff;
+    text-decoration: none;
 }

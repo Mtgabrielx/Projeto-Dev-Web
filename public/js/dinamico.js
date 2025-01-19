@@ -18,24 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 // console.log(data.html)
                 
                 if (data.css) {
-                    const existingStyles = Array.from(document.querySelectorAll('link[dynamic-style]'));
+                    const existingStyles = Array.from(document.querySelectorAll('link[data-dynamic-style]'));
                     existingStyles.forEach(style => style.remove()); // Remove estilos antigos se necessário
 
                     const styleTag = document.createElement('link');
                     styleTag.setAttribute('rel', 'stylesheet');
                     styleTag.setAttribute('href', data.css);
-                    styleTag.setAttribute('dynamic-style', ''); // Marcador para estilos dinâmicos
+                    styleTag.setAttribute('data-dynamic-style', ''); // Marcador para estilos dinâmicos
                     document.head.appendChild(styleTag);
                 }
                 
                 // Adiciona o JS dinamicamente
                 if (data.js) {
-                    const existingscript = Array.from(document.querySelectorAll('script[dynamic-script]'));
+                    const existingscript = Array.from(document.querySelectorAll('script[data-dynamic-script]'));
                     existingscript.forEach(script => script.remove());
                     
                     const scriptTag = document.createElement('script');
                     scriptTag.setAttribute('src', data.js);
-                    scriptTag.setAttribute('dynamic-script', ''); // Marcador para scripts dinâmicos
+                    scriptTag.setAttribute('data-dynamic-script', ''); // Marcador para scripts dinâmicos
                     document.body.appendChild(scriptTag);
                 }
             } catch (error) {

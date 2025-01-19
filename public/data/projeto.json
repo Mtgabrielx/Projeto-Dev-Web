@@ -1,11 +1,10 @@
 [
     {
-        "name":"Tico",
+        "name":"Lista Projetos",
         "link":"/tico",
         "Partes":{
-            "1":"Rodrigo",
-            "2":"Felipe",
-            "3":"Gabriel"
+            "1":"Desenvolvimento do Game",
+            "2":"Desenvolvimento do site de e-commerce"
         }
     }
 ]

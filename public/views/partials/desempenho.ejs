@@ -4,8 +4,8 @@
     <div class="legend-container">
     <% desempenho.forEach(item => { %>
         <div class="legend">
-            <span style="background-color: <%= item.color %>"></span>
-            <%= item.name %> (<%= item.value %>)
+            <span class="<%= item.color %>"></span>
+            <p><%= item.name %> (<%= item.value %>)</p>
         </div>
         <% }) %>
     </div>  
@@ -13,9 +13,9 @@
 
 <div class="card">
     <h1>Projetos Ativos</h1>
-    <ul class="Projetos">
+    <div class="Projetos">
         <% tarefa.forEach(item => { %>
-        <li><%= item.nome %></li>
+        <p class="Item"><%= item.nome %></p>
         <% }) %>
-    </ul>
+    </div>
 </div>

@@ -11,7 +11,7 @@ body{
     justify-content: space-between;
     flex-direction: column;
     background-color: #e1e1e1;
-    /* background-repeat:no-repeat;  */
+    color: black;
 }
 
 p{
@@ -29,13 +29,13 @@ a{
     justify-content: end;
     padding: 10px 15px 0 0 ;
     background-color: black;
-    height:     50px;
+    color: white;
+    height:50px;
 }
 
 #Login a{
     text-decoration: none;
     padding: 3px 5px 5px 5px;
-    border-color: #a13854;
     border-radius: 10px;
     color: black;
     background-color: #a13854;
@@ -52,6 +52,7 @@ a{
 
 .card{
     background-color: #fff;
+    color: black;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -70,15 +71,14 @@ a{
 }
 
 .card img {
-    width: 100px; /* Largura da imagem */
-    height: 100px; /* Altura da imagem */
-    object-fit: cover; /* Garante que a imagem se ajuste ao contêiner */
-    margin-bottom: 15px; /* Espaçamento abaixo da imagem */
+    width: 100px; 
+    height: 100px;
+    object-fit: cover; 
+    margin-bottom: 15px; 
 }
 
 #erroSenha{
     text-align: center;
-    color: red;
 }
 
 #footer{

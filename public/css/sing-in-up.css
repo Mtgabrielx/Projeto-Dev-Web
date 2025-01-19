@@ -1,3 +1,7 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -6,6 +10,7 @@ body {
     justify-content:space-between;
     flex-direction: column;
     background-color: #e1e1e1;
+    color: black;
 }
 
 #card-form {
@@ -18,6 +23,7 @@ body {
 
 .card{
     background-color: rgba(19,19,19,0.8);
+    color: #fff;
     padding: 40px;
     border-radius: 10px;
     width: 280px;
@@ -28,6 +34,7 @@ body {
     padding-bottom: 50px;
     opacity: 0.8;
     color: #fff;
+    background-color: rgba(19,19,19,0);
     font-size: 30px;
 }
 
@@ -36,6 +43,7 @@ body {
     width: 160px;
     height: 1px;
     background-color: #fff;
+    color: black;
     display: block;
     margin-top: -20px;
     margin-left: -5px;
@@ -43,6 +51,7 @@ body {
 
 .card-content label{
     color: #fff;
+    background-color: rgba(19,19,19,0);
     font-size: 20px;
     opacity: 0.8;
 }
@@ -57,7 +66,9 @@ body {
     margin-top: 10px;
     padding: 0 5px;
     background-color: transparent;
-    border: none;
+    border-left:0;
+    border-top:0;
+    border-right:0;
     border-bottom: 1px solid #e1e1e1;
     outline: none;
     color: #fff;
@@ -82,6 +93,7 @@ body {
 
 .custom-div:hover {
     background-color: rgba(107, 37, 56, 0.336);
+    color: white;
 }
 
 .card-footer a{
@@ -89,12 +101,12 @@ body {
     font-size: 15px;
     opacity: 0.8;
     color: #fff;
+    background-color: rgba(19,19,19,0);
     text-decoration: none;
 }
 
 #erroSenha{
     text-align: center;
-    color: red;
 }
 
 #footer{

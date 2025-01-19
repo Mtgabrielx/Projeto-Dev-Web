@@ -1,5 +1,5 @@
 [
-  { "name": "Concluído", "value": 1, "color": "green" },
-  { "name": "Em Produção", "value": 5, "color": "blue" },
-  { "name": "Em Espera", "value": 10, "color": "red" }
+  { "name": "Concluído", "value": 1, "color": "orange" },
+  { "name": "Em Produção", "value": 5, "color": "green" },
+  { "name": "Em Espera", "value": 10, "color": "blue" }
 ]

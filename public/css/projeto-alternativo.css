@@ -1,0 +1,74 @@
+* {
+    font-family: Arial, sans-serif;
+    font-size: 18px; 
+    line-height: 1.6; 
+}
+  
+#Card {
+    height: auto; 
+    background-color: black; 
+    color: #f4f4f4; 
+    border: 5px solid white; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px; 
+    text-align: center;
+    display: flex;
+    margin: 20px auto; 
+    flex-direction: column;
+    width: 90%; 
+    max-width: 600px; 
+    justify-content: center;
+    align-items: center;
+}
+  
+#Nome-Projeto {
+    text-align: center;
+    font-size: 24px; 
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#Nome-Projeto h1{
+    color: white;
+    background-color: black;
+    font-size: 24px;
+}
+
+#Lista-Projeto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; 
+}
+  
+.Item {
+    text-align: center;
+    border: 2px solid #333; 
+    border-radius: 12px; 
+    padding: 10px;
+    margin: 5px 0;
+    width: 90%; 
+    max-width: 400px; 
+    text-decoration: none;
+    background-color: #e8e8e8; 
+    color: #111; 
+    transition: background-color 0.3s, color 0.3s;
+}
+  
+.Item:hover {
+    background-color: black; 
+    color: #f4f4f4; 
+    border: 5px solid white;
+}
+   
+.Item a {
+    color: white;
+    background-color: black;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s; 
+}
+
+  
