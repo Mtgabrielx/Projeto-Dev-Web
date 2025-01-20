@@ -45,7 +45,7 @@ app.get('/Tarefas', (req, res) => {
       }
       res.json({
         html,
-        css: "/css/table-alternativo.css",
+        css: "/css/table.css",
         js: "/js/table.js"
       });
     });
