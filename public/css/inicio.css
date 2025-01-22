@@ -69,6 +69,11 @@ nav a:hover {
     color: #6a1b9a;
 }
 
+#mudar-tema{
+    background-color: white;
+    color: #333;
+}
+
 #Conteudo {
     display: flex;
     justify-content: space-around;
@@ -98,8 +103,6 @@ nav a:hover {
     padding: 0 0 5px 0;
 }
 
-
-
 .card img {
     width: 100px; 
     height: 100px;
@@ -108,11 +111,11 @@ nav a:hover {
 }
 
 footer {
+    color: black;
     margin-top: auto;
     padding: 10px 20px;
     text-align: center;
     background: #fff;
-    color: #666;
     font-size: 0.9rem;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
