@@ -74,7 +74,7 @@ app.get('/Desempenho', (req, res) => {
         }
         res.json({
           html,
-          css: "/css/grafico-alternativo.css",
+          css: "/css/grafico.css",
           js: "/js/grafico.js"
         });
       });
@@ -99,7 +99,7 @@ app.get('/Projetos', (req, res) => {
       }
       res.json({
         html,
-        css: "/css/projeto-alternativo.css",
+        css: "/css/projeto.css",
         js: "/js/projeto.js"
       });
     });
