@@ -14,6 +14,19 @@ body {
     min-height: 100vh;
 }
 
+#mudar-tema{
+    background-color:white;
+    color: #333;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+#mudar-tema:hover{
+    color: skyblue;
+    transition: color 0.3s ease;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -66,7 +79,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #6a1b9a;
+    color: skyblue;
 }
 
 #mudar-tema{

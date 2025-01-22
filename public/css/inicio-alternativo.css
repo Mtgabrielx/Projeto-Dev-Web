@@ -33,6 +33,25 @@ a:hover, a:focus {
     text-decoration: underline; 
 }
 
+#mudar-tema{
+    background-color:black;
+    color: white;
+    font-size: 16px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#mudar-tema:hover{
+    color: white;
+    border: 2px solid #fff ;
+    border-radius: 150px;
+    transition: color 0.3s ease;
+    padding: 12px;
+    margin: -2px;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -91,11 +110,7 @@ nav a:hover {
     background-color: black;
     border: 2px solid white;
     border-radius: 150px;
-}
-
-#mudar-tema{
-    background-color: #333;
-    color: white;
+    margin-bottom: -4px;
 }
 
 #Login {
