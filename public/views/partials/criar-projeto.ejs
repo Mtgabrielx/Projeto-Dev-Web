@@ -1,0 +1,31 @@
+<section id="formularioProjeto">
+    <h2>Cadastrar Novo Projeto</h2>
+    <form action="/projetos" method="POST" id="formProjeto">
+        <input type="hidden" id="idProjeto" name="idProjeto">
+
+        <label for="tituloProjeto">Título:</label>
+        <input type="text" id="tituloProjeto" name="tituloProjeto" required placeholder="Digite o título do projeto"><br><br>
+
+        <label for="descricaoProjeto">Descrição:</label>
+        <textarea id="descricaoProjeto" name="descricaoProjeto" required placeholder="Descrição do projeto..."></textarea><br><br>
+
+        <label for="prazoProjeto">Prazo:</label>
+        <input type="date" id="prazoProjeto" name="prazoProjeto" required><br><br>
+
+        <label for="prioridadeProjeto">Prioridade:</label>
+        <select id="prioridadeProjeto" name="prioridadeProjeto">
+            <option value="alta">Alta</option>
+            <option value="media">Média</option>
+            <option value="baixa">Baixa</option>
+        </select><br><br>
+
+        <label for="statusProjeto">Status:</label>
+        <select id="statusProjeto" name="statusProjeto">
+            <option value="ativo">Ativo</option>
+            <option value="concluido">Concluído</option>
+            <option value="atrasado">Atrasado</option>
+        </select><br><br>
+
+        <button type="submit">Salvar Projeto</button>
+    </form>
+</section>

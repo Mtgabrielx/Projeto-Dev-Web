@@ -1,0 +1,27 @@
+<h1>Gestão de Projetos e Tarefas</h1>
+
+<!-- Filtro de Projetos -->
+<section id="filtroProjetos">
+    <h2>Filtrar Projetos</h2>
+    <label for="statusFiltroProjeto">Status:</label>
+    <select id="statusFiltroProjeto">
+        <option value="todos">Todos</option>
+        <option value="ativo">Ativo</option>
+        <option value="concluido">Concluído</option>
+        <option value="atrasado">Atrasado</option>
+    </select>
+
+    <label for="prioridadeFiltroProjeto">Prioridade:</label>
+    <select id="prioridadeFiltroProjeto">
+        <option value="todos">Todos</option>
+        <option value="alta">Alta</option>
+        <option value="media">Média</option>
+        <option value="baixa">Baixa</option>
+    </select>
+
+    <button id="buscarProjeto" onclick="filtrarProjetos()">Buscar Projetos</button>
+</section>
+
+<section id="resultadoProjetos">
+    <!-- Projetos filtrados serão mostrados aqui -->
+</section>
