@@ -6,7 +6,6 @@
 }
 
 body {
-    color: #333;
     line-height: 1.6;
     height: 100vh;
     display: flex;
@@ -15,7 +14,6 @@ body {
     background-color: black; 
     color: white; 
     font-size: 18px; 
-    line-height: 1.6; 
 }
 
 p {
@@ -36,7 +34,6 @@ a:hover, a:focus {
 #mudar-tema{
     background-color:black;
     color: white;
-    font-size: 16px;
     font-size: 1rem;
     border: none;
     cursor: pointer;
@@ -45,6 +42,7 @@ a:hover, a:focus {
 
 #mudar-tema:hover{
     color: white;
+    background-color: black;
     border: 2px solid #fff ;
     border-radius: 150px;
     transition: color 0.3s ease;
@@ -65,26 +63,27 @@ a:hover, a:focus {
     flex-direction: column;
     justify-content: center;
     color: #fff;
+    background-color: black;
 }
 
 .left-section h1 {
     font-size: 2.5rem;
     color: white;
     margin-bottom: 10px;
+    background-color: black;
 }
 
 .left-section p {
     font-size: 1rem;
     margin-bottom: 20px;
     color: #fff;
+    background-color: black;
 }
 
 .right-section {
     flex: 1;
-    background: url('/src/Gestao-de-Tarefas.png') no-repeat center center/cover;
+    background: url('/src/Gestao-de-Tarefas.png') no-repeat center center/ 100%;
     position: relative;
-    background-size: 100%;
-    height: 500px;
 }
 
 nav {
@@ -146,6 +145,7 @@ nav a:hover {
     justify-content: space-around;
     padding: 50px 20px;
     background-color: black;
+    color: white;
 }
 
 .card {
