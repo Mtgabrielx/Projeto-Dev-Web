@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1>Bem-vindo(a), <%= user.username %></h1>
+
+  <ul>
+    <!-- Link dinâmico visível apenas para usuários -->
+    <% if (user.role === "administrador" || user.role === "gerente") { %>
+      <li><a href="/projects?id=<%= user.id %>">Acessar Projetos</a></li>
+    <% } else { %>
+      <li><a href="/projects?id=<%= user.id %>">Projetos Visíveis</a></li>
+    <% } %>
+  </ul>
+
+  <a href="/">Sair</a>
+</body>
+</html>

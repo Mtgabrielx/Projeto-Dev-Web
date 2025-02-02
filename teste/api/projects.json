@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "name": "Projeto Alpha",
+      "description": "Implementação de nova funcionalidade.",
+      "allowedUsers": [1, 2]
+    },
+    {
+      "id": 2,
+      "name": "Projeto Beta",
+      "description": "Pesquisa sobre novas tecnologias.",
+      "allowedUsers": [3]
+    },
+    {
+      "id": 3,
+      "name": "Projeto Global",
+      "description": "Projeto para todos os níveis.",
+      "allowedUsers": []
+    }
+  ]
+  
