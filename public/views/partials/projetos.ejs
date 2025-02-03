@@ -1,14 +1,44 @@
 <div id="Card">
-    <div id="Nome-Projeto">
-        <h1> <%= Projetos[0].name %> </h1>
-    <div>
-    <div id="Lista-Projeto">
-        <% if (Object.keys(Projetos[0].Partes).length > 0 ) {%>
-            <% Object.entries(Projetos[0].Partes).forEach(([parte, Projeto]) => { %>
-                <a href="#" class="Item"> <%= Projeto %></a>
-            <% }) %>
-            <% } else { %>
-                <p>Nenhuma</p>
-            <% } %>    
-    </div>    
+<div class="projects-container">
+    <h1>Lista de Projetos</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome do Projeto</th>
+            <th>Setor Responsável</th>
+            <th>Gerente</th>
+            <th>Data de Início</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if (projects.length > 0) { %>
+            <% projects.forEach((project) => { %>
+            <tr>
+                <td><%= project.name %></td>
+                <td><%= project.sector %></td>
+                <td><%= project.manager %></td>
+                <td><%= project.startDate %></td>
+            </tr>
+            <% }); %>
+        <% } else { %>
+            <tr>
+            <td colspan="4">Nenhum projeto encontrado.</td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    
+    <!-- Paginação -->
+    <div class="pagination">
+        <% if (currentPage > 1) { %>
+        <a href="/Projetos?page=<%= currentPage - 1 %>">Anterior</a>
+        <% } %>
+        <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/Projetos?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+        <% if (currentPage < totalPages) { %>
+        <a href="/Projetos?page=<%= currentPage + 1 %>">Próximo</a>
+        <% } %>
+    </div>
+    </div>
 </div>

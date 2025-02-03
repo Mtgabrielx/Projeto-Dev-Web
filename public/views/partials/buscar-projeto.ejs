@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="Estilo" rel="stylesheet" type="text/css" href="/css/buscar-projeto.css">
+    <script src="/js/buscar-projeto.js"></script>
+    <title>Tela Inicial</title>
+</head>
+<body>
+    <div id="Tela-Inicio">
+        <aside id="sidebar">
+            <nav id="Menu">
+                <img src="/src/padrao.jpg" alt="User Photo">
+                <h3>Gabriel</h3>
+                <a href="/Criar-Projeto" class="Menu-Item" data-route="/Criar-Projeto">Novo Projeto</a>
+                <a href="/Buscar-Projeto" class="Menu-Item" data-route="/Buscar-Projeto">Pesquisar por Projeto</a>
+                <a href="/Buscar-Tarefa" class="Menu-Item" data-route="/Buscar-Tarefa">Pesquisar por Tarefa</a>
+            </nav>
+            <div id="Configuracao">
+                <button type="button" id="mudar-tema" >Mudar Tema</button>
+                <a href="/" class="Menu-Configuracao">Sair</a>
+            </div>
+        </aside>
+        <div id="Conteudo-Principal">
+            <!-- Filtro de Projetos -->
+            <section id="filtroProjetos">
+                <h2>Filtrar Projetos</h2>
+                <label for="statusFiltroProjeto">Status:</label>
+                <select id="statusFiltroProjeto">
+                    <option value="todos">Todos</option>
+                    <option value="ativo">Ativo</option>
+                    <option value="concluido">Concluído</option>
+                    <option value="atrasado">Atrasado</option>
+                </select>
+
+                <label for="prioridadeFiltroProjeto">Prioridade:</label>
+                <select id="prioridadeFiltroProjeto">
+                    <option value="todos">Todos</option>
+                    <option value="alta">Alta</option>
+                    <option value="media">Média</option>
+                    <option value="baixa">Baixa</option>
+                </select>
+
+                <button id="buscarProjeto" onclick="filtrarProjetos()">Buscar Projetos</button>
+            </section>
+
+            <div id="resultadoProjetos">
+                <!-- Projetos filtrados serão mostrados aqui -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

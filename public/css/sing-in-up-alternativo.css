@@ -98,6 +98,27 @@ body {
     cursor: pointer;
 }
 
+#Tema{
+    text-align: center;
+    margin-top: 15px ;
+    margin-bottom: -5px;
+}
+
+#mudar-tema{
+    margin-top: 15px;
+    background-color:black;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+#mudar-tema:hover{
+    border: 2px solid white;
+    border-radius: 15px;
+    transition: color 0.3s ease;
+}
+
 .card-footer .submit:hover {
     background-color: white; 
     color: black;
@@ -132,8 +153,8 @@ body {
 #footer {
     box-sizing: border-box;
     text-align: center;
-    padding: 20px;
     background-color: #333;
+    padding: -2px   ;
     color: #ffffff; 
     font-size: 16px;
     line-height: 1.5;

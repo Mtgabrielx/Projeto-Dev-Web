@@ -4,44 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/inicio-alternativo.css">
+    <link id="Estilo" rel="stylesheet" type="text/css" href="/css/inicio.css">
+    <script src="/js/inicio.js"></script>
     <title>Tela Inicial</title>
 </head>
 <body>
-    <header>
-        <div id="Login">
-            <a href="/Login">Login</a>
-            <a href="/Cadastro">Criar Conta</a>
+    <nav>
+        <a href="/login">Login</a>
+        <a href="/cadastro">Cadastro</a>
+        <button type="button" id="mudar-tema" >Mudar Tema</a>
+    </nav>
+
+    <div class="container">
+        <div class="left-section">
+            <h1>Gerenciador De Tarefas</h1>
+            <p>Nosso Gerenciador de Projetos é a ferramenta perfeita para equipes que buscam organização, produtividade e resultados. Ele oferece tudo o que você precisa para planejar, executar e monitorar projetos com eficiência.</p>
         </div>
-    </header>
-    <main id="Conteudo">
+
+        <div class="right-section">
+        </div>
+    </div>
+
+    <div id="Conteudo">
         <div class="card">
-            <img class="card-img" src="/src/target.png" alt="Alvo"  title="Imagem de um alvo">
+            <img src="/src/target.png" alt="Alvo"  title="Imagem de um alvo">
             <h1>Público-Alvo</h1>
-            <p class="card-Texto">
-                O produto é voltado a área de engenharia de computação, principalmente na criação de softwares, contudo não é limitado a esse grupo,
-                 podendo ser utilizado para outras atividades ou até mesmo para uso pessoal.
-            </p>
+            <p class="card-Texto">O produto é voltado a área de engenharia de computação, principalmente na criação de softwares, contudo não é limitado a esse grupo,
+                podendo ser utilizado para outras atividades ou até mesmo para uso pessoal.</p>
         </div>
         <div class="card">
-            <img class="card-img" src="/src/crescente.png" alt="Grafico" title="Imagem de um Gráfico crescente">
+            <img src="/src/crescente.png" alt="Grafico" title="Imagem de um Gráfico crescente">
             <h1>Benefícios</h1>
-            <p class="card-Texto">
-                Melhorar o desenvolvimento de um projeto, pois com a visão holística do projeto, torna-se possível ver em quais são os pontos de dificuldade,
-                 além de permitir um workflow mais dinâmico ao permitir a mudança de tarefas enquanto o projeto ainda está sendo desenvolvido
-            </p>
+            <p class="card-Texto">Melhorar o desenvolvimento de um projeto, pois com a visão holística do projeto, torna-se possível ver em quais são os pontos de dificuldade,
+                além de permitir um workflow mais dinâmico ao permitir a mudança de tarefas enquanto o projeto ainda está sendo desenvolvido</p>
         </div>
         <div class="card">
-            <img class="card-img" src="/src/cadeado1.webp" alt="Cadeado" title="Imagem de um Cadeado">
+            <img src="/src/cadeado1.webp" alt="Cadeado" title="Imagem de um Cadeado">
             <h1>Segurança</h1>
-            <p class="card-Texto">
-                Gestão de responsabilidade, pois é possível saber quem é responsável pela tarefa e se ele está cumprindo o prazo para a mesma e controle de privacidade,
-                 pois cada projeto será acessado somente por aqueles que estão o desenvolvendo e pelo Gerente.
-            </p>
+            <p class="card-Texto">Gestão de responsabilidade, pois é possível saber quem é responsável pela tarefa e se ele está cumprindo o prazo para a mesma e controle de privacidade,
+                pois cada projeto será acessado somente por aqueles que estão o desenvolvendo e pelo Gerente.</p>
         </div>
-    </main>
-    <footer id="footer">
-        <p>Todos os direitos reservados</p>
+    </div>
+
+    <footer>
+        <p>&copy;Todos os direitos reservados</p>
     </footer>
+
+
 </body>
 </html>
+
