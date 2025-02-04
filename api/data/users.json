@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "9588bf5547f116eedd7c9a6eb02f691a72fe3cb4cbfbe9ca166adfd6c961d96ac551073aec604bfd86f5ff2836a93b8f53b374f5e0b677cc35e7f8b648a36b6b",
+    "role": "administrador"
+  },
+  {
+    "id": 2,
+    "username": "gabriel",
+    "password": "255d3b1a7d7a30ae41260e82be3571f0b9c15475848ff3b09203c256dbe19c8ec3745e0a19f474f4b6c2a3920af93369c3baa1792cfb02ad8dba469fec791891",
+    "role": "gerente"
+  }
+]

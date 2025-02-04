@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const Estilo = document.getElementById('Estilo');
 
     const temas = {
-        normal: '/css/buscar-tarefa.css',
-        alternativo: '/css/buscar-tarefa-alternativo.css'
+        normal: '/css/padrao/buscar-tarefa.css',
+        alternativo: '/css/alternativo/buscar-tarefa-alternativo.css'
     };
 
     mudar_tema.addEventListener('click', () => {

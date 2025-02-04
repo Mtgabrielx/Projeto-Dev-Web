@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="Estilo" rel="stylesheet" type="text/css" href="/css/padrao/buscar-tarefa.css">
+    <script src="/js/buscar-tarefa.js"></script>
+    <title>Tela Inicial</title>
+</head>
+<body>
+    <div id="Tela-Inicio">
+        <aside id="sidebar">
+            <nav id="Menu">
+                <img src="/src/padrao.jpg" alt="User Photo">
+                <h3><%= user.username %></h3>
+                <% if (user.role === "administrador" || user.role === "gerente") { %>
+                    <a href="/Criar-Projeto" class="Menu-Item" >Novo Projeto</a>
+                    <a href="/Modificar-Usuario" class="Menu-Item" >Modificar Usuario</a>
+                <% } %>
+                <a href="/Buscar-Projeto" class="Menu-Item" >Pesquisar por Projeto</a>
+                <a href="/Buscar-Tarefa" class="Menu-Item" >Pesquisar por Tarefa</a>
+            </nav>
+            <div id="Configuracao">
+                <button type="button" id="mudar-tema" >Mudar Tema</button>
+                <a href="/logout" class="Menu-Configuracao">Sair</a>
+            </div>
+        </aside>
+        <div id="Conteudo-Principal">
+            <section id="filtroTarefas">
+                <h2>Filtrar Tarefas</h2>
+                <label for="statusFiltroTarefa">Status:</label>
+                <select id="statusFiltroTarefa">
+                    <option value="todos">Todos</option>
+                    <option value="pendente">Pendente</option>
+                    <option value="em progresso">Em Progresso</option>
+                    <option value="concluida">Concluída</option>
+                </select>
+
+                <label for="responsavelFiltro">Responsável:</label>
+                <input type="text" id="responsavelFiltro" placeholder="Responsável">
+
+                <button id="buscarTarefa" onclick="filtrarTarefas()">Buscar Tarefas</button>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

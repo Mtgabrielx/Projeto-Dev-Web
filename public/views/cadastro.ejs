@@ -5,36 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciador - Cadastro</title>
-    <link id="Estilo" rel="stylesheet" href="css/sing-in-up.css">
+    <link id="Estilo" rel="stylesheet" href="css/padrao/sing-in-up.css">
     <script src="./js/sing-up.js"></script>
 </head>
 <body>
     <div id="card-form">
-        <form class=card action="/Buscar-Projeto">
+        <form class=card action="/Cadastro" method="POST">
             <div class="card-header">
                 <h2>Sign up</h2>
             </div>
             <div class="card-content">
                 <div class="card-content-area">
-                    <label for="usuario">Usuário</label>
-                    <input type="text" id="usuario" autocomplete="off">
-                </div>
-                <div class="card-content-area">
-                    <label for="usuario">Grupo</label>
-                    <input type="text" id="Grupo" autocomplete="off">
+                    <label for="username">Usuário</label>
+                    <input type="text" name="username" autocomplete="off" required>
                 </div>
                 <div class="card-content-area">
                     <label for="password">Senha</label>
-                    <input type="password" id="password" autocomplete="off">
+                    <input type="password" name="password" autocomplete="off" required>
                 </div>
                 <div class="card-content-area">
                     <label for="password">Repetir a Senha</label>
-                    <input type="password" id="re-password" autocomplete="off">
+                    <input type="password" name="confirmPassword" autocomplete="off" required>
                 </div>
-                <span id="erroSenha" class="error" hidden>As senhas não coincidem.</span><br><br>
             </div>
             <div class="card-footer">
                 <input type="submit" value="Sing-up" class="submit">
+                <input type="hidden" id="error-message" value="<%= error || '' %>">
             </div>
             <div id="Tema">
                 <button type="button" id="mudar-tema">Mudar Tema</button>

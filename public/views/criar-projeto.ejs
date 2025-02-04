@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="Estilo" rel="stylesheet" type="text/css" href="/css/padrao/criar-projeto.css">
+    <script src="/js/criar-projeto.js"></script>
+    <title>Tela Inicial</title>
+</head>
+<body>
+    <div id="Tela-Inicio">
+        <aside id="sidebar">
+            <nav id="Menu">
+                <img src="/src/padrao.jpg" alt="User Photo">
+                <h3><%= user.username %></h3>
+                <a href="/Criar-Projeto" class="Menu-Item" data-route="/Criar-Projeto">Novo Projeto</a>
+                <a href="/Modificar-Usuario" class="Menu-Item" >Modificar Usuario</a>
+                <a href="/Buscar-Projeto" class="Menu-Item" data-route="/Buscar-Projeto">Pesquisar por  Projeto</a>
+                <a href="/Buscar-Tarefa" class="Menu-Item" data-route="/Buscar-Tarefa">Pesquisar por Tarefa</a>
+            </nav>
+            <div id="Configuracao">
+                <button type="button" id="mudar-tema" >Mudar Tema</button>
+                <a href="/logout" class="Menu-Configuracao">Sair</a>
+            </div>
+        </aside>
+        <div id="Conteudo-Principal">
+            <section id="formularioProjeto">
+                <h2>Cadastrar Novo Projeto</h2>
+                <form action="/Criar-Projeto" method="POST" id="formProjeto">
+                    <input type="hidden" id="idProjeto" name="idProjeto">
+            
+                    <label for="Titulo">Título:</label>
+                    <input type="text" id="Titulo" name="Titulo" required placeholder="Digite o título do projeto"><br><br>
+            
+                    <label for="Descricao">Descrição:</label>
+                    <textarea id="Descricao" name="Descricao" required placeholder="Descrição do projeto..."></textarea><br><br>
+            
+                    <label for="Prazo">Prazo:</label>
+                    <input type="date" id="Prazo" name="Prazo" required><br><br>
+            
+                    <label for="Prioridade">Prioridade:</label>
+                    <select id="Prioridade" name="Prioridade">
+                        <option value="Alta">Alta</option>
+                        <option value="Media">Média</option>
+                        <option value="Baixa">Baixa</option>
+                    </select><br><br>
+            
+                    <label for="Status">Status:</label>
+                    <select id="Status" name="Status">
+                        <option value="Ativo">Ativo</option>
+                        <option value="Concluido">Concluído</option>
+                        <option value="Atrasado">Atrasado</option>
+                    </select><br><br>
+            
+                    <button type="submit">Salvar Projeto</button>
+                    <input type="hidden" id="error-message" value="<%= error || '' %>">
+                </form>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

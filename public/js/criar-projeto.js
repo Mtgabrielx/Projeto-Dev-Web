@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const Estilo = document.getElementById('Estilo');
 
     const temas = {
-        normal: '/css/criar-projeto.css',
-        alternativo: '/css/criar-projeto-alternativo.css'
+        normal: '/css/padrao/criar-projeto.css',
+        alternativo: '/css/alternativo/criar-projeto-alternativo.css'
     };
 
     mudar_tema.addEventListener('click', () => {
@@ -14,3 +14,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     Estilo.setAttribute('href', novo_tema);
     });
 })
+
+window.onload = function () {
+    const errorMessage = document.getElementById("error-message")?.value;
+    console.log(errorMessage)
+    if (errorMessage) {
+      alert(errorMessage);
+    }
+  };

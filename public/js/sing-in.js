@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     // Arquivos de tema disponíveis
     const temas = {
-        normal: 'css/sing-in-up.css',
-        alternativo: 'css/sing-in-up-alternativo.css'
+        normal: 'css/padrao/sing-in-up.css',
+        alternativo: 'css/alternativo/sing-in-up-alternativo.css'
     };
 
     // Alternar tema
@@ -19,3 +19,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     Estilo.setAttribute('href', novo_tema);
     });
 })
+
+window.onload = function () {
+    const errorMessage = document.getElementById("error-message")?.value;
+    if (errorMessage) {
+      alert(errorMessage);
+    }
+  };
