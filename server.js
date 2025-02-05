@@ -116,7 +116,7 @@ app.post('/Login', (req, res) => {
         secure: false,   // Ative "true" se usar HTTPS
         maxAge: 300000   // Tempo de validade em milissegundos
       });
-      return res.render("Buscar-Projeto", {user});
+      return res.render("pesquisar-projeto", {user});
     }
     res.status(401).render("login", { error: "Usuário ou senha incorretos." });
   }
@@ -164,46 +164,46 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/modificar-usuario",verifyJWT, (req, res) => {
-  // const users = readUsers().filter((u) => u.username !== "admin");
+  // // const users = readUsers().filter((u) => u.username !== "admin");
   // const user = getUserFromToken(req)
 
-  // if (user.role !== "administrador") {
-  //   return res.render("error", { message: "Acesso não autorizado." });
-  // }
+  // // if (user.role !== "administrador") {
+  // //   return res.render("error", { message: "Acesso não autorizado." });
+  // // }
 
-  // res.render("modificar-usuario", { user,users });
+  // // res.render("modificar-usuario", { user,users });
 
-   // Número da página atual (por padrão, 1)
+  //  // Número da página atual (por padrão, 1)
    const page = parseInt(req.query.page) || 1;
    const pageSize = 10; // Quantos usuários por página
  
-   // Lê todos os usuários do arquivo JSON
+  //  // Lê todos os usuários do arquivo JSON
    const allUsers = readUsers();
  
-   // (Opcional) Exclui o usuário admin da listagem, se for o caso
+  //  // (Opcional) Exclui o usuário admin da listagem, se for o caso
    const users = allUsers.filter((u) => u.username !== "admin");
  
-   // Total de usuários (já filtrados)
+  //  // Total de usuários (já filtrados)
    const totalUsers = users.length;
-   // Cálculo do número total de páginas
+  //  // Cálculo do número total de páginas
    const totalPages = Math.ceil(totalUsers / pageSize);
  
-   // Cálculo dos índices de corte para slice
+  //  // Cálculo dos índices de corte para slice
    const startIndex = (page - 1) * pageSize;
    const endIndex = startIndex + pageSize;
  
-   // Pega apenas os usuários da página atual
+  //  // Pega apenas os usuários da página atual
    const usersOnPage = users.slice(startIndex, endIndex);
    const adminUser = getUserFromToken(req)
-   // Verifica se o usuário atual é admin
+  //  // Verifica se o usuário atual é admin
    if (adminUser.role !== "administrador") {
      return res.render("error", { message: "Acesso não autorizado." });
    }
  
-   // Renderiza a view, passando:
-   // - Os usuários da página
-   // - A página atual
-   // - O total de páginas
+  //  // Renderiza a view, passando:
+  //  // - Os usuários da página
+  //  // - A página atual
+  //  // - O total de páginas
    res.render("modificar-usuario", {
      users: usersOnPage,
      currentPage: page,
@@ -273,35 +273,40 @@ app.post('/Criar-Projeto', (req,res) => {
 });
 
 app.post('/api/projetos', (req, res) => {
-  const { status, prioridade } = req.body; // nome
-  projeto = readProjects()
-  let resultado =  readProjects();
+  const { status, prioridade, Titulo} = req.body; 
+  const user = getUserFromToken(req);
+  let projeto = readProjects()
+  let accessibleProjects = projeto.filter(
+    (project) =>
+      project.acessivel.length === 0 ||
+      project.acessivel.includes(user.id) ||
+      ["administrador", "gerente"].includes(user.role)
+  );
   // Filtro por status
   if (status && status !== 'Todos') {
-      resultado = resultado.filter(projeto => projeto.Status === status);
+    accessibleProjects = accessibleProjects.filter(projeto => projeto.Status === status);
   }
 
   // Filtro por prioridade
   if (prioridade && prioridade !== 'Todos') {
-      resultado = resultado.filter(projeto => projeto.Prioridade === prioridade);
+    accessibleProjects = accessibleProjects.filter(projeto => projeto.Prioridade === prioridade);
   }
 
   // Filtro por nome
-  // if (nome && nome.trim() !== '') {
-  //     resultado = resultado.filter(projeto => projeto.nome.toLowerCase().includes(nome.toLowerCase()));
-  // }
-
-  res.json(resultado);
+  if (Titulo && Titulo.trim() !== '') {
+    accessibleProjects = accessibleProjects.filter(projeto => projeto.Titulo.toLowerCase().includes(Titulo.toLowerCase()));
+  }
+  res.json(accessibleProjects);
 });
 
-app.get('/Buscar-Projeto',verifyJWT, (req, res) => {
+app.get('/Pesquisar-Projeto',verifyJWT, (req, res) => {
   const username = getUserFromToken(req);
-  res.render('buscar-projeto', { user:username });
+  res.render('pesquisar-projeto', { user:username });
 });
 
-app.get('/Buscar-Tarefa',verifyJWT, (req, res) => {
+app.get('/Pesquisar-Tarefa',verifyJWT, (req, res) => {
   const username = getUserFromToken(req);
-  res.render('buscar-tarefa', { user:username });
+  res.render('pesquisar-tarefa', { user:username });
 });
 
 app.listen(port, () => {

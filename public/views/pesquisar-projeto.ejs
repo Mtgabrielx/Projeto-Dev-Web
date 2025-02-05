@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="Estilo" rel="stylesheet" type="text/css" href="/css/padrao/pesquisar-projeto.css">
+    <script src="/js/pesquisar-projeto.js"></script>
+    <title>Tela Inicial</title>
+</head>
+<body>
+    <div id="Tela-Inicio">
+        <aside id="sidebar">
+            <nav id="Menu">
+                <img src="/src/padrao.jpg" alt="User Photo">
+                <h3><%= user.username %></h3>
+                <!-- Link dinâmico visível apenas para usuários -->
+                <% if (user.role === "gerente" || user.role === "administrador") { %>
+                    <a href="/Criar-Projeto" class="Menu-Item">Novo Projeto</a>
+                <% } %>
+                <% if (user.role === "administrador") { %>
+                    <a href="/Modificar-Usuario" class="Menu-Item">Modificar Usuario</a>
+                <% } %>
+                <a href="/Pesquisar-Projeto" class="Menu-Item" >Pesquisar por Projeto</a>
+                <a href="/Pesquisar-Tarefa" class="Menu-Item" >Pesquisar por Tarefa</a>
+            </nav>
+            <div id="Configuracao">
+                <button type="button" id="mudar-tema">Mudar Tema</button>
+                <a href="/logout" class="Menu-Configuracao">Sair</a>
+            </div>
+        </aside>
+        <div id="Conteudo-Principal">
+            <div class="header-section">
+                <h2>Filtrar Projetos</h2>
+            </div>
+            <section id="filtroProjetos">
+                <label for="Titulo">Nome do Projeto:</label>
+                <input
+                  type="text"
+                  id="Titulo"
+                  name="Titulo"
+                  placeholder="Digite o nome do projeto"
+                />
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="Todos">Todos</option>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Concluido">Concluído</option>
+                    <option value="Atrasado">Atrasado</option>
+                </select>
+
+                <label for="prioridade">Prioridade:</label>
+                <select id="prioridade" name="prioridade">
+                    <option value="Todos">Todos</option>
+                    <option value="Alta">Alta</option>
+                    <option value="Media">Média</option>
+                    <option value="Baixa">Baixa</option>
+                </select>
+
+                <button id="PesquisarProjeto" onclick="filtrarProjetos()">Pesquisar Projetos</button>
+            </section>
+            <div id="resultadoProjetos">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

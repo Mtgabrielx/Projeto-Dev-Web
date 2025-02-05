@@ -8,16 +8,21 @@
     <script src="/js/criar-projeto.js"></script>
     <title>Tela Inicial</title>
 </head>
+<script src="/js/modificar-usuario.js"></script>
 <body>
     <div id="Tela-Inicio">
         <aside id="sidebar">
             <nav id="Menu">
                 <img src="/src/padrao.jpg" alt="User Photo">
                 <h3><%= adminUser.username %></h3>
-                <a href="/Criar-Projeto" class="Menu-Item" data-route="/Criar-Projeto">Novo Projeto</a>
-                <a href="/Modificar-Usuario" class="Menu-Item" >Modificar Usuario</a>
-                <a href="/Buscar-Projeto" class="Menu-Item" data-route="/Buscar-Projeto">Pesquisar por  Projeto</a>
-                <a href="/Buscar-Tarefa" class="Menu-Item" data-route="/Buscar-Tarefa">Pesquisar por Tarefa</a>
+                <% if (adminUser.role === "gerente" || adminUser.role === "administrador") { %>
+                  <a href="/Criar-Projeto" class="Menu-Item">Novo Projeto</a>
+              <% } %>
+              <% if (adminUser.role === "administrador") { %>
+                  <a href="/Modificar-Usuario" class="Menu-Item">Modificar Usuario</a>
+              <% } %>
+              <a href="/Pesquisar-Projeto" class="Menu-Item" >Pesquisar por Projeto</a>
+              <a href="/Pesquisar-Tarefa" class="Menu-Item" >Pesquisar por Tarefa</a>
             </nav>
             <div id="Configuracao">
                 <button type="button" id="mudar-tema" >Mudar Tema</button>

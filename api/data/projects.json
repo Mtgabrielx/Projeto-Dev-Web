@@ -5,7 +5,8 @@
     "Descricao": "Apresentar a nova proposta de marketing",
     "Prazo": "2024-04-05",
     "Prioridade": "Alta",
-    "Status": "Ativo"
+    "Status": "Ativo",
+    "acessivel": [1, 5, 10]
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "Descricao": "Criar a estrutura e design do site",
     "Prazo": "2024-04-12",
     "Prioridade": "Media",
-    "Status": "Ativo"
+    "Status": "Ativo",
+    "acessivel": [2, 8, 11]
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "Descricao": "Definir as estrategias de marketing e comunicacao",
     "Prazo": "2024-04-19",
     "Prioridade": "Baixa",
-    "Status": "Atrasado"
+    "Status": "Atrasado",
+    "acessivel": [3, 9, 12]
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "Descricao": "Apresentar as novas tecnicas de vendas",
     "Prazo": "2024-04-26",
     "Prioridade": "Alta",
-    "Status": "Ativo"
+    "Status": "Ativo",
+    "acessivel": [4, 13, 16]
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "Descricao": "Coletar feedback dos clientes sobre os produtos e servicos",
     "Prazo": "2024-05-03",
     "Prioridade": "Media",
-    "Status": "Concluido"
+    "Status": "Concluido",
+    "acessivel": [5, 14, 17]
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@
     "Descricao": "Migrar os dados dos clientes para o novo sistema",
     "Prazo": "2024-05-10",
     "Prioridade": "Baixa",
-    "Status": "Atrasado"
+    "Status": "Atrasado",
+    "acessivel": [6, 15, 18]
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@
     "Descricao": "Escrever artigos sobre temas relevantes para o publico-alvo",
     "Prazo": "2024-05-17",
     "Prioridade": "Alta",
-    "Status": "Ativo"
+    "Status": "Ativo",
+    "acessivel": [7, 19, 20]
   },
   {
     "id": 8,
@@ -61,7 +68,8 @@
     "Descricao": "Definir o local, atracoes e convidados do evento",
     "Prazo": "2024-05-24",
     "Prioridade": "Media",
-    "Status": "Concluido"
+    "Status": "Concluido",
+    "acessivel": [1, 5, 8]
   },
   {
     "id": 9,
@@ -69,7 +77,8 @@
     "Descricao": "Avaliar o desempenho da campanha e identificar pontos de melhoria",
     "Prazo": "2024-05-31",
     "Prioridade": "Baixa",
-    "Status": "Atrasado"
+    "Status": "Atrasado",
+    "acessivel": [2, 6, 9]
   },
   {
     "id": 10,
@@ -77,7 +86,8 @@
     "Descricao": "Definir as metas e objetivos da empresa para o proximo ano",
     "Prazo": "2024-06-07",
     "Prioridade": "Alta",
-    "Status": "Ativo"
+    "Status": "Ativo",
+    "acessivel": [3, 7, 10]
   },
   {
     "id": 11,
@@ -85,7 +95,8 @@
     "Descricao": "Pesquisar e criar novos produtos para atender as necessidades dos clientes",
     "Prazo": "2024-06-14",
     "Prioridade": "Media",
-    "Status": "Concluido"
+    "Status": "Concluido",
+    "acessivel": [4, 8, 11]
   },
   {
     "id": 12,
@@ -93,7 +104,8 @@
     "Descricao": "Analisar novos mercados e definir a estrategia de expansao",
     "Prazo": "2024-06-21",
     "Prioridade": "Baixa",
-    "Status": "Atrasado"
+    "Status": "Atrasado",
+    "acessivel": [5, 9, 12]
   },
   {
     "id": 13,
@@ -101,7 +113,8 @@
     "Descricao": "Adotar novas tecnologias para otimizar os processos da empresa",
     "Prazo": "2024-06-28",
     "Prioridade": "Alta",
-    "Status": "Ativo"
+    "Status": "Ativo",
+    "acessivel": [6, 10, 13]
   },
   {
     "id": 14,
@@ -109,7 +122,8 @@
     "Descricao": "Analisar o plano de negocios e realizar as atualizacoes necessarias",
     "Prazo": "2024-07-05",
     "Prioridade": "Media",
-    "Status": "Concluido"
+    "Status": "Concluido",
+    "acessivel": [7, 11, 14]
   },
   {
     "id": 15,
@@ -117,7 +131,8 @@
     "Descricao": "Avaliar os processos internos da empresa e identificar pontos de melhoria",
     "Prazo": "2024-07-12",
     "Prioridade": "Baixa",
-    "Status": "Atrasado"
+    "Status": "Atrasado",
+    "acessivel": [8, 12, 15]
   },
   {
     "id": 16,
@@ -125,7 +140,8 @@
     "Descricao": "Desenvolver novos materiais de marketing para divulgar os produtos e servicos da empresa",
     "Prazo": "2024-07-19",
     "Prioridade": "Alta",
-    "Status": "Ativo"
+    "Status": "Ativo",
+    "acessivel": [9, 13, 16]
   },
   {
     "id": 17,
@@ -133,7 +149,8 @@
     "Descricao": "Buscar parcerias com outras empresas para expandir os negocios",
     "Prazo": "2024-07-26",
     "Prioridade": "Media",
-    "Status": "Concluido"
+    "Status": "Concluido",
+    "acessivel": [10, 14, 17]
   },
   {
     "id": 18,
@@ -141,7 +158,8 @@
     "Descricao": "Adquirir novos equipamentos para modernizar a producao da empresa",
     "Prazo": "2024-08-02",
     "Prioridade": "Baixa",
-    "Status": "Atrasado"
+    "Status": "Atrasado",
+    "acessivel": [11, 15, 18]
   },
   {
     "id": 19,
@@ -149,7 +167,8 @@
     "Descricao": "Reformar as instalacoes da empresa para melhorar o ambiente de trabalho",
     "Prazo": "2024-08-09",
     "Prioridade": "Alta",
-    "Status": "Ativo"
+    "Status": "Ativo",
+    "acessivel": [12, 16, 19]
   },
   {
     "id": 20,
@@ -157,54 +176,7 @@
     "Descricao": "Contratar novos funcionarios para atender a demanda da empresa",
     "Prazo": "2024-08-16",
     "Prioridade": "Media",
-    "Status": "Concluido"
-  },
-  {
-    "id": 21,
-    "Titulo": "a",
-    "Descricao": "a",
-    "Prazo": "2002-11-29",
-    "Prioridade": "alta",
-    "Status": "ativo"
-  },
-  {
-    "id": 22,
-    "Titulo": "b",
-    "Descricao": "b",
-    "Prazo": "2002-11-29",
-    "Prioridade": "alta",
-    "Status": "ativo"
-  },
-  {
-    "id": 23,
-    "Titulo": "teste",
-    "Descricao": "a",
-    "Prazo": "2002-11-29",
-    "Prioridade": "alta",
-    "Status": "ativo"
-  },
-  {
-    "id": 24,
-    "Titulo": "teste",
-    "Descricao": "a",
-    "Prazo": "2002-11-29",
-    "Prioridade": "alta",
-    "Status": "ativo"
-  },
-  {
-    "id": 25,
-    "Titulo": "ab",
-    "Descricao": "ab",
-    "Prazo": "2002-11-29",
-    "Prioridade": "Media",
-    "Status": "Concluido"
-  },
-  {
-    "id": 26,
-    "Titulo": "ab",
-    "Descricao": "ab",
-    "Prazo": "2002-11-29",
-    "Prioridade": "Media",
-    "Status": "Concluido"
+    "Status": "Concluido",
+    "acessivel": [1]
   }
 ]
