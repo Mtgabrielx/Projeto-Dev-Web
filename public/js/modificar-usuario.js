@@ -110,9 +110,9 @@ async function filtrarUsuarios() {
 
       // Opções do select
       const optionColab = document.createElement('option');
-      optionColab.value = 'colaborador';
-      optionColab.textContent = 'Colaborador';
-      if (user.role === 'colaborador') optionColab.selected = true;
+      optionColab.value = 'Funcionário';
+      optionColab.textContent = 'Funcionário';
+      if (user.role === 'Funcionário') optionColab.selected = true;
       roleSelect.appendChild(optionColab);
 
       const optionGerente = document.createElement('option');
