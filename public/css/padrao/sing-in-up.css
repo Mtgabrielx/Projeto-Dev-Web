@@ -1,5 +1,5 @@
-*{
-    font-family: 'Times New Roman', Times, serif;
+* {
+    font-family: Arial, sans-serif;
 }
 
 body {
@@ -7,10 +7,9 @@ body {
     margin: 0;
     height: 100vh;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     flex-direction: column;
-    background-color: #e1e1e1;
-    color: black;
+    background-color: #f4f4f9;
 }
 
 #card-form {
@@ -21,120 +20,136 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.card{
-    background-color: rgba(19,19,19,0.8);
+.card {
+    background-color: #1B3795;
     color: #fff;
     padding: 40px;
     border-radius: 10px;
     width: 280px;
 }
 
-.card-header{
+.card-header {
     margin-top: -25px;
     padding-bottom: 50px;
     opacity: 0.8;
     color: #fff;
-    background-color: rgba(19,19,19,0);
+    background-color: #1d3996;
     font-size: 30px;
 }
 
-.card-header::after{
+.card-header::after {
     content: "";
     width: 160px;
     height: 1px;
     background-color: #fff;
-    color: black;
+    color: #1d3996;
     display: block;
     margin-top: -20px;
     margin-left: -5px;
 }
 
-.card-content label{
+.card-content label {
     color: #fff;
-    background-color: rgba(19,19,19,0);
+    background-color: #1d3996;
     font-size: 20px;
     opacity: 0.8;
 }
 
-.card-content-area{
+.card-content-area {
     display: flex;
     flex-direction: column;
     padding: 10px 0;
 }
 
-.card-content-area input{
+.card-content-area input {
     margin-top: 10px;
     padding: 0 5px;
     background-color: transparent;
-    border-left:0;
-    border-top:0;
-    border-right:0;
-    border-bottom: 1px solid #e1e1e1;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #fff;
     outline: none;
     color: #fff;
 }
 
-.card-footer{
+.card-footer {
     display: flex;
     flex-direction: column;
 }
 
-.card-footer .submit{
+.card-footer .submit {
     width: 100%;
     height: 40px;
-    background-color: rgb(96, 171, 201);
-    border:none;
-    color: white;
+    background-color: #fff;
+    border: none;
+    color: #1d3996;
     margin: 10px 0;
     border-radius: 10px;
     font-size: 20px;
-    cursor: pointer; 
-}
-
-#mudar-tema{
-    background-color:rgb(96, 171, 201);
-    padding: 15px;
-    border-radius: 15px;
-    color: white;
-    font-size: 16px;
-    border: none;
+    font-weight: bold;
     cursor: pointer;
-}
-
-#Tema{
-    text-align: center;
-    margin-top: 15px ;
-    margin-bottom: -5px;
-}
-
-#mudar-tema:hover{
-    color: skyblue;
     transition: color 0.3s ease;
 }
 
+.card-footer .submit:hover {
+    color: #1d3996;
+}
+
+#mudar-tema {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    color: #1d3996;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+#mudar-tema:hover {
+    color: #1d3996;
+    background-color: #f1f1f1;
+    font-size: 18px;
+}
+
+#Tema {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: -5px;
+    color: #fff;
+}
 
 .custom-div:hover {
-    background-color: rgba(107, 37, 56, 0.336);
+    background-color: #1d3996;
     color: white;
 }
 
-.card-footer a{
+.card-footer a {
     text-align: center;
     font-size: 15px;
     opacity: 0.8;
     color: #fff;
-    background-color: rgba(19,19,19,0);
+    background-color: #1d3996;
     text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-#erroSenha{
+.card-footer a:hover {
+    color: #1d3996; /* Texto em azul */
+    background-color: #fff; /* Fundo branco */
+    padding: 5px; /* Pequeno preenchimento ao passar o mouse */
+    border-radius: 5px;
+}
+
+#erroSenha {
     text-align: center;
 }
 
-#footer{
+#footer {
     box-sizing: border-box;
     text-align: center;
-    background-color: black;
+    background-color: #1B3795;
     color: white;
+    padding: 10px 0;
 }
-

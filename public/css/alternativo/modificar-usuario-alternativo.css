@@ -6,8 +6,8 @@
 }
 
 body {
-  background-color: #f4f4f9;
-  color: #333;
+  background-color: #000;
+  color: #fff;
   font-size: 22px;
   min-height: 100vh;
   display: flex;
@@ -17,6 +17,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #fff;
 }
 
 #Tela-Inicio {
@@ -31,7 +32,7 @@ a {
   flex-direction: column;
   justify-content: flex-start;
   color: #fff;
-  background-color: #1B3795;
+  background-color: #000;
 }
 
 #Menu {
@@ -40,6 +41,7 @@ a {
   align-items: center;
   padding-left: 0;
   padding-top: 80px;
+  background-color: #000;
 }
 
 #Menu img {
@@ -55,13 +57,14 @@ a {
 #Menu h3 {
   margin-bottom: 20px;
   font-size: 28px;
+  color: #fff;
 }
 
 .Menu-Item, .Menu-Configuracao {
   width: 100%;
   text-decoration: none;
-  background-color: #1B3795;
-  color: #ccc;
+  background-color: #000;
+  color: #fff;
   padding: 10px 25px;
   border-left: 4px solid transparent;
   text-align: left;
@@ -70,15 +73,14 @@ a {
 }
 
 .Menu-Item:hover, .Menu-Configuracao:hover {
-  background-color: #1F47AB;
-  color: #fff;
-  border-left: 4px solid #fff;
+  background-color: rgba(255, 255, 255, 0.1); /* Cor de hover ajustada */
+  border-left: 4px solid #ffdd57; /* Borda amarela */
 }
 
-.Menu-Item.active {
+.Menu-Item.active, .Menu-Configuracao.active {
   font-weight: 300;
   color: #fff;
-  background-color: #2453C7;
+  background-color: rgba(255, 255, 255, 0.1); /* Cor de hover ativado ajustada */
   padding: 12px 20px;
 }
 
@@ -103,8 +105,8 @@ a {
 }
 
 #mudar-tema {
-  background-color: #1B3795;
-  color: #ccc;
+  background-color: #000;
+  color: #fff;
   border-left: 4px solid transparent;
   font-size: 24px;
   border-top: none;
@@ -116,26 +118,26 @@ a {
 }
 
 #mudar-tema:hover {
-  background-color: #1F47AB;
-  color: #fff;
-  border-left: 4px solid #fff;
+  background-color: rgba(255, 255, 255, 0.1); /* Cor de hover ajustada */
+  border-left: 4px solid #ffdd57; /* Borda amarela */
 }
 
 h1, h2 {
   font-size: 40px;
   font-weight: bold;
-  color: #333;
-  background-color: #fafafa;
+  color: #fff;
+  background-color: #000;
   margin-bottom: 20px;
 }
 
 .formularioProjeto {
   width: 80%;
   margin: 30px auto;
-  background: white;
+  background: #333;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #fff;
 }
 
 table {
@@ -145,18 +147,18 @@ table {
 }
 
 table thead tr {
-  background-color: #1B3795;
-  color: white;
+  background-color: #111;
+  color: #fff;
 }
 
 table th, table td {
   text-align: left;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #444;
 }
 
 table tbody tr:nth-child(odd) {
-  background-color: #f9f9f9;
+  background-color: #222;
 }
 
 .pagination {
@@ -165,16 +167,16 @@ table tbody tr:nth-child(odd) {
 
 .pagination a {
   text-decoration: none;
-  color: #1B3795;
+  color: #fff;
   padding: 5px 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #444;
   margin: 0 5px;
   border-radius: 4px;
   transition: all 0.3s;
 }
 
 .pagination a:hover, .pagination a.active {
-  background-color: #1B3795;
-  color: white;
-  border-color: #1B3795;
+  background-color: #444;
+  color: #fff;
+  border-color: #444;
 }

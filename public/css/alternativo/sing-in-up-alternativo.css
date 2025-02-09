@@ -1,6 +1,5 @@
 * {
-    font-family: Arial, sans-serif; 
-    font-size: 18px; 
+    font-family: Arial, sans-serif;
 }
 
 body {
@@ -10,8 +9,8 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    background-color: black; 
-    color: white; 
+    background-color: #000;
+    color: #fff;
 }
 
 #card-form {
@@ -19,43 +18,41 @@ body {
     align-items: center;
     justify-content: center;
     height: 90vh;
-    font-family: Arial, sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .card {
-    border: 5px solid white;
-    background-color: black; 
-    color: white; 
+    background-color: black;
+    color: #fff;
     padding: 40px;
     border-radius: 10px;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    width: 280px;
 }
 
 .card-header {
     margin-top: -25px;
     padding-bottom: 50px;
-    font-size: 32px; 
-    font-weight: bold; 
-    text-align: center;
+    opacity: 0.8;
+    color: #fff;
+    background-color: black;
+    font-size: 30px;
 }
 
 .card-header::after {
     content: "";
     width: 160px;
-    height: 2px; 
-    background-color: #ffffff;
-    color: black;
+    height: 1px;
+    background-color: #fff;
     display: block;
-    margin: 10px auto; 
+    margin-top: -20px;
+    margin-left: -5px;
 }
 
 .card-content label {
-    color: #ffffff;
+    color: #fff;
     background-color: black;
-    font-size: 22px; 
-    font-weight: bold; 
-    margin-bottom: 5px;
+    font-size: 20px;
+    opacity: 0.8;
 }
 
 .card-content-area {
@@ -66,18 +63,14 @@ body {
 
 .card-content-area input {
     margin-top: 10px;
-    padding: 10px; 
-    background-color: #444; 
-    border: 1px solid #ccc; 
-    border-radius: 5px;
+    padding: 0 5px;
+    background-color: transparent;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #fff;
     outline: none;
-    color: #ffffff; 
-    font-size: 18px; 
-}
-
-.card-content-area input:focus {
-    border-color: white; 
-    box-shadow: 0 0 4px white;
+    color: #fff;
 }
 
 .card-footer {
@@ -87,75 +80,76 @@ body {
 
 .card-footer .submit {
     width: 100%;
-    height: 50px; 
-    background-color: black;
-    border: 5px solid white;
-    color: #ffffff; 
-    margin: 15px 0;
+    height: 40px;
+    background-color: #fff;
+    border: none;
+    color: #333;
+    margin: 10px 0;
     border-radius: 10px;
-    font-size: 22px; 
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-}
-
-#Tema{
-    text-align: center;
-    margin-top: 15px ;
-    margin-bottom: -5px;
-}
-
-#mudar-tema{
-    margin-top: 15px;
-    background-color:black;
-    color: white;
-    font-size: 24px;
-    border: none;
-    cursor: pointer;
-}
-
-#mudar-tema:hover{
-    border: 2px solid white;
-    border-radius: 15px;
     transition: color 0.3s ease;
 }
 
 .card-footer .submit:hover {
-    background-color: white; 
     color: black;
 }
 
+#mudar-tema {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    color: black;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+#mudar-tema:hover {
+    color: black;
+    background-color: #f1f1f1;
+    font-size: 18px;
+}
+
+#Tema {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: -5px;
+    color: #fff;
+}
+
 .custom-div:hover {
-    background-color: rgba(107, 37, 56, 0); 
+    background-color: black;
     color: white;
 }
 
 .card-footer a {
     text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    color: white; 
+    font-size: 15px;
+    opacity: 0.8;
+    color: #fff;
     background-color: black;
     text-decoration: none;
-    margin-top: 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .card-footer a:hover {
-    text-decoration: underline;
+    color: black;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 #erroSenha {
     text-align: center;
-    font-size: 18px; 
-    color: green; 
-    background-color: black;
 }
 
 #footer {
     box-sizing: border-box;
     text-align: center;
-    background-color: #333;
-    padding: -2px   ;
-    color: #ffffff; 
-    font-size: 16px;
-    line-height: 1.5;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
 }

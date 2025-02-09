@@ -9,14 +9,5 @@
     "acessivel": [
       "gabriel"
     ]
-  },
-  {
-    "id": 2,
-    "Titulo": "aAA",
-    "Descricao": "aaaa",
-    "Prazo": "0222-02-20",
-    "Prioridade": "Alta",
-    "Status": "Ativo",
-    "acessivel": []
   }
 ]
