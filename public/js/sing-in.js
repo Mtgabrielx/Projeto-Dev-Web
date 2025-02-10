@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 window.onload = function () {
     const errorMessage = document.getElementById("error-message")?.value;
+    console.log(errorMessage  )
     if (errorMessage === "not_logged_in"){
       alert("Faça login para acessar")
     }

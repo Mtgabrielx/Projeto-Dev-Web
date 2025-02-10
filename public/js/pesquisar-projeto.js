@@ -12,6 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const novo_tema = tema_atual === temas.normal ? temas.alternativo : temas.normal;
         Estilo.setAttribute('href', novo_tema);
     });
+    
+    // Lógica de ativar a classe active no menu
+    const menuItems = document.querySelectorAll('.Menu-Item');
+    const currentPath = window.location.pathname;
+
+    menuItems.forEach(item => {
+        const itemPath = item.getAttribute('href');
+        if (itemPath === currentPath) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
 });
 
 async function filtrarProjetos() {

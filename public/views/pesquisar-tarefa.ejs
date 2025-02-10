@@ -12,13 +12,13 @@
     <div id="Tela-Inicio">
         <aside id="sidebar">
             <nav id="Menu">
-                <img src="/src/padrao.jpg" alt="User Photo">
+                <img src="/src/padrao3.jpg" alt="User Photo">
                 <h3><%= user.username %></h3>
                 <% if (user.role === "gerente" || user.role === "administrador") { %>
                     <a href="/Criar-Projeto" class="Menu-Item">Novo Projeto</a>
                 <% } %>
                 <% if (user.role === "administrador") { %>
-                    <a href="/Modificar-Usuario" class="Menu-Item">Modificar Usuario</a>
+                    <a href="/Modificar-Usuario" class="Menu-Item">Modificar Usuário</a>
                 <% } %>
                 <a href="/Pesquisar-Projeto" class="Menu-Item" >Pesquisar por Projeto</a>
                 <a href="/Pesquisar-Tarefa" class="Menu-Item" >Pesquisar por Tarefa</a>

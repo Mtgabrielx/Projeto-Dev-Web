@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const Estilo = document.getElementById('Estilo');
 
   const temas = {
-      normal: '/css/padrao/modificar-usuario.css',
-      alternativo: '/css/alternativo/modificar-usuario-alternativo.css'
-  };
+    normal: '/css/padrao/modificar-usuario.css',
+    alternativo: 'css/alternativo/modificar-usuario-alternativo.css' 
+};
+
 
   mudar_tema.addEventListener('click', () => {
   const tema_atual = Estilo.getAttribute('href');
@@ -116,15 +117,15 @@ async function filtrarUsuarios() {
       roleSelect.appendChild(optionColab);
 
       const optionGerente = document.createElement('option');
-      optionGerente.value = 'gerente';
+      optionGerente.value = 'Gerente';
       optionGerente.textContent = 'Gerente';
-      if (user.role === 'gerente') optionGerente.selected = true;
+      if (user.role === 'Gerente') optionGerente.selected = true;
       roleSelect.appendChild(optionGerente);
 
       const optionAdmin = document.createElement('option');
-      optionAdmin.value = 'administrador';
+      optionAdmin.value = 'Administrador';
       optionAdmin.textContent = 'Administrador';
-      if (user.role === 'administrador') optionAdmin.selected = true;
+      if (user.role === 'Administrador') optionAdmin.selected = true;
       roleSelect.appendChild(optionAdmin);
 
       roleSelectCell.appendChild(roleSelect);
