@@ -22,7 +22,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 window.onload = function () {
     const errorMessage = document.getElementById("error-message")?.value;
-    if (errorMessage) {
+    console.log(errorMessage  )
+    if (errorMessage === "not_logged_in"){
+      alert("Faça login para acessar")
+    }
+    else if (errorMessage === "black_list_token"){
+      alert("Token Vencido")
+    }
+    else if (errorMessage === "invalid_token"){
+      alert("Token Inválido")
+    }
+    else if (errorMessage){
       alert(errorMessage);
     }
   };

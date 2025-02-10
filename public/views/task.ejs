@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" id="Estilo" href="/css/padrao/task.css">
+  <title><%= Projeto %></title>
+  <script src="/js/task.js"></script>
+</head>
+<body>
+  <!-- Header fixo -->
+  <header class="top-header">
+    <div class="user-info"><%= user.username %></div>
+    <button class="theme-toggle" id="mudar-tema">Mudar-Tema</button>
+    <div class="logout">
+      <a href="/Pesquisar-Projeto">Sair</a>
+    </div>
+  </header>
+  
+  <div class="container">
+    <h1><%= Projeto %></h1>
+    <!-- Seção superior: criar, pesquisar e deletar projeto -->
+    <div class="header">
+      <% if (user.role === "gerente" || user.role === "administrador") { %>
+        <a href="/projeto/<%= ProjetoID %>/new" class="create-btn">Criar Nova Tarefa</a>
+      <% } %>
+      
+      <!-- Formulário de pesquisa -->
+      <form id="searchForm" class="search-form">
+        <input type="text" id="Titulo" name="titulo" placeholder="Título">
+        <select id="status" name="status">
+          <option value="">Todas</option>
+          <option value="concluída">Concluída</option>
+          <option value="pendente">Pendente</option>
+          <option value="em progresso">Em Progresso</option>
+        </select>
+        <input type="text" id="responsavel" name="responsavel" placeholder="Responsável">
+        <button type="submit" class="search-btn" onclick="filtrarTarefas()">Pesquisar</button>
+      </form>
+      
+      <% if (user.role === "gerente" || user.role === "administrador") { %>
+        <form action="/projeto/<%= ProjetoID %>/del" method="POST" style="display:inline;">
+          <button type="submit" class="delete-btn">Deletar Projeto</button>
+        </form>
+      <% } %>
+    </div>
+
+    <!-- Se houver tarefas cadastradas, exibe a barra de progresso -->
+    <% if (Tarefas && Tarefas.length > 0) {
+         // Cálculo dos percentuais:
+         const total = Tarefas.length;
+         const countCompleted = Tarefas.filter(task => {
+           const s = task.status.toLowerCase();
+           return s === 'concluída' || s === 'concluido';
+         }).length;
+         const countPending = Tarefas.filter(task => task.status.toLowerCase() === 'pendente').length;
+         const countInProgress = Tarefas.filter(task => task.status.toLowerCase() === 'em progresso').length;
+         const percentCompleted = (countCompleted / total) * 100;
+         const percentPending = (countPending / total) * 100;
+         const percentInProgress = (countInProgress / total) * 100;
+    %>
+      <div class="progress-bar-container">
+        <div class="progress-bar-completed" style="width: <%= percentCompleted %>%;"></div>
+        <div class="progress-bar-pending" style="width: <%= percentPending %>%;"></div>
+        <div class="progress-bar-in-progress" style="width: <%= percentInProgress %>%;"></div>
+      </div>
+      <div class="progress-labels">
+        <div class="progress-label">
+          <span class="progress-color progress-bar-completed"></span>
+          <span>Concluída</span>
+        </div>
+        <div class="progress-label">
+          <span class="progress-color progress-bar-pending"></span>
+          <span>Pendente</span>
+        </div>
+        <div class="progress-label">
+          <span class="progress-color progress-bar-in-progress"></span>
+          <span>Em Progresso</span>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- Tabela de tarefas -->
+    <table class="task-table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Responsável</th>
+          <th>Prazo</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (!Tarefas || Tarefas.length === 0) { %>
+          <tr>
+            <td colspan="6" style="text-align: center;">Nenhuma tarefa agendada ainda</td>
+          </tr>
+        <% } else {
+             // Função para truncar textos longos
+             function truncate(str, maxLength) { 
+               return str.length > maxLength ? str.substring(0, maxLength) + '...' : str; 
+             }
+             Tarefas.forEach(task => { %>
+          <tr>
+            <td><%= truncate(task.title, 20) %></td>
+            <td><%= truncate(task.description, 30) %></td>
+            <td><%= truncate(task.responsible, 15) %></td>
+            <td><%= task.deadline %></td>
+            <td>
+              <span class="status <%= task.status.toLowerCase().replace(' ', '-') %>">
+                <%= task.status %>
+              </span>
+            </td>
+            <td>
+              <% if (user.role === "gerente" || user.role === "administrador") { %>
+                <a href="/projeto/<%= ProjetoID %>/edit/<%= task.id %>" class="edit-btn">Editar</a>
+                <form action="/projeto/<%= ProjetoID %>/delete/<%= task.id %>" method="POST" style="display:inline;">
+                  <button type="submit" class="delete-btn">Excluir</button>
+                </form>
+              <% } else { %>
+                <a href="/projeto/<%= ProjetoID %>/edit/<%= task.id %>" class="edit-btn">Visualizar</a>
+              <% } %>
+            </td>
+          </tr>
+        <% }); } %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

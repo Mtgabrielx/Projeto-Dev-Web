@@ -8,61 +8,13 @@
   {
     "id": 2,
     "username": "gabriel",
-    "password": "e7c79786927bb18d36309449e455367416426d464aa2994f052234a16eb639c284af31f6f955d7f3345f84163ebcbbf39dafe88d82c96a16aa461f394c353573",
-    "role": "gerente"
+    "password": "255d3b1a7d7a30ae41260e82be3571f0b9c15475848ff3b09203c256dbe19c8ec3745e0a19f474f4b6c2a3920af93369c3baa1792cfb02ad8dba469fec791891",
+    "role": "Funcionário"
   },
   {
     "id": 3,
-    "username": "a",
-    "password": "acfbb61ba6fb0dcd9c450d4a8c0f63eaa23d289771649118535b0b74cde85f3a16ebd9348308f8ed6b3b48b7cbfda784cf1d0abfe5a21587649a854e9b4007d7",
-    "role": "colaborador"
-  },
-  {
-    "id": 4,
-    "username": "b",
-    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
-    "role": "colaborador"
-  },
-  {
-    "id": 6,
-    "username": "d",
-    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
-    "role": "colaborador"
-  },
-  {
-    "id": 7,
-    "username": "d",
-    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
-    "role": "colaborador"
-  },
-  {
-    "id": 8,
-    "username": "e",
-    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
-    "role": "colaborador"
-  },
-  {
-    "id": 9,
-    "username": "g",
-    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
-    "role": "colaborador"
-  },
-  {
-    "id": 10,
-    "username": "f",
-    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
-    "role": "colaborador"
-  },
-  {
-    "id": 11,
-    "username": "h",
-    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
-    "role": "colaborador"
-  },
-  {
-    "id": 12,
-    "username": "i",
-    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
-    "role": "colaborador"
+    "username": "teste",
+    "password": "9bd14656b8d19f8d9a195969d652f5e73b62fe27a2c76e7bdda279ed65c5f23b6c6e2e2a2ea97f7a7990f75181bf927179690dd029499ebafbc792d6d2314d31",
+    "role": "Funcionário"
   }
 ]

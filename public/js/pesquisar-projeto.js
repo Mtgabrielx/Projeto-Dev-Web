@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', () => {
     const mudar_tema = document.getElementById('mudar-tema');
     const Estilo = document.getElementById('Estilo');
 
@@ -8,19 +8,29 @@ document.addEventListener('DOMContentLoaded', ()=>{
     };
 
     mudar_tema.addEventListener('click', () => {
-    const tema_atual = Estilo.getAttribute('href');
-    const novo_tema = tema_atual === temas.normal ? temas.alternativo : temas.normal;
-
-    Estilo.setAttribute('href', novo_tema);
+        const tema_atual = Estilo.getAttribute('href');
+        const novo_tema = tema_atual === temas.normal ? temas.alternativo : temas.normal;
+        Estilo.setAttribute('href', novo_tema);
     });
-})
+    
+    // Logica de ativar a classe active no menu
+    const menuItems = document.querySelectorAll('.Menu-Item');
+    const currentPath = window.location.pathname;
+
+    menuItems.forEach(item => {
+        const itemPath = item.getAttribute('href');
+        if (itemPath === currentPath) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+});
 
 async function filtrarProjetos() {
-    // Capturar os valores dos filtros
     const status = document.getElementById('status').value;
     const prioridade = document.getElementById('prioridade').value;
     const Titulo = document.getElementById('Titulo').value;
-    // Criar objeto com os dados para enviar
     const dadosFiltro = {
         status: status,
         prioridade: prioridade,
@@ -34,8 +44,7 @@ async function filtrarProjetos() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dadosFiltro)
-        }); 
-        console.log(response)
+        });
         if (!response.ok) {
             throw new Error('Erro na requisição');
         }
@@ -44,11 +53,10 @@ async function filtrarProjetos() {
 
         const itemsPerPage = 5;
         let currentPage = 0;
-        
+
         function renderPage() {
-            // Renderizar resultados
             const resultadoDiv = document.getElementById('resultadoProjetos');
-            console.log(resultadoDiv)
+            console.log(resultadoDiv);
             resultadoDiv.innerHTML = '';
             if (projetos.length === 0) {
                 resultadoDiv.innerHTML = '<p>Nenhum projeto encontrado.</p>';
@@ -63,9 +71,9 @@ async function filtrarProjetos() {
             const headers = ['ID', 'Titulo', 'Prazo', 'Status'];
 
             headers.forEach(headerText => {
-            const th = document.createElement('th');
-            th.textContent = headerText;
-            headerRow.appendChild(th);
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
             });
             thead.appendChild(headerRow);
             table.appendChild(thead);
@@ -76,69 +84,61 @@ async function filtrarProjetos() {
             const projetosToRender = projetos.slice(startIndex, endIndex);
 
             projetosToRender.forEach(projeto => {
-            const row = document.createElement('tr');
-                    // Coluna ID
-            const tdId = document.createElement('td');
-            tdId.textContent = projeto.id;
-            row.appendChild(tdId);
+                const row = document.createElement('tr');
 
-            const tdTitulo = document.createElement('td');
-            tdTitulo.textContent = projeto.Titulo;
-            row.appendChild(tdTitulo);
+                const tdId = document.createElement('td');
+                tdId.textContent = projeto.id;
+                row.appendChild(tdId);
 
-            const tdPrazo = document.createElement('td');
-            tdPrazo.textContent = projeto.Prazo;
-            row.appendChild(tdPrazo);
+                const tdTitulo = document.createElement('td');
+                const linkTitulo = document.createElement('a');
+                linkTitulo.href = `/projeto/${projeto.id}`;
+                linkTitulo.textContent = projeto.Titulo;       
+                tdTitulo.appendChild(linkTitulo);
+                row.appendChild(tdTitulo);
 
-            // Coluna Status com span
-            const tdStatus = document.createElement('td');
-            tdStatus.textContent = projeto.Status;
-            row.appendChild(tdStatus);
-            // const tdStatus = document.createElement('td');
-            // const spanStatus = document.createElement('span');
-            // spanStatus.classList.add('tag');
-            // console.log(projeto.Status.toLowerCase())
-            // const statusClass = projeto.Status.toLowerCase();
-            // spanStatus.classList.add(statusClass);
-            // spanStatus.textContent = projeto.Status;
-            // tdStatus.appendChild(spanStatus);
-            // row.appendChild(tdStatus);
+                // Coluna Prazo
+                const tdPrazo = document.createElement('td');
+                tdPrazo.textContent = projeto.Prazo;
+                row.appendChild(tdPrazo);
 
-            tbody.appendChild(row);
+                // Coluna Status
+                const tdStatus = document.createElement('td');
+                tdStatus.textContent = projeto.Status;
+                row.appendChild(tdStatus);
+
+                tbody.appendChild(row);
             });
 
             table.appendChild(tbody);
             resultadoDiv.appendChild(table);
-            // Cria a área de paginação
+
             const paginationDiv = document.createElement('div');
             paginationDiv.classList.add('pagination');
 
-            // Botão "Anterior" (só aparece se não for a primeira página)
             if (currentPage > 0) {
                 const prevButton = document.createElement('button');
                 prevButton.textContent = 'Anterior';
                 prevButton.addEventListener('click', () => {
-                currentPage--;
-                renderPage();
+                    currentPage--;
+                    renderPage();
                 });
                 paginationDiv.appendChild(prevButton);
             }
-        
-            // Botão "Próximo" (só aparece se houver mais itens)
+
             if (endIndex < projetos.length) {
                 const nextButton = document.createElement('button');
                 nextButton.textContent = 'Próximo';
                 nextButton.addEventListener('click', () => {
-                currentPage++;
-                renderPage();
+                    currentPage++;
+                    renderPage();
                 });
                 paginationDiv.appendChild(nextButton);
             }
-        
-            resultadoDiv.appendChild(paginationDiv);
-            }
 
-        // Renderiza a primeira página
+            resultadoDiv.appendChild(paginationDiv);
+        }
+
         renderPage();
 
     } catch (error) {

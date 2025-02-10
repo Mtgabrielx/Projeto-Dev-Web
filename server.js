@@ -8,10 +8,10 @@ require("dotenv-safe").config();
 
 const app = express()
 const port = 3000;
-const USERS_FILE = "./api/data/users.json";
-const Projects_FILE = "./api/data/projects.json";
-const Task_FILE = "./api/data/tasks.json";
-const dataFilePath = path.join(__dirname, 'public', 'data/tasks.json');
+const Arquivo_Usuarios = "./api/data/users.json";
+const Arquivo_Projetos = "./api/data/Projetos.json";
+const Arquivo_Tarefas = "./api/data/Tarefas";
+const Lista_Usuarios = "./api/data/userlist.json";
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -22,32 +22,84 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const blacklist = [];
 
-function readUsers() {
-  const data = fs.readFileSync(USERS_FILE);
+function lerListaUsuario(){
+  const data = fs.readFileSync(Lista_Usuarios);
   return JSON.parse(data);
 }
 
-function writeUsers(users) {
-  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+function escreverListaUsuario(users){
+  fs.writeFileSync(Lista_Usuarios, JSON.stringify(users, null, 2));
 }
 
-function readTasks() {
-  const data = fs.readFileSync(Task_FILE);
+function lerUsuario() {
+  const data = fs.readFileSync(Arquivo_Usuarios);
   return JSON.parse(data);
 }
 
-function writeTasks(tasks) {
-  fs.writeFileSync(Task_FILE, JSON.stringify(tasks, null, 2));
+function escreverUsuario(users) {
+  fs.writeFileSync(Arquivo_Usuarios, JSON.stringify(users, null, 2));
 }
 
-function readProjects() {
-  const data = fs.readFileSync(Projects_FILE);
+function excluirTarefas(ProjetoID){
+  const id = ProjetoID;
+  const FILE = path.join(Arquivo_Tarefas,`${id}.json`)
+  fs.unlink(FILE, (err) =>{
+    if (err) {
+      console.error('Erro ao excluir o arquivo:', err);
+    }
+    return;
+  })
+}
+
+function lerTarefas(ProjetoID) {
+  const id = ProjetoID;
+  const FILE = path.join(Arquivo_Tarefas,`${id}.json`)
+  const data = fs.readFileSync(FILE);
   return JSON.parse(data);
 }
 
-function writeProjects(Projects) {
-  fs.writeFileSync(Projects_FILE, JSON.stringify(Projects, null, 2));
+function escreverTarefas(ProjetoID,Tarefas) {
+  filePath = path.join(Arquivo_Tarefas,`${ProjetoID}.json`)
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Erro ao ler o arquivo:', err);
+      return;
+    }
+    
+    let jsonData;
+    try {
+      jsonData = JSON.parse(data);
+    } catch (parseErr) {
+      console.error('Erro ao converter o arquivo para JSON:', parseErr);
+      return;
+    }
+    
+    jsonData.Tarefas = Tarefas;
+    fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), 'utf8', (writeErr) => {
+      if (writeErr) {
+        console.error('Erro ao escrever no arquivo:', writeErr);
+      } 
+    });
+  });
 }
+
+function criarTarefa(Projeto,Tarefas=[]) {
+  const id = Projeto.id;
+  const name = Projeto.Titulo;
+  const FILE = path.join(Arquivo_Tarefas,`${id}.json`);
+  fs.writeFileSync(FILE, JSON.stringify({nome:name,Tarefas}, null, 2));
+}
+
+function lerProjetos() {
+  const data = fs.readFileSync(Arquivo_Projetos);
+  return JSON.parse(data);
+}
+
+function escreverProjeto(Projetos) {
+  fs.writeFileSync(Arquivo_Projetos, JSON.stringify(Projetos, null, 2));
+}
+
+// function atualizarProjeto(Projetos)
 
 function getUserFromToken(req) {
   const token = req.cookies.token;
@@ -55,8 +107,9 @@ function getUserFromToken(req) {
 
   try {
     const decoded = jwt.verify(token, process.env.SECRET);
-    const users = JSON.parse(fs.readFileSync(USERS_FILE));
-    return users.find((u) => u.id === decoded.id);
+    const users = JSON.parse(fs.readFileSync(Arquivo_Usuarios));
+    const user = users.find((u) => u.id === decoded.id);
+    return user
   } catch (err) {
     return null;
   }
@@ -72,21 +125,47 @@ function verifyJWT(req, res, next) {
   const token = req.cookies.token;
 
   if (!token) {
-    return res.status(401).render("login", { error: "Token não encontrado." });
+    return res.status(401).redirect("/login?error=not_logged_in");
   }
 
   const index = blacklist.findIndex((item) => item === token);
   if (index !== -1) {
-    return res.status(401).end("Token inválido.");
+    return res.status(401).redirect("/login?error=black_list_token");
   }
 
   jwt.verify(token, process.env.SECRET, (err, decoded) => {
     if (err) {
-      return res.status(403).end("Token inválido.");
+      return res.status(403).redirect("/login?error=invalid_token");
     }
     req.userid = decoded.userid;
     next();
   });
+}
+
+function validar_admin(req, res, next){
+  const adminUser = getUserFromToken(req);
+  if (adminUser.role !== "administrador") {
+    return res.render("error", { message: "Acesso não autorizado." });
+  }
+  next()
+}
+
+function validar_gerente(req, res, next){
+  const adminUser = getUserFromToken(req);
+  if (adminUser.role !== "administrador" && adminUser.role !== "gerente") {
+    return res.render("error", { message: "Acesso não autorizado." });
+  }
+  next()
+}
+
+function encontrarProjeto(req, res, next) {
+  const ProjetoID = parseInt(req.params.ProjetoID);
+  const Projetos = lerProjetos()
+  const Projeto = Projetos.find(p => p.id === ProjetoID);
+  if (!Projeto) return res.redirect('/pesquisar-projeto');
+
+  req.Projeto = Projeto;
+  next();
 }
 
 app.get('/', (req, res) => {
@@ -94,7 +173,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/Login', (req, res) => {
-    res.render('login', { error: null }); 
+  let error;
+  if(req.query){
+    error = {error:null}
+  }
+  else{
+    error = req.query
+  }
+  res.render('login', error); 
 });
 
 app.post('/Login', (req, res) => {
@@ -102,7 +188,7 @@ app.post('/Login', (req, res) => {
   const hashedPassword = sha512(req.body.password, process.env.SECRET_USERS);
   
   if (username && hashedPassword) {
-    const users = readUsers();
+    const users = lerUsuario();
     const user = users.find(
       (item) =>  item.username === username && item.password === hashedPassword
     );
@@ -133,26 +219,33 @@ app.post("/Cadastro", (req, res) => {
     return res.status(401).render('cadastro', { error: "As senhas não coincidem" }); 
   }
 
-  let users = readUsers();
+  let users = lerUsuario();
+  let listaUsuario = lerListaUsuario();
 
   if (users.some((u) => u.username === username)) {
     return res.status(401).render('cadastro', { error: "Nome de usuário já existe" }); 
   }
 
+  let tamProjeto = users.length === 0 ? 0 : users[users.length-1].id;
+  let id = parseInt(tamProjeto + 1);
+
   const newUser = {
-    id: users.length + 1,
+    id,
     username,
     password: sha512(password, process.env.SECRET_USERS),
-    role: "colaborador",
+    role: "Funcionário",
   };
 
   users.push(newUser);
-  writeUsers(users);
+  listaUsuario.push(username);
+
+  escreverUsuario(users);
+  escreverListaUsuario(listaUsuario);
 
   return res.status(201).render('login',{ error: "Cadastro realizado com sucesso. Faça login." });
 });
 
-app.get("/logout", (req, res) => {
+app.get("/logout", verifyJWT, (req, res) => {
   const token = req.cookies.token;
 
   if (token) {
@@ -163,47 +256,25 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-app.get("/modificar-usuario",verifyJWT, (req, res) => {
-  // // const users = readUsers().filter((u) => u.username !== "admin");
-  // const user = getUserFromToken(req)
+app.get("/modificar-usuario",verifyJWT, validar_admin, (req, res) => {
 
-  // // if (user.role !== "administrador") {
-  // //   return res.render("error", { message: "Acesso não autorizado." });
-  // // }
-
-  // // res.render("modificar-usuario", { user,users });
-
-  //  // Número da página atual (por padrão, 1)
    const page = parseInt(req.query.page) || 1;
    const pageSize = 10; // Quantos usuários por página
  
-  //  // Lê todos os usuários do arquivo JSON
-   const allUsers = readUsers();
+   const users = lerUsuario();
  
   //  // (Opcional) Exclui o usuário admin da listagem, se for o caso
-   const users = allUsers.filter((u) => u.username !== "admin");
+  //  const users = allUsers.filter((u) => u.username !== "admin");
  
-  //  // Total de usuários (já filtrados)
    const totalUsers = users.length;
-  //  // Cálculo do número total de páginas
    const totalPages = Math.ceil(totalUsers / pageSize);
  
-  //  // Cálculo dos índices de corte para slice
    const startIndex = (page - 1) * pageSize;
    const endIndex = startIndex + pageSize;
  
-  //  // Pega apenas os usuários da página atual
    const usersOnPage = users.slice(startIndex, endIndex);
    const adminUser = getUserFromToken(req)
-  //  // Verifica se o usuário atual é admin
-   if (adminUser.role !== "administrador") {
-     return res.render("error", { message: "Acesso não autorizado." });
-   }
  
-  //  // Renderiza a view, passando:
-  //  // - Os usuários da página
-  //  // - A página atual
-  //  // - O total de páginas
    res.render("modificar-usuario", {
      users: usersOnPage,
      currentPage: page,
@@ -212,9 +283,9 @@ app.get("/modificar-usuario",verifyJWT, (req, res) => {
    });
 });
 
-app.post("/update-user", (req, res) => {
+app.post("/update-user",verifyJWT, validar_admin, (req, res) => {
   const { id, newPassword, newRole } = req.body;
-  let users = readUsers();
+  let users = lerUsuario();
 
   const userIndex = users.findIndex((u) => u.id == id);
 
@@ -226,87 +297,189 @@ app.post("/update-user", (req, res) => {
     if (newRole) {
       users[userIndex].role = newRole;
     }
-    writeUsers(users);
+    escreverUsuario(users);
   }
 
   res.redirect(`/modificar-usuario`);
 });
 
 // Nova rota para excluir usuário
-app.post("/delete-user", (req, res) => {
+app.post("/delete-user", verifyJWT, validar_admin, (req, res) => {
   const { id } = req.body;
-  let users = readUsers();
+  let users = lerUsuario();
   const userIndex = users.findIndex((u) => u.id == id);
 
   // Impede exclusão do admin
   if (userIndex !== -1 && users[userIndex].username !== "admin") {
     users.splice(userIndex, 1);
-    writeUsers(users);
+    escreverUsuario(users);
   }
 
   res.redirect(`/modificar-usuario`);
 });
 
-app.get('/Criar-Projeto',verifyJWT, (req, res) => {
-  const username = getUserFromToken(req);
-  res.render('criar-projeto', { user:username ,error:""});
+app.get('/Criar-Projeto', verifyJWT, validar_gerente, (req, res) => {
+  const user = getUserFromToken(req);
+  res.render('criar-projeto', { user:user ,error:""});
 });
 
-app.post('/Criar-Projeto', (req,res) => {
-  const username = getUserFromToken(req);
+app.post('/Criar-Projeto', verifyJWT, validar_gerente, (req,res) => {
+  const user = getUserFromToken(req);
   const { Titulo, Descricao, Prazo, Prioridade, Status } = req.body;
-  
-  let projects = readProjects();
-
-  const newProject = {
-    id: projects.length + 1,
+  const acessivel = []
+  let Projetos = lerProjetos();
+  let tamProjeto = Projetos.length===0 ? 0 : Projetos[Projetos.length-1].id
+  let id = parseInt(tamProjeto + 1);
+  const newProjeto = {
+    id,
     Titulo,
     Descricao,
     Prazo,
     Prioridade,
     Status,
+    acessivel,
   };
-  projects.push(newProject);
-  writeProjects(projects);
+  
+  Projetos.push(newProjeto);
 
-  return res.status(201).render('criar-projeto', { user:username,error: "Cadastro De projeto realizado com sucesso."});
+  escreverProjeto(Projetos);
+
+  criarTarefa(newProjeto);
+
+  return res.status(201).render('criar-projeto', { user:user,error: "Cadastro De projeto realizado com sucesso."});
 });
 
-app.post('/api/projetos', (req, res) => {
+app.get('/projeto/:ProjetoID', verifyJWT, encontrarProjeto , (req, res) => {
+  const user = getUserFromToken(req);
+  Tarefas = lerTarefas(req.params.ProjetoID);
+  res.render('task', {
+    user,
+    ProjetoID: req.params.ProjetoID,
+    Projeto: Tarefas.nome,
+    Tarefas: Tarefas.Tarefas,
+  });
+});
+
+app.post('/projeto/:ProjetoID/del', verifyJWT, encontrarProjeto , (req, res) => {
+  let projetos = lerProjetos();
+  const filteredProjetos = projetos.filter(projeto => projeto.id != req.params.ProjetoID);
+  const newProjetos = Array.isArray(filteredProjetos) ? filteredProjetos : [filteredProjetos].filter(Boolean);
+  excluirTarefas(req.params.ProjetoID);
+  escreverProjeto(newProjetos);
+  res.redirect('/Pesquisar-Projeto');
+});
+
+app.get('/projeto/:ProjetoID/new',verifyJWT, encontrarProjeto, validar_gerente,(req, res) => {
+  let user = getUserFromToken(req)
+  res.render('new-task', { ProjetoID: req.params.ProjetoID,user });
+});
+
+app.post('/projeto/:ProjetoID/add',verifyJWT, encontrarProjeto, validar_gerente,(req, res) => {
+  const { title, description, responsible, deadline, status } = req.body;
+  const taks = lerTarefas(req.params.ProjetoID).Tarefas;
+  const Projetos = lerProjetos()
+  let tamProjeto = taks.length === 0 ? 0 : taks[taks.length-1].id
+  let id = parseInt(tamProjeto + 1);
+  const newTask = {
+    id,
+    title,
+    description,
+    responsible,
+    deadline,
+    status,
+  };
+  let Projeto = Projetos.filter(projeto => projeto.id === parseInt(req.params.ProjetoID));
+
+  if(!Projeto[0].acessivel.includes(responsible)){
+    Projeto[0].acessivel.push(responsible)
+  }
+  taks.push(newTask);
+  
+  escreverTarefas(req.params.ProjetoID,taks)
+  escreverProjeto(Projetos)
+  res.redirect(`/projeto/${req.params.ProjetoID}`);
+});
+
+app.get('/projeto/:ProjetoID/edit/:taskId', verifyJWT, encontrarProjeto,(req, res) => {
+  user = getUserFromToken(req)
+  const taskId = parseInt(req.params.taskId);
+  const ProjetoID = parseInt(req.params.ProjetoID);
+  const Tarefas = lerTarefas(ProjetoID)
+  const task = Tarefas.Tarefas.find(task => task.id === taskId);
+  if (!task) return res.redirect(`/Projetos/${ProjetoID}`);
+  res.render('edit-task', { Projeto: req.Projeto, task, user });
+});
+
+// Rota para salvar as alterações de uma tarefa de um projeto
+app.post('/projeto/:ProjetoID/edit/:taskId', verifyJWT, encontrarProjeto,(req, res) => {
+  const taskId = parseInt(req.params.taskId);
+  const ProjetoID = parseInt(req.params.ProjetoID);
+  const { title, description, responsible, deadline, status } = req.body;
+  Tarefas = lerTarefas(ProjetoID)
+  Tarefas.Tarefas = Tarefas.Tarefas.map(task => {
+    if (task.id === taskId) {
+      return { ...task, title, description, responsible, deadline, status };
+    }
+    return task;
+  });
+
+  let projetos = lerProjetos();
+  
+  escreverTarefas(ProjetoID,Tarefas.Tarefas)
+  res.redirect(`/projeto/${req.Projeto.id}`);
+});
+
+app.post('/projeto/:ProjetoID/delete/:taskId', verifyJWT, encontrarProjeto, validar_gerente,(req, res) => {
+  const taskId = parseInt(req.params.taskId);
+  const ProjetoID = parseInt(req.params.ProjetoID);
+  const Tarefas = lerTarefas(ProjetoID)
+  const filteredTarefas = Tarefas.Tarefas.filter(task => task.id != taskId);
+  const ProjetoData = Array.isArray(filteredTarefas) ? filteredTarefas : [filteredTarefas].filter(Boolean);
+  
+  escreverTarefas(ProjetoID,ProjetoData)
+  
+  res.redirect(`/projeto/${ProjetoID}`);
+});
+
+app.post('/api/projetos', verifyJWT, (req, res) => {
   const { status, prioridade, Titulo} = req.body; 
   const user = getUserFromToken(req);
-  let projeto = readProjects()
-  let accessibleProjects = projeto.filter(
-    (project) =>
-      project.acessivel.length === 0 ||
-      project.acessivel.includes(user.id) ||
+  let projeto = lerProjetos()
+  let accessibleProjetos = projeto.filter(
+    (Projeto) =>
+      Projeto.acessivel.includes(user.username) ||
       ["administrador", "gerente"].includes(user.role)
   );
   // Filtro por status
   if (status && status !== 'Todos') {
-    accessibleProjects = accessibleProjects.filter(projeto => projeto.Status === status);
+    accessibleProjetos = accessibleProjetos.filter(projeto => projeto.Status === status);
   }
 
   // Filtro por prioridade
   if (prioridade && prioridade !== 'Todos') {
-    accessibleProjects = accessibleProjects.filter(projeto => projeto.Prioridade === prioridade);
+    accessibleProjetos = accessibleProjetos.filter(projeto => projeto.Prioridade === prioridade);
   }
 
   // Filtro por nome
   if (Titulo && Titulo.trim() !== '') {
-    accessibleProjects = accessibleProjects.filter(projeto => projeto.Titulo.toLowerCase().includes(Titulo.toLowerCase()));
+    accessibleProjetos = accessibleProjetos.filter(projeto => projeto.Titulo.toLowerCase().includes(Titulo.toLowerCase()));
   }
-  res.json(accessibleProjects);
+  res.json(accessibleProjetos);
+});
+
+app.get('/api/nome', verifyJWT, (req, res) => {
+  nomes = lerListaUsuario()
+  res.json(nomes);
 });
 
 app.get('/Pesquisar-Projeto',verifyJWT, (req, res) => {
-  const username = getUserFromToken(req);
-  res.render('pesquisar-projeto', { user:username });
+  const user = getUserFromToken(req);
+  res.render('pesquisar-projeto', { user:user });
 });
 
 app.get('/Pesquisar-Tarefa',verifyJWT, (req, res) => {
-  const username = getUserFromToken(req);
-  res.render('pesquisar-tarefa', { user:username });
+  const user = getUserFromToken(req);
+  res.render('pesquisar-tarefa', { user:user });
 });
 
 app.listen(port, () => {

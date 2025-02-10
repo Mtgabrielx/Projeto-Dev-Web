@@ -1,59 +1,72 @@
-* {
-    padding: 0;
+* {  
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+}
+
+html {
+    font-size: 18px;
 }
 
 body {
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #fff;
     line-height: 1.6;
-    height: 100vh;
+    font-size: 18px;  /* Tamanho de fonte padrão */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #000;
+    overflow-x: hidden;
+}
+
+#mudar-tema {
+    background-color: #fff;
+    color: #000;
+    font-size: 1.4rem;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#mudar-tema:hover {
+    background-color: #ccc;
+}
+
+nav {
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
-    background-color: black; 
-    color: white; 
-    font-size: 18px; 
+    align-items: center;
+    padding: 20px 60px;
+    background: #000;
+    color: #fff;
 }
 
-p {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1.6; 
-}
-
-a {
+nav a,
+nav button {
     text-decoration: none;
-    font-size: 20px;
-}
-
-a:hover, a:focus {
-    text-decoration: underline; 
-}
-
-#mudar-tema{
-    background-color:black;
-    color: white;
-    font-size: 1rem;
-    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    padding: 12px 18px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
     cursor: pointer;
-    transition: color 0.3s ease;
+    border: none;
+    background-color: transparent;
 }
 
-#mudar-tema:hover{
-    color: white;
-    background-color: black;
-    border: 2px solid #fff ;
-    border-radius: 150px;
-    transition: color 0.3s ease;
-    padding: 12px;
-    margin: -2px;
+nav a:hover,
+nav button:hover {
+    background-color: #333;
 }
 
 .container {
     display: flex;
     flex-direction: row;
     flex: 1;
+    width: 100%;
 }
 
 .left-section {
@@ -62,127 +75,148 @@ a:hover, a:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: #fff;
-    background-color: black;
+    background-color: transparent;
+    box-shadow: none;
 }
 
-.left-section h1 {
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 10px;
-    background-color: black;
+button.tamanho-texto {
+    background-color: #fff;
+    color: #000;
+    font-size: 2rem;
+    padding: 15px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 15px;
 }
 
-.left-section p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: #fff;
-    background-color: black;
+/* Estilos específicos para os botões A-, A, A+ */
+button#Aminus {
+    font-size: 1.0rem;  /* Fonte menor */
 }
 
-.right-section {
-    flex: 1;
-    background: url('/src/Gestao-de-Tarefas.png') no-repeat center center/ 100%;
-    position: relative;
+button#A {
+    font-size: 1.4rem;  /* Fonte padrão */
 }
 
-nav {
+button#Aplus {
+    font-size: 1.6rem;  /* Fonte maior */
+}
+
+button.A {
+    background-color: #fff;
+    color: #000;
+}
+
+button.A:hover {
+    background-color: #ccc;
+}
+
+#TituloDescricao {
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
     align-items: center;
-    padding: 10px 50px;
-    border: 5px solid #fff;
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 20px 50px;
+    margin-bottom: 10px;
+    box-shadow: none;
 }
 
-nav a {
-    text-decoration: none;
-    background: black;
-    color: #fff;
-    font-size: 1rem;
-    padding: 10px;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: white;
-    background-color: black;
-    border: 2px solid white;
-    border-radius: 150px;
-    margin-bottom: -4px;
-}
-
-#Login {
+#TituloDescricao .left-section {
+    flex: 1;
     display: flex;
-    justify-content: end;
-    padding: 10px 15px 5px 0;
-    background-color: rgba(255, 255, 255, 0.048); 
-    color: white;
-    height: 70px; 
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20px;
+    background-color: transparent;
 }
 
-#Login a {
-    text-decoration: none;
-    padding: 8px 10px;
-    border: 5px solid white ;
-    border-radius: 10px;
-    color: #fff; 
-    background-color: #ffffff10; 
-    height: auto; 
-    width: auto;
-    text-align: center;
-    margin: 0 5px;
-    font-weight: bold;
+#TituloDescricao h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    white-space: nowrap;
 }
 
-#Login a:hover, #Login a:focus {
-    background-color: white; 
-    color: black;
+#TituloDescricao p {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.imagem-gerenciador {
+    width: 58%;
+    height: auto;
+    object-fit: cover;
+    padding: 0;
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+}
+
+.imagem-gerenciador:hover {
+    transform: scale(1.03);
 }
 
 #Conteudo {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 50px 20px;
-    background-color: black;
-    color: white;
+    background-color: #000;
+    color: #fff;
 }
 
 .card {
-    background-color: black;
-    color: #fffefe; 
-    border: 5px solid #ffffff; 
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 25px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    padding: 30px;
     text-align: center;
     flex: 1;
     margin: 0 15px;
-    font-size: 20px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
 }
 
 .card h1 {
-    padding: 0 0 5px 0;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 15px;
 }
 
 .card img {
-    width: 100px; 
+    width: 100px;
     height: 100px;
-    object-fit: cover; 
-    margin-bottom: 15px; 
+    object-fit: cover;
+    margin-bottom: 20px;
 }
 
 footer {
     color: #fff;
     margin-top: auto;
-    padding: 10px 20px;
+    padding: 15px 20px;
     text-align: center;
-    background: black;
-    font-size: 0.9rem;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    background: #000;
+    font-size: 1rem;
+    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    padding: -60px;
+}
+
+.card {
+    flex: 1;
+    margin: 0 15px;
 }

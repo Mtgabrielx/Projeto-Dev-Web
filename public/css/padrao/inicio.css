@@ -1,37 +1,72 @@
-* {
+* {  
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    font-size: 18px;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    color: #333;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #555;
     line-height: 1.6;
-    background: #f4f4f4;
+    font-size: 18px;  /* Tamanho de fonte padrão */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-#mudar-tema{
-    background-color:white;
-    color: #333;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-#mudar-tema:hover{
-    color: skyblue;
     background-color: white;
-    transition: color 0.3s ease;
+    overflow-x: hidden;
+}
+
+#mudar-tema {
+    background-color: #1d3996;
+    color: white;
+    font-size: 1.4rem;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#mudar-tema:hover {
+    background-color: #2453C7;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: #1d3996;
+    color: white;
+}
+
+nav a,
+nav button {
+    text-decoration: none;
+    color: white;
+    font-size: 1.4rem;
+    padding: 12px 18px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+nav a:hover,
+nav button:hover {
+    background-color: #2453C7;
 }
 
 .container {
     display: flex;
     flex-direction: row;
     flex: 1;
+    width: 100%;
 }
 
 .left-section {
@@ -40,95 +75,147 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: transparent;
+    box-shadow: none;
 }
 
-.left-section h1 {
-    font-size: 2.5rem;
-    color: #333;
-    background-color: #f4f4f4;
+button.tamanho-texto {
+    background-color: #1d3996;
+    color: white;
+    font-size: 2rem;
+    padding: 15px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 15px;
+}
+
+/* Estilos específicos para os botões A-, A, A+ */
+button#Aminus {
+    font-size: 1.0rem;  /* Fonte menor */
+}
+
+button#A {
+    font-size: 1.4rem;  /* Fonte padrão */
+}
+
+button#Aplus {
+    font-size: 1.6rem;  /* Fonte maior */
+}
+
+button.A {
+    background-color: #1d3996;
+}
+
+button.A:hover {
+    background-color: #2453C7;
+}
+
+#TituloDescricao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 20px 50px;
+    margin-bottom: 10px;
+    box-shadow: none;
+}
+
+#TituloDescricao .left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20px;
+    background-color: transparent;
+}
+
+#TituloDescricao h1 {
+    font-size: 3rem;
+    color: #1d3996;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    white-space: nowrap;
+}
+
+#TituloDescricao p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-left: 20px;
     margin-bottom: 10px;
 }
 
-.left-section p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: #666;
-    background-color: #f4f4f4;
+.imagem-gerenciador {
+    width: 58%;
+    height: auto;
+    object-fit: cover;
+    padding: 0;
+    margin-top: 10px;
+    transition: transform 0.3s ease;
 }
 
-.right-section {
-    flex: 1;
-    background: url('/src/Gestao-de-Tarefas.png') no-repeat center center/ 100%;
-    position: relative;
-}
-
-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 50px;
-    background: #fff;
-    color: black;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-nav a {
-    text-decoration: none;
-    color: #333;
-    background-color: white;
-    font-size: 1rem;
-    padding: 10px;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: skyblue;
-    background-color: white;
+.imagem-gerenciador:hover {
+    transform: scale(1.03);
 }
 
 #Conteudo {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 50px 20px;
-    background-color: #f9f9f9;
-    color: black;
+    background-color: white;
+    color: #555;
 }
 
 .card {
-    background-color: #fff;
-    color: black;
+    background-color: transparent;
+    color: #555;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     flex: 1;
-    margin: 0 10px;
+    margin: 0 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .card h1 {
-    padding: 0 0 5px 0;
+    font-size: 1.8rem;
+    color: #1d3996;
+    margin-bottom: 15px;
 }
 
 .card img {
-    width: 100px; 
+    width: 100px;
     height: 100px;
-    object-fit: cover; 
-    margin-bottom: 15px; 
+    object-fit: cover;
+    margin-bottom: 20px;
 }
 
 footer {
-    color: black;
+    color: #fff;
     margin-top: auto;
-    padding: 10px 20px;
+    padding: 15px 20px;
     text-align: center;
-    background: #fff;
-    font-size: 0.9rem;
+    background: #003d80;
+    font-size: 1rem;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    padding: -60px;
+}
+
+.card {
+    flex: 1;
+    margin: 0 15px;
 }

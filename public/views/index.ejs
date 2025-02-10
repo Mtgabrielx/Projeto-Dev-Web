@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/padrao/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/padrao2/index.css">
     <title>Tela Inicial</title>
+    <style>
+        .active {
+            font-weight: bold;
+            color: #007BFF; 
+            text-decoration: underline; 
+        }
+    </style>
 </head>
 <body>
     <div id="Tela-Inicio">
         <aside id="sidebar">
             <nav id="Menu">
-                <img src="/src/padrao.jpg" alt="User Photo">
+                <img src="/src/padrao2.png" alt="User Photo">
                 <h3>Gabriel</h3>
                 <a href="/Criar-Projeto" class="Menu-Item" data-route="/Criar-Projeto">Novo Projeto</a>
                 <a href="/Buscar-Projeto" class="Menu-Item" data-route="/Buscar-Projeto">Pesquisar por  Projeto</a>
@@ -25,5 +32,39 @@
         <div id="Conteudo-Principal">
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuItems = document.querySelectorAll('.Menu-Item'); 
+            const currentPath = window.location.pathname; 
+
+            menuItems.forEach((item) => {
+                if (item.getAttribute('href') === currentPath) {
+                    item.classList.add('active'); 
+                }
+            });
+        });
+    </script>
+    
+    <nav>
+        <a href="/login" class="menu-item">Login</a>
+        <a href="/cadastro" class="menu-item">Cadastro</a>
+        <a href="/Modificar-Usuario" class="menu-item">Modificar Usuario</a>
+        <button type="button" id="mudar-tema">Mudar Tema</button>
+    </nav>
+    
+    <script>
+        const currentPath = window.location.pathname;
+    
+        const menuItems = document.querySelectorAll('.Menu-Item');
+    
+        menuItems.forEach(item => {
+            if (item.getAttribute('href') === currentPath) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    </script>    
 </body>
 </html>

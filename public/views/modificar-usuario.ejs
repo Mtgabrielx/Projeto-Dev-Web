@@ -5,27 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link id="Estilo" rel="stylesheet" type="text/css" href="/css/padrao/modificar-usuario.css">
-    <script src="/js/criar-projeto.js"></script>
-    <title>Tela Inicial</title>
+    <!-- <script src="/js/criar-projeto.js"></script> -->
+    <script src="/js/modificar-usuario.js" defer></script>
+    <!-- <script src="/js/menu.js" defer></script> -->
+    <title>Modificar Usuário</title>
 </head>
-<script src="/js/modificar-usuario.js"></script>
 <body>
     <div id="Tela-Inicio">
         <aside id="sidebar">
             <nav id="Menu">
-                <img src="/src/padrao.jpg" alt="User Photo">
+              <img src="/src/profile2.png" alt="User Photo">
                 <h3><%= adminUser.username %></h3>
                 <% if (adminUser.role === "gerente" || adminUser.role === "administrador") { %>
                   <a href="/Criar-Projeto" class="Menu-Item">Novo Projeto</a>
               <% } %>
               <% if (adminUser.role === "administrador") { %>
-                  <a href="/Modificar-Usuario" class="Menu-Item">Modificar Usuario</a>
+                  <a href="/Modificar-Usuario" class="Menu-Item active">Modificar Usuário</a>
               <% } %>
-              <a href="/Pesquisar-Projeto" class="Menu-Item" >Pesquisar por Projeto</a>
-              <a href="/Pesquisar-Tarefa" class="Menu-Item" >Pesquisar por Tarefa</a>
+              <a href="/Pesquisar-Projeto" class="Menu-Item">Pesquisar por Projeto</a>
+              <a href="/Pesquisar-Tarefa" class="Menu-Item">Pesquisar por Tarefa</a>
             </nav>
             <div id="Configuracao">
-                <button type="button" id="mudar-tema" >Mudar Tema</button>
+                <button type="button" id="mudar-tema">Mudar Tema</button>
                 <a href="/logout" class="Menu-Configuracao">Sair</a>
             </div>
         </aside>
@@ -54,11 +55,18 @@
                             <input type="password" name="newPassword" placeholder="Nova senha">
                           </td>
                           <td>
-                            <select name="newRole">
-                              <option value="colaborador" <% if (user.role === 'colaborador') { %> selected <% } %>>Colaborador</option>
-                              <option value="gerente" <% if (user.role === 'gerente') { %> selected <% } %>>Gerente</option>
-                              <option value="administrador" <% if (user.role === 'administrador') { %> selected <% } %>>Administrador</option>
-                            </select>
+                            <% if (user.role === 'administrador') { %>
+                              <!-- Mostra apenas o texto fixo se for administrador -->
+                              <span>Administrador</span>
+                              <input type="hidden" name="newRole" value="administrador">
+                            <% } else { %>
+                              <!-- Mostra o seletor apenas para não-administradores -->
+                              <select name="newRole">
+                                <option value="Funcionário" <% if (user.role === 'Funcionário') { %> selected <% } %>>Funcionário</option>
+                                <option value="gerente" <% if (user.role === 'gerente') { %> selected <% } %>>Gerente</option>
+                                <option value="administrador" <% if (user.role === 'administrador') { %> selected <% } %>>Administrador</option>
+                              </select>
+                            <% } %>
                           </td>
                           <td>
                             <input type="hidden" name="id" value="<%= user.id %>">
@@ -76,14 +84,13 @@
                   </tbody>
                 </table>
               
+
                 <!-- Paginação -->
                 <div class="pagination">
-                  <!-- Link para página anterior, se existir -->
                   <% if (currentPage > 1) { %>
                     <a href="/modificar-usuario?page=<%= currentPage - 1 %>">Anterior</a>
                   <% } %>
               
-                  <!-- Links para todas as páginas -->
                   <% for (let i = 1; i <= totalPages; i++) { %>
                     <% if (i === currentPage) { %>
                       <span><%= i %></span>
@@ -92,12 +99,10 @@
                     <% } %>
                   <% } %>
               
-                  <!-- Link para próxima página, se existir -->
                   <% if (currentPage < totalPages) { %>
                     <a href="/modificar-usuario?page=<%= currentPage + 1 %>">Próxima</a>
                   <% } %>
                 </div>
-              
             </section>
         </div>
     </div>

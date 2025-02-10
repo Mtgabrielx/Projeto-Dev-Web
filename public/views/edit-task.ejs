@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link id="Estilo" rel="stylesheet" href="/css/padrao/task.css">
+  <script src="/js/edit-task.js"></script>
+  <title>Editar Tarefa</title>
+</head>
+<body>
+  <header class="top-header">
+    <div class="user-info"><%= user.username %></div>
+    <button class="theme-toggle" id="mudar-tema">Mudar-Tema</button>
+    <div class="logout">
+      <a href="/Pesquisar-Projeto">Sair</a>
+    </div>
+  </header>
+  
+  <div class="container">
+    <h1>Editar Tarefa</h1>
+
+    <form action="/projeto/<%= Projeto.id %>/edit/<%= task.id %>" method="POST" onsubmit="return validateUser();">
+      <label>Título:</label>
+      <input type="text" name="title" value="<%= task.title %>" required />
+
+      <label>Descrição:</label>
+      <textarea name="description" required><%= task.description %></textarea>
+
+      <label>Responsável:</label>
+      <input id="responsibleInput" list="userList" name="responsible" value="<%= task.responsible %>" required />
+      <datalist id="userList"></datalist>
+
+      <label>Prazo:</label>
+      <input type="date" name="deadline" value="<%= task.deadline %>" required />
+
+      <label>Status:</label>
+      <select name="status">
+        <option value="Pendente" <%= task.status === 'Pendente' ? 'selected' : '' %>>Pendente</option>
+        <option value="Em Progresso" <%= task.status === 'Em Progresso' ? 'selected' : '' %>>Em Progresso</option>
+        <option value="Concluída" <%= task.status === 'Concluída' ? 'selected' : '' %>>Concluída</option>
+      </select>
+
+      <button type="submit">Salvar</button>
+    </form>
+    <a href="/projeto/<%= Projeto.id %>">Voltar</a>
+  </div>
+
+  <script>
+    // Busca a lista de usuários no servidor
+    fetch('/api/nome')
+      .then(response => response.json())
+      .then(users => {
+        const dataList = document.getElementById('userList');
+        users.forEach(user => {
+          const option = document.createElement('option');
+          option.value = user;
+          dataList.appendChild(option);
+        });
+      });
+
+    // Validação do usuário selecionado
+    function validateUser() {
+      const userInput = document.getElementById('responsibleInput').value;
+      const validUsers = Array.from(document.getElementById('userList').options).map(opt => opt.value);
+
+      if (!validUsers.includes(userInput)) {
+        alert('Usuário inválido. Selecione um usuário existente.');
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

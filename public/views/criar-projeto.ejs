@@ -12,26 +12,26 @@
     <div id="Tela-Inicio">
         <aside id="sidebar">
             <nav id="Menu">
-                <img src="/src/padrao.jpg" alt="User Photo">
+                <img src="/src/profile2.png" alt="User Photo">
                 <h3><%= user.username %></h3>
                 <% if (user.role === "gerente" || user.role === "administrador") { %>
                     <a href="/Criar-Projeto" class="Menu-Item">Novo Projeto</a>
                 <% } %>
                 <% if (user.role === "administrador") { %>
-                    <a href="/Modificar-Usuario" class="Menu-Item">Modificar Usuario</a>
+                    <a href="/Modificar-Usuario" class="Menu-Item">Modificar Usuário</a>
                 <% } %>
-                <a href="/Pesquisar-Projeto" class="Menu-Item" >Pesquisar por Projeto</a>
-                <a href="/Pesquisar-Tarefa" class="Menu-Item" >Pesquisar por Tarefa</a>
+                <a href="/Pesquisar-Projeto" class="Menu-Item">Pesquisar por Projeto</a>
+                <a href="/Pesquisar-Tarefa" class="Menu-Item">Pesquisar por Tarefa</a>
             </nav>
             <div id="Configuracao">
-                <button type="button" id="mudar-tema" >Mudar Tema</button>
+                <button type="button" id="mudar-tema">Mudar Tema</button>
                 <a href="/logout" class="Menu-Configuracao">Sair</a>
             </div>
         </aside>
         <div id="Conteudo-Principal">
             <section id="formularioProjeto">
-                <h2>Cadastrar Novo Projeto</h2>
                 <form action="/Criar-Projeto" method="POST" id="formProjeto">
+                    <h2>Cadastrar Novo Projeto</h2>
                     <input type="hidden" id="idProjeto" name="idProjeto">
             
                     <label for="Titulo">Título:</label>
@@ -63,5 +63,19 @@
             </section>
         </div>
     </div>
+
+    <script>
+        // Script para adicionar a classe 'active' ao item de menu correspondente
+        const menuItems = document.querySelectorAll('.Menu-Item');
+        const currentPath = window.location.pathname;
+
+        menuItems.forEach(item => {
+            if (item.getAttribute('href') === currentPath) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>

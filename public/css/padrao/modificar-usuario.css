@@ -1,165 +1,180 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Times New Roman', Times, serif;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #e1e1e1;  
-    color: #1a1a1a;
+  background-color: #f4f4f9;
+  color: #333;
+  font-size: 22px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 
-#Tela-Inicio{
-    display: flex;
+#Tela-Inicio {
+  display: flex;
 }
 
-#sidebar{
-    width: 250px;
-    font-size: 20px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    color: #fff;
-    background-color: #1a1a1a;
-}
-
-#Menu img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    padding: 20px 0;
+#sidebar {
+  width: 300px;
+  font-size: 24px;
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #fff;
+  background-color: #1d3996;
 }
 
 #Menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 0;
+  padding-top: 80px;
 }
 
-#Menu h3{
-    margin-bottom: 20px;
-}
-.Menu-Item,.Menu-Configuracao {
-    width: 100%;
-    text-decoration: none;
-    background-color: #1a1a1a;
-    color: #ccc;
-    padding: 10px 0;
-    border-left: 4px solid transparent;
-    text-align: center;
+#Menu img {
+  width: 120px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#Menu a:hover, #Configuracao a:hover {
-    background-color: #444;
-    color: #ffdd57;
-    border-left: 4px solid #ffdd57;
+#Menu h3 {
+  margin-bottom: 20px;
+  font-size: 28px;
 }
 
-#Configuracao{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.Menu-Item, .Menu-Configuracao {
+  width: 100%;
+  text-decoration: none;
+  background-color: #1B3795;
+  color: #ccc;
+  padding: 10px 25px;
+  border-left: 4px solid transparent;
+  text-align: left;
+  font-size: 22px;
+  margin-bottom: 8px;
 }
 
-#Conteudo-Principal{
-    height: 100vh;
-    margin: 0 0 0 20vh;
-    flex: 0 0 60%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+.Menu-Item:hover, .Menu-Configuracao:hover {
+  background-color: #1F47AB;
+  color: #fff;
+  border-left: 4px solid #fff;
 }
 
-#mudar-tema{
-    background-color:#1a1a1a;
-    color: #ccc;
-    border-left: 4px solid transparent;
-    font-size: 20px;
-    border-top: none;
-    border-bottom: none;
-    border-right: none;
-    cursor: pointer;
-    padding: 10px 0;
-    text-align: center;
+.Menu-Item.active {
+  font-weight: 300;
+  color: #fff;
+  background-color: #2453C7;
+  padding: 12px 20px;
 }
 
-#mudar-tema:hover{
-    background-color: #444;
-    color: #ffdd57;
-    border-left: 4px solid #ffdd57;
-    cursor: pointer;
+#Configuracao {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .formularioProjeto {
-    width: 80%;
-    margin: 30px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  table thead tr {
-    background-color: #0056ff;
-    color: white;
-  }
-  
-  table th, table td {
-    text-align: left;
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  table tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-  }
-  
-  .pagination {
-    text-align: center;
-  }
-  
-  .pagination a {
-    text-decoration: none;
-    color: #0056ff;
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    margin: 0 5px;
-    border-radius: 4px;
-    transition: all 0.3s;
-  }
-  
-  .pagination a:hover, .pagination a.active {
-    background-color: #0056ff;
-    color: white;
-    border-color: #0056ff;
-  }
-  
+#Conteudo-Principal {
+  height: auto;
+  margin: 70px 0 0 20vh;
+  flex: 0 0 60%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 22px;
+  padding-top: 40px;
+}
+
+#mudar-tema {
+  background-color: #1B3795;
+  color: #ccc;
+  border-left: 4px solid transparent;
+  font-size: 22px;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  cursor: pointer;
+  padding: 12px 25px;
+  text-align: left;
+}
+
+#mudar-tema:hover {
+  background-color: #1F47AB;
+  color: #fff;
+  border-left: 4px solid #fff;
+}
+
+h1, h2 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+  background-color: #fafafa;
+  margin-bottom: 20px;
+}
+
+.formularioProjeto {
+  width: 80%;
+  margin: 30px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table thead tr {
+  background-color: #1B3795;
+  color: white;
+}
+
+table th, table td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.pagination a {
+  text-decoration: none;
+  color: #1B3795;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  margin: 0 5px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.pagination a:hover, .pagination a.active {
+  background-color: #1B3795;
+  color: white;
+  border-color: #1B3795;
+}
