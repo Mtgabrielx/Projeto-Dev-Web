@@ -21,18 +21,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })
 
 window.onload = function () {
-    const errorMessage = document.getElementById("error-message")?.value;
-    console.log(errorMessage  )
-    if (errorMessage === "not_logged_in"){
+    const queryString = window.location.search  
+    const urlParams = new URLSearchParams(queryString);
+    const Message = urlParams.get('msg');
+    if (Message === "not_logged_in"){
       alert("Faça login para acessar")
     }
-    else if (errorMessage === "black_list_token"){
+    else if (Message === "black_list_token"){
       alert("Token Vencido")
     }
-    else if (errorMessage === "invalid_token"){
+    else if (Message === "invalid_token"){
       alert("Token Inválido")
     }
-    else if (errorMessage){
-      alert(errorMessage);
+    else if (Message === "Sucess"){
+      alert("Usuário Criado com sucesso")
+    }
+    else if (Message){
+      alert(Message);
     }
   };

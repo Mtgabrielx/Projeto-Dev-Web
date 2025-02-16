@@ -9,12 +9,36 @@
     "id": 2,
     "username": "gabriel",
     "password": "255d3b1a7d7a30ae41260e82be3571f0b9c15475848ff3b09203c256dbe19c8ec3745e0a19f474f4b6c2a3920af93369c3baa1792cfb02ad8dba469fec791891",
-    "role": "Funcionário"
+    "role": "gerente"
   },
   {
     "id": 3,
     "username": "teste",
     "password": "9bd14656b8d19f8d9a195969d652f5e73b62fe27a2c76e7bdda279ed65c5f23b6c6e2e2a2ea97f7a7990f75181bf927179690dd029499ebafbc792d6d2314d31",
+    "role": "Funcionário"
+  },
+  {
+    "id": 4,
+    "username": "a",
+    "password": "acfbb61ba6fb0dcd9c450d4a8c0f63eaa23d289771649118535b0b74cde85f3a16ebd9348308f8ed6b3b48b7cbfda784cf1d0abfe5a21587649a854e9b4007d7",
+    "role": "Funcionário"
+  },
+  {
+    "id": 5,
+    "username": "b",
+    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
+    "role": "Funcionário"
+  },
+  {
+    "id": 6,
+    "username": "c",
+    "password": "6ab240e034148b528f1e9b4ddd96a13504e962530f74d4d2a6d895619b293f95497cde34469586617eb2a42beebffa8c236e13f86810f3969c5cf49bd392cc46",
+    "role": "Funcionário"
+  },
+  {
+    "id": 7,
+    "username": "e",
+    "password": "84cc1acc71409443f7435c01a59d906a335408e888905013d42dcd7fb7a262f6f0f04daf6713e5eee4bbad034dea3d7858a6a5a17af1da5a5710b852d341da85",
     "role": "Funcionário"
   }
 ]

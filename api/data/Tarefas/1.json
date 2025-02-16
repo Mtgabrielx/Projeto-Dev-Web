@@ -1,20 +1,12 @@
 {
-  "nome": "Gerenciador de tarefas",
+  "nome": "a",
   "Tarefas": [
     {
       "id": 1,
       "title": "teste",
       "description": "teste",
-      "responsible": "gabriel",
-      "deadline": "2002-11-29",
-      "status": "Pendente"
-    },
-    {
-      "id": 2,
-      "title": "teste",
-      "description": "teste3",
-      "responsible": "gabriel",
-      "deadline": "0202-11-29",
+      "responsible": "teste",
+      "deadline": "0001-01-01",
       "status": "Pendente"
     }
   ]

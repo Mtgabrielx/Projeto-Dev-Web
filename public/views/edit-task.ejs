@@ -18,7 +18,7 @@
   </header>
   
   <div class="container">
-    <h1>Editar Tarefa</h1>
+    <h1>Editar Tarefa: <%= taskName %></h1>
 
     <form action="/projeto/<%= Projeto.id %>/edit/<%= task.id %>" method="POST" onsubmit="return validateUser();">
       <label>Título:</label>
@@ -48,7 +48,7 @@
 
   <script>
     // Busca a lista de usuários no servidor
-    fetch('/api/nome')
+    fetch('/Listar/nome')
       .then(response => response.json())
       .then(users => {
         const dataList = document.getElementById('userList');

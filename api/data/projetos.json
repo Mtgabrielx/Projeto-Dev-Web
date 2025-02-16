@@ -1,22 +1,13 @@
 [
   {
     "id": 1,
-    "Titulo": "Gerenciador de tarefas",
-    "Descricao": "Teste do gerenciador",
-    "Prazo": "2002-11-29",
+    "Titulo": "a",
+    "Descricao": "a",
+    "Prazo": "0002-02-02",
     "Prioridade": "Alta",
     "Status": "Ativo",
     "acessivel": [
-      "gabriel"
+      "teste"
     ]
-  },
-  {
-    "id": 2,
-    "Titulo": "teste",
-    "Descricao": "teste",
-    "Prazo": "0111-11-11",
-    "Prioridade": "Alta",
-    "Status": "Ativo",
-    "acessivel": []
   }
 ]

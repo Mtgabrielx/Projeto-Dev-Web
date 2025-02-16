@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link id="Estilo" rel="stylesheet" type="text/css" href="/css/padrao/pesquisar-tarefa.css">
+    <link id="Estilo" rel="stylesheet" type="text/css" href="/css/padrao/pesquisar-projeto.css">
     <script src="/js/pesquisar-tarefa.js"></script>
     <title>Tela Inicial</title>
 </head>
@@ -31,19 +31,26 @@
         <div id="Conteudo-Principal">
             <section id="filtroTarefas">
                 <h2>Filtrar Tarefas</h2>
-                <label for="statusFiltroTarefa">Status:</label>
-                <select id="statusFiltroTarefa">
+                <label for="status">Status:</label>
+                <select id="status" name="status">
                     <option value="todos">Todos</option>
-                    <option value="pendente">Pendente</option>
-                    <option value="em progresso">Em Progresso</option>
-                    <option value="concluida">Concluída</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em Progresso">Em Progresso</option>
+                    <option value="Concluída">Concluída</option>
                 </select>
 
-                <label for="responsavelFiltro">Responsável:</label>
-                <input type="text" id="responsavelFiltro" placeholder="Responsável">
-
+                <label for="Titulo">Responsável:</label>
+                <input
+                  type="text"
+                  id="responsavel"
+                  name="responsavel"
+                  placeholder="Digite o nome do Responsável"
+                />
                 <button id="PesquisarTarefa" onclick="filtrarTarefas()">Pesquisar Tarefas</button>
             </section>
+            <div id="resultadoTarefa">
+                
+            </div>
         </div>
     </div>
 </body>

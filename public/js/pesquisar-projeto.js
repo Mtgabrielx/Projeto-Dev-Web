@@ -93,7 +93,10 @@ async function filtrarProjetos() {
                 const tdTitulo = document.createElement('td');
                 const linkTitulo = document.createElement('a');
                 linkTitulo.href = `/projeto/${projeto.id}`;
-                linkTitulo.textContent = projeto.Titulo;       
+                const truncatedTitulo = projeto.Titulo.length > 20 
+                ? projeto.Titulo.slice(0, 20) + '...' 
+                : projeto.Titulo;
+                linkTitulo.textContent = truncatedTitulo;       
                 tdTitulo.appendChild(linkTitulo);
                 row.appendChild(tdTitulo);
 

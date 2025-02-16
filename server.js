@@ -8,10 +8,7 @@ require("dotenv-safe").config();
 
 const app = express()
 const port = 3000;
-const Arquivo_Usuarios = "./api/data/users.json";
-const Arquivo_Projetos = "./api/data/Projetos.json";
-const Arquivo_Tarefas = "./api/data/Tarefas";
-const Lista_Usuarios = "./api/data/userlist.json";
+const serverAPI = 'http://localhost:3001';
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -22,92 +19,85 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const blacklist = [];
 
-function lerListaUsuario(){
-  const data = fs.readFileSync(Lista_Usuarios);
-  return JSON.parse(data);
-}
-
-function escreverListaUsuario(users){
-  fs.writeFileSync(Lista_Usuarios, JSON.stringify(users, null, 2));
-}
-
-function lerUsuario() {
-  const data = fs.readFileSync(Arquivo_Usuarios);
-  return JSON.parse(data);
-}
-
-function escreverUsuario(users) {
-  fs.writeFileSync(Arquivo_Usuarios, JSON.stringify(users, null, 2));
-}
-
-function excluirTarefas(ProjetoID){
-  const id = ProjetoID;
-  const FILE = path.join(Arquivo_Tarefas,`${id}.json`)
-  fs.unlink(FILE, (err) =>{
-    if (err) {
-      console.error('Erro ao excluir o arquivo:', err);
-    }
-    return;
-  })
-}
-
-function lerTarefas(ProjetoID) {
-  const id = ProjetoID;
-  const FILE = path.join(Arquivo_Tarefas,`${id}.json`)
-  const data = fs.readFileSync(FILE);
-  return JSON.parse(data);
-}
-
-function escreverTarefas(ProjetoID,Tarefas) {
-  filePath = path.join(Arquivo_Tarefas,`${ProjetoID}.json`)
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error('Erro ao ler o arquivo:', err);
-      return;
-    }
-    
-    let jsonData;
-    try {
-      jsonData = JSON.parse(data);
-    } catch (parseErr) {
-      console.error('Erro ao converter o arquivo para JSON:', parseErr);
-      return;
-    }
-    
-    jsonData.Tarefas = Tarefas;
-    fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), 'utf8', (writeErr) => {
-      if (writeErr) {
-        console.error('Erro ao escrever no arquivo:', writeErr);
-      } 
+async function lerListaUsuario(){
+  try {
+    const response = await fetch(serverAPI + '/ListUsuarios', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
     });
-  });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Erro ao obter usuários:", error);
+    return []; 
+  }
 }
 
-function criarTarefa(Projeto,Tarefas=[]) {
-  const id = Projeto.id;
-  const name = Projeto.Titulo;
-  const FILE = path.join(Arquivo_Tarefas,`${id}.json`);
-  fs.writeFileSync(FILE, JSON.stringify({nome:name,Tarefas}, null, 2));
+async function lerUsuario() {
+  try {
+    const response = await fetch(serverAPI + '/Usuarios', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    });
+
+    const statusServer = response.status; // Captura o status da resposta
+    const data = await response.json();   // Converte a resposta para JSON
+    
+    return data;  // Retorna os usuários para quem chamou essa função
+  } catch (error) {
+    console.error("Erro ao obter usuários:", error);
+    return []; // Retorna uma lista vazia em caso de erro
+  }
 }
 
-function lerProjetos() {
-  const data = fs.readFileSync(Arquivo_Projetos);
-  return JSON.parse(data);
+async function lerTarefas(ProjetoID) {
+  try {
+    const response = await fetch(serverAPI + '/Projeto/' + ProjetoID, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    }); 
+    const data = await response.json();   // Converte a resposta para JSON
+    return data;  // Retorna os usuários para quem chamou essa função
+  } catch (error) {
+    console.error("Erro ao obter usuários:", error);
+    return []; // Retorna uma lista vazia em caso de erro
+  }
 }
 
-function escreverProjeto(Projetos) {
-  fs.writeFileSync(Arquivo_Projetos, JSON.stringify(Projetos, null, 2));
+async function lerProjetos() {
+  try {
+    const response = await fetch(serverAPI + '/Projeto', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    });
+
+    const statusServer = response.status; // Captura o status da resposta
+    const data = await response.json();   // Converte a resposta para JSON
+    
+    return data;  
+  } catch (error) {
+    console.error("Erro ao obter usuários:", error);
+    return []; 
+  }
+  // const data = fs.readFileSync(Arquivo_Projetos);
+  // return JSON.parse(data);
 }
 
-// function atualizarProjeto(Projetos)
-
-function getUserFromToken(req) {
+async function getUserFromToken( req){
   const token = req.cookies.token;
   if (!token) return null;
-
   try {
     const decoded = jwt.verify(token, process.env.SECRET);
-    const users = JSON.parse(fs.readFileSync(Arquivo_Usuarios));
+    const users = await lerUsuario();
     const user = users.find((u) => u.id === decoded.id);
     return user
   } catch (err) {
@@ -125,42 +115,57 @@ function verifyJWT(req, res, next) {
   const token = req.cookies.token;
 
   if (!token) {
-    return res.status(401).redirect("/login?error=not_logged_in");
+    return res.status(401).redirect("/login?msg=not_logged_in");
   }
 
   const index = blacklist.findIndex((item) => item === token);
   if (index !== -1) {
-    return res.status(401).redirect("/login?error=black_list_token");
+    return res.status(401).redirect("/login?msg=black_list_token");
   }
 
   jwt.verify(token, process.env.SECRET, (err, decoded) => {
     if (err) {
-      return res.status(403).redirect("/login?error=invalid_token");
+      return res.status(403).redirect("/login?msg=invalid_token");
     }
     req.userid = decoded.userid;
     next();
   });
 }
 
-function validar_admin(req, res, next){
-  const adminUser = getUserFromToken(req);
+async function validar_admin(req, res, next){
+  const adminUser = await getUserFromToken(req);
   if (adminUser.role !== "administrador") {
     return res.render("error", { message: "Acesso não autorizado." });
   }
   next()
 }
 
-function validar_gerente(req, res, next){
-  const adminUser = getUserFromToken(req);
+async function validar_gerente(req, res, next){
+  const adminUser = await getUserFromToken(req);
   if (adminUser.role !== "administrador" && adminUser.role !== "gerente") {
     return res.render("error", { message: "Acesso não autorizado." });
   }
   next()
 }
 
-function encontrarProjeto(req, res, next) {
+async function validarUsuario(req,res,next) {
+  const user = await getUserFromToken(req);
   const ProjetoID = parseInt(req.params.ProjetoID);
-  const Projetos = lerProjetos()
+  const Projetos = await lerProjetos();
+  let accessibleProjetos = Projetos.filter(
+    (projeto) => ["administrador", "gerente"].includes(user.role) ||
+      ( ProjetoID===projeto.id && projeto.acessivel.includes(user.username))
+      
+  );
+  if (accessibleProjetos.length === 0) {
+    return res.render("error", { message: "Acesso não autorizado." });
+  }
+  next();
+}
+
+async function encontrarProjeto(req, res, next) {
+  const ProjetoID = parseInt(req.params.ProjetoID);
+  const Projetos = await lerProjetos()
   const Projeto = Projetos.find(p => p.id === ProjetoID);
   if (!Projeto) return res.redirect('/pesquisar-projeto');
 
@@ -183,12 +188,12 @@ app.get('/Login', (req, res) => {
   res.render('login', error); 
 });
 
-app.post('/Login', (req, res) => {
+app.post('/Login', async (req, res) => {
   const username = req.body.username;
   const hashedPassword = sha512(req.body.password, process.env.SECRET_USERS);
   
   if (username && hashedPassword) {
-    const users = lerUsuario();
+    const users = await lerUsuario();
     const user = users.find(
       (item) =>  item.username === username && item.password === hashedPassword
     );
@@ -212,37 +217,30 @@ app.get('/Cadastro', (req, res) => {
   res.render('cadastro', { error: null }); 
 });
 
-app.post("/Cadastro", (req, res) => {
-  const { username, password, confirmPassword } = req.body;
-
-  if (password !== confirmPassword) {
-    return res.status(401).render('cadastro', { error: "As senhas não coincidem" }); 
+app.post("/Cadastro", async (req, res) => {
+  try{
+    const cadastroPost = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: JSON.stringify(req.body),
+    };
+    fetch(serverAPI + '/Usuarios',cadastroPost).then(async (response) => {
+      const statusServer = response.status; // Captura o status da resposta
+      if(statusServer === 401){
+        const msg = await response.json(); // Captura o corpo da resposta JSON  
+        return res.status(401).render('cadastro',msg); 
+      }
+      else{
+        return res.status(200).redirect('/login?error=Sucess');
+      }
+    });
   }
-
-  let users = lerUsuario();
-  let listaUsuario = lerListaUsuario();
-
-  if (users.some((u) => u.username === username)) {
-    return res.status(401).render('cadastro', { error: "Nome de usuário já existe" }); 
+  catch(error){
+    console.error(error);
+    res.status(500).render('cadastro', { error: "Erro na comunicação com o Servidor C" });
   }
-
-  let tamProjeto = users.length === 0 ? 0 : users[users.length-1].id;
-  let id = parseInt(tamProjeto + 1);
-
-  const newUser = {
-    id,
-    username,
-    password: sha512(password, process.env.SECRET_USERS),
-    role: "Funcionário",
-  };
-
-  users.push(newUser);
-  listaUsuario.push(username);
-
-  escreverUsuario(users);
-  escreverListaUsuario(listaUsuario);
-
-  return res.status(201).render('login',{ error: "Cadastro realizado com sucesso. Faça login." });
 });
 
 app.get("/logout", verifyJWT, (req, res) => {
@@ -256,16 +254,12 @@ app.get("/logout", verifyJWT, (req, res) => {
   res.redirect("/");
 });
 
-app.get("/modificar-usuario",verifyJWT, validar_admin, (req, res) => {
+app.get( "/modificar-usuario",verifyJWT, validar_admin, async (req, res) => {
 
    const page = parseInt(req.query.page) || 1;
    const pageSize = 10; // Quantos usuários por página
- 
-   const users = lerUsuario();
- 
-  //  // (Opcional) Exclui o usuário admin da listagem, se for o caso
-  //  const users = allUsers.filter((u) => u.username !== "admin");
- 
+   const users = await lerUsuario();
+
    const totalUsers = users.length;
    const totalPages = Math.ceil(totalUsers / pageSize);
  
@@ -273,7 +267,7 @@ app.get("/modificar-usuario",verifyJWT, validar_admin, (req, res) => {
    const endIndex = startIndex + pageSize;
  
    const usersOnPage = users.slice(startIndex, endIndex);
-   const adminUser = getUserFromToken(req)
+   const adminUser = await getUserFromToken(req)
  
    res.render("modificar-usuario", {
      users: usersOnPage,
@@ -283,75 +277,87 @@ app.get("/modificar-usuario",verifyJWT, validar_admin, (req, res) => {
    });
 });
 
-app.post("/update-user",verifyJWT, validar_admin, (req, res) => {
+app.post("/update-user",verifyJWT, validar_admin, async (req, res) => {
   const { id, newPassword, newRole } = req.body;
-  let users = lerUsuario();
+  
+  try {
+    const response = await fetch(serverAPI + "/Usuarios", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({ id, newPassword, newRole }),
+    });
 
-  const userIndex = users.findIndex((u) => u.id == id);
+    if (response.status === 200) {
+      return res.redirect(`/modificar-usuario`);
+    } else {
+      return res.status(response.status).json(data);
+    }
+  } catch (error) {
+    console.error("Erro ao atualizar usuário:", error);
+    return res.status(500).json({ error: "Erro interno no servidor B" });
 
-  // Impede alteração do admin
-  if (userIndex !== -1 && users[userIndex].username !== "admin") {
-    if (newPassword) {
-      users[userIndex].password = sha512(newPassword, process.env.SECRET_USERS);
-    }
-    if (newRole) {
-      users[userIndex].role = newRole;
-    }
-    escreverUsuario(users);
   }
-
-  res.redirect(`/modificar-usuario`);
 });
 
 // Nova rota para excluir usuário
-app.post("/delete-user", verifyJWT, validar_admin, (req, res) => {
+app.post("/delete-user", verifyJWT, validar_admin, async (req, res) => {
   const { id } = req.body;
-  let users = lerUsuario();
-  const userIndex = users.findIndex((u) => u.id == id);
 
-  // Impede exclusão do admin
-  if (userIndex !== -1 && users[userIndex].username !== "admin") {
-    users.splice(userIndex, 1);
-    escreverUsuario(users);
+  try {
+    const response = await fetch(serverAPI + "/Usuarios", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({ id }),
+    });
+
+    // const data = await response.json();
+
+    if (response.status === 200) {
+      return res.redirect(`/modificar-usuario`);
+    } else {
+      return res.status(response.status)
+    }
+  } catch (error) {
+    console.error("Erro ao desativar usuário:", error);
+    return res.status(500).json({ error: "Erro interno no servidor B" });
   }
-
-  res.redirect(`/modificar-usuario`);
 });
 
-app.get('/Criar-Projeto', verifyJWT, validar_gerente, (req, res) => {
-  const user = getUserFromToken(req);
+app.get('/Criar-Projeto', verifyJWT, validar_gerente, async (req, res) => {
+  const user = await getUserFromToken(req);
   res.render('criar-projeto', { user:user ,error:""});
 });
 
-app.post('/Criar-Projeto', verifyJWT, validar_gerente, (req,res) => {
-  const user = getUserFromToken(req);
-  const { Titulo, Descricao, Prazo, Prioridade, Status } = req.body;
-  const acessivel = []
-  let Projetos = lerProjetos();
-  let tamProjeto = Projetos.length===0 ? 0 : Projetos[Projetos.length-1].id
-  let id = parseInt(tamProjeto + 1);
-  const newProjeto = {
-    id,
-    Titulo,
-    Descricao,
-    Prazo,
-    Prioridade,
-    Status,
-    acessivel,
-  };
-  
-  Projetos.push(newProjeto);
-
-  escreverProjeto(Projetos);
-
-  criarTarefa(newProjeto);
-
-  return res.status(201).render('criar-projeto', { user:user,error: "Cadastro De projeto realizado com sucesso."});
+app.post('/Criar-Projeto', verifyJWT, validar_gerente, async (req,res) => {
+  const user = await getUserFromToken(req);
+  try{
+    const cadastroPost = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: JSON.stringify(req.body),
+    };
+    fetch(serverAPI + '/Projeto',cadastroPost).then(async (response) => {
+      const statusServer = response.status; // Captura o status da resposta
+      if(statusServer === 200){
+        return res.status(201).render('criar-projeto', { user:user,error: "Cadastro De projeto realizado com sucesso."});
+      }
+    });
+  }
+  catch(error){
+    console.error(error);
+    res.status(500).render('cadastro', { error: "Erro na comunicação com o Servidor C" });
+  }
 });
 
-app.get('/projeto/:ProjetoID', verifyJWT, encontrarProjeto , (req, res) => {
-  const user = getUserFromToken(req);
-  Tarefas = lerTarefas(req.params.ProjetoID);
+app.get('/projeto/:ProjetoID', verifyJWT, encontrarProjeto, validarUsuario , async (req, res) => {
+  const user = await getUserFromToken(req);
+  Tarefas = await lerTarefas(req.params.ProjetoID);
   res.render('task', {
     user,
     ProjetoID: req.params.ProjetoID,
@@ -360,125 +366,171 @@ app.get('/projeto/:ProjetoID', verifyJWT, encontrarProjeto , (req, res) => {
   });
 });
 
-app.post('/projeto/:ProjetoID/del', verifyJWT, encontrarProjeto , (req, res) => {
-  let projetos = lerProjetos();
-  const filteredProjetos = projetos.filter(projeto => projeto.id != req.params.ProjetoID);
-  const newProjetos = Array.isArray(filteredProjetos) ? filteredProjetos : [filteredProjetos].filter(Boolean);
-  excluirTarefas(req.params.ProjetoID);
-  escreverProjeto(newProjetos);
-  res.redirect('/Pesquisar-Projeto');
+app.post('/projeto/:ProjetoID/del', verifyJWT, encontrarProjeto, validar_gerente ,  async (req, res) => {
+  try {
+    const response = await fetch(serverAPI + '/Projeto/' + req.params.ProjetoID, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    }); 
+
+    return res.redirect('/Pesquisar-Projeto');
+
+  } catch (error) {
+    console.error("Erro ao obter usuários:", error);
+    return res.redirect('/Pesquisar-Projeto');
+  }
+  
 });
 
-app.get('/projeto/:ProjetoID/new',verifyJWT, encontrarProjeto, validar_gerente,(req, res) => {
-  let user = getUserFromToken(req)
+app.get('/projeto/:ProjetoID/new',verifyJWT, encontrarProjeto, validar_gerente, async (req, res) => {
+  let user = await getUserFromToken(req)
   res.render('new-task', { ProjetoID: req.params.ProjetoID,user });
 });
 
-app.post('/projeto/:ProjetoID/add',verifyJWT, encontrarProjeto, validar_gerente,(req, res) => {
-  const { title, description, responsible, deadline, status } = req.body;
-  const taks = lerTarefas(req.params.ProjetoID).Tarefas;
-  const Projetos = lerProjetos()
-  let tamProjeto = taks.length === 0 ? 0 : taks[taks.length-1].id
-  let id = parseInt(tamProjeto + 1);
-  const newTask = {
-    id,
-    title,
-    description,
-    responsible,
-    deadline,
-    status,
-  };
-  let Projeto = Projetos.filter(projeto => projeto.id === parseInt(req.params.ProjetoID));
-
-  if(!Projeto[0].acessivel.includes(responsible)){
-    Projeto[0].acessivel.push(responsible)
+app.post('/projeto/:ProjetoID/add',verifyJWT, encontrarProjeto, validar_gerente, async (req, res) => {
+  try{
+    const projetoPost = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: JSON.stringify(req.body),
+    };
+    fetch(serverAPI + '/Projeto/' + req.params.ProjetoID,projetoPost).then(async (response) => {
+      const statusServer = response.status; // Captura o status da resposta
+      res.redirect(`/projeto/${req.params.ProjetoID}`);
+    });
   }
-  taks.push(newTask);
-  
-  escreverTarefas(req.params.ProjetoID,taks)
-  escreverProjeto(Projetos)
-  res.redirect(`/projeto/${req.params.ProjetoID}`);
+  catch(error){
+    console.error(error);
+    res.status(500).render('cadastro', { error: "Erro na comunicação com o Servidor C" });
+  }
+
 });
 
-app.get('/projeto/:ProjetoID/edit/:taskId', verifyJWT, encontrarProjeto,(req, res) => {
-  user = getUserFromToken(req)
+app.get('/projeto/:ProjetoID/edit/:taskId', verifyJWT, validarUsuario, encontrarProjeto,async(req, res) => {
+  user = await getUserFromToken(req)
   const taskId = parseInt(req.params.taskId);
   const ProjetoID = parseInt(req.params.ProjetoID);
-  const Tarefas = lerTarefas(ProjetoID)
+  const Tarefas = await lerTarefas(ProjetoID,user.username)
+  const taskName = Tarefas.nome;
   const task = Tarefas.Tarefas.find(task => task.id === taskId);
   if (!task) return res.redirect(`/Projetos/${ProjetoID}`);
-  res.render('edit-task', { Projeto: req.Projeto, task, user });
+  res.render('edit-task', { Projeto: req.Projeto, task, taskName, user });
 });
 
 // Rota para salvar as alterações de uma tarefa de um projeto
-app.post('/projeto/:ProjetoID/edit/:taskId', verifyJWT, encontrarProjeto,(req, res) => {
-  const taskId = parseInt(req.params.taskId);
-  const ProjetoID = parseInt(req.params.ProjetoID);
-  const { title, description, responsible, deadline, status } = req.body;
-  Tarefas = lerTarefas(ProjetoID)
-  Tarefas.Tarefas = Tarefas.Tarefas.map(task => {
-    if (task.id === taskId) {
-      return { ...task, title, description, responsible, deadline, status };
-    }
-    return task;
-  });
+app.post('/projeto/:ProjetoID/edit/:taskId', verifyJWT, validarUsuario, encontrarProjeto,async(req, res) => {
+  const { ProjetoID, taskId } = req.params;
+  // O payload com os dados da tarefa editada:
+  const payload = {
+    title: req.body.title,
+    description: req.body.description,
+    responsible: req.body.responsible,
+    deadline: req.body.deadline,
+    status: req.body.status
+  };
+  try {
+    const response = await fetch(`${serverAPI}/Projeto/${ProjetoID}/edit/${taskId}`, {
+      method: 'PATCH',  // Usando PATCH para atualização parcial
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(payload)
+    });
+    // Opcional: processa a resposta vinda do Servidor C (ex: log, verificação de erros)
+    res.redirect(`/projeto/${ProjetoID}`);
+  } catch (error) {
+    console.error("Erro ao editar tarefa:", error);
+    res.status(500).render('error', { error: "Erro ao editar a tarefa" });
+  }
 
-  let projetos = lerProjetos();
-  
-  escreverTarefas(ProjetoID,Tarefas.Tarefas)
-  res.redirect(`/projeto/${req.Projeto.id}`);
 });
 
-app.post('/projeto/:ProjetoID/delete/:taskId', verifyJWT, encontrarProjeto, validar_gerente,(req, res) => {
-  const taskId = parseInt(req.params.taskId);
-  const ProjetoID = parseInt(req.params.ProjetoID);
-  const Tarefas = lerTarefas(ProjetoID)
-  const filteredTarefas = Tarefas.Tarefas.filter(task => task.id != taskId);
-  const ProjetoData = Array.isArray(filteredTarefas) ? filteredTarefas : [filteredTarefas].filter(Boolean);
-  
-  escreverTarefas(ProjetoID,ProjetoData)
-  
-  res.redirect(`/projeto/${ProjetoID}`);
+app.post('/projeto/:ProjetoID/delete/:taskId', verifyJWT, encontrarProjeto, validar_gerente, async (req, res) => {
+  const { ProjetoID, taskId } = req.params;
+  try {
+    const response = await fetch(`${serverAPI}/Projeto/${ProjetoID}/delete/${taskId}`, {
+      method: 'PATCH',  // Usando PATCH para atualizar (exclusão lógica)
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      // Aqui você pode enviar um payload opcional, se necessário. Por exemplo:
+      body: JSON.stringify({ action: 'delete' })
+    });
+    res.redirect(`/projeto/${ProjetoID}`);
+  } catch (error) {
+    console.error("Erro ao deletar tarefa:", error);
+    res.status(500).render('error', { error: "Erro ao deletar a tarefa" });
+  }
 });
 
-app.post('/api/projetos', verifyJWT, (req, res) => {
-  const { status, prioridade, Titulo} = req.body; 
-  const user = getUserFromToken(req);
-  let projeto = lerProjetos()
-  let accessibleProjetos = projeto.filter(
-    (Projeto) =>
-      Projeto.acessivel.includes(user.username) ||
+// MUDAR PARA GET
+
+app.post('/api/projetos', verifyJWT, async (req, res) => {
+  const user = await getUserFromToken(req)
+  const payload = { ...req.body, user };
+  try {
+    const response = await fetch(`${serverAPI}/api/projetos`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json();
+  
+    res.status(response.status).json(data);
+  } catch (error) {
+    console.error("Erro ao filtrar projetos:", error);
+    res.status(500).json({ error: "Erro interno ao obter os projetos" });
+  }
+});
+
+app.get('/api/tarefas', verifyJWT, async (req, res) => {
+  const { status, responsavel } = req.query;
+  const user = await getUserFromToken(req)
+  const projetos = await lerProjetos()
+  let allTarefas = []
+  const accessibleProjetos = projetos.filter(
+    (projeto) =>
+      projeto.acessivel.includes(user.username) ||
       ["administrador", "gerente"].includes(user.role)
   );
-  // Filtro por status
-  if (status && status !== 'Todos') {
-    accessibleProjetos = accessibleProjetos.filter(projeto => projeto.Status === status);
-  }
 
-  // Filtro por prioridade
-  if (prioridade && prioridade !== 'Todos') {
-    accessibleProjetos = accessibleProjetos.filter(projeto => projeto.Prioridade === prioridade);
-  }
+  for (const projeto of accessibleProjetos) {
+    const tarefas = await lerTarefas(projeto.id);
+    let Ptarefas = tarefas.Tarefas;
 
-  // Filtro por nome
-  if (Titulo && Titulo.trim() !== '') {
-    accessibleProjetos = accessibleProjetos.filter(projeto => projeto.Titulo.toLowerCase().includes(Titulo.toLowerCase()));
+    if (Ptarefas.length > 0) {
+      if (status && status !== 'todos') {
+        Ptarefas = Ptarefas.filter(tarefa => tarefa.status === status);
+      }
+      if (responsavel && responsavel.trim() !== '') {
+        Ptarefas = Ptarefas.filter(tarefa =>
+          tarefa.responsible.toLowerCase().includes(responsavel.toLowerCase())
+        );
+      }
+      allTarefas.push(...[[projeto.id,Ptarefas]]);
+    }
   }
-  res.json(accessibleProjetos);
+  res.status(200).json(allTarefas);
 });
 
-app.get('/api/nome', verifyJWT, (req, res) => {
-  nomes = lerListaUsuario()
+app.get('/Listar/nome', verifyJWT, async (req, res) => {
+  nomes = await lerListaUsuario()
   res.json(nomes);
 });
 
-app.get('/Pesquisar-Projeto',verifyJWT, (req, res) => {
-  const user = getUserFromToken(req);
+app.get('/Pesquisar-Projeto',verifyJWT, async (req, res) => {
+  const user = await getUserFromToken(req);
   res.render('pesquisar-projeto', { user:user });
 });
 
-app.get('/Pesquisar-Tarefa',verifyJWT, (req, res) => {
-  const user = getUserFromToken(req);
+app.get('/Pesquisar-Tarefa',verifyJWT, async (req, res) => {
+  const user = await getUserFromToken(req);
   res.render('pesquisar-tarefa', { user:user });
 });
 
