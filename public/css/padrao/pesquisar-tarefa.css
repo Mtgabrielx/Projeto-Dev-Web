@@ -1,250 +1,312 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background-color: #f4f4f9;
-    color: #333;
-    font-size: 22px;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
-  #Tela-Inicio {
-    display: flex;
-  }
-  
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f9;
+  color: #333;
+  font-size: 22px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+}
+
+#Tela-Inicio {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  min-height: 100vh; 
+}
+
+#sidebar {
+  width: 300px;
+  font-size: 24px;
+  min-height: 300vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #fff;
+  background-color: #1B3795;
+  position: fixed; 
+}
+
+#Menu {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding-left: 0;
+  padding-top: 80px;
+}
+
+#Menu img {
+  width: 230px;
+  height: auto;
+  border-radius: 10%;
+  margin-bottom: 10px;
+  display: block;
+  padding: 10px 25px;
+  max-width: 100%;
+}
+
+#Menu h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  text-decoration: none;
+  padding: 10px 25px;
+  border-left: 4px solid transparent;
+  text-align: left;
+  font-size: 22px;
+}
+
+.Menu-Item, .Menu-Configuracao {
+  width: 100%;
+  text-decoration: none;
+  background-color: #1B3795;
+  color: #ccc;
+  padding: 10px 25px;
+  border-left: 4px solid transparent;
+  text-align: left;
+  font-size: 22px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.Menu-Item:hover, .Menu-Configuracao:hover {
+  background-color: #1F47AB;
+  color: #fff;
+  border-left: 4px solid #fff;
+}
+
+.Menu-Item.active {
+  font-weight: 300;
+  color: #fff;
+  background-color: #2453C7;
+  padding: 12px 20px;
+}
+
+.Menu-Item.active:hover {
+  background-color: #1F47AB;
+  color: #fff;
+  border-left: 4px solid #fff;
+}
+
+#Configuracao {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#Conteudo-Principal {
+  margin-left: 300px; 
+  flex: 1; 
+  min-height: 100vh; 
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 22px;
+  overflow-y: auto; 
+  width: calc(100% - 320px); 
+}
+
+#mudar-tema {
+  background-color: #1B3795;
+  color: #ccc;
+  border-left: 4px solid transparent;
+  font-size: 22px;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  cursor: pointer;
+  padding: 12px 25px;
+  text-align: left;
+}
+
+#mudar-tema:hover {
+  background-color: #1F47AB;
+  color: #fff;
+  border-left: 4px solid #fff;
+}
+
+h1, h2 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+  background-color: #fafafa;
+  margin-bottom: 20px;
+}
+
+#filtroProjetos, #filtroTarefas {
+  width: 100%;
+  max-width: 900px;
+  background-color: #fafafa;
+  color: #333;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+#filtroProjetos label, #filtroTarefas label {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: block;
+  color: #555;
+}
+
+#filtroProjetos select, #filtroTarefas select, #filtroTarefas input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 25px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 20px;
+  background-color: #fff;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+#filtroProjetos select:hover, #filtroTarefas select:hover, #filtroTarefas input:hover {
+  border-color: #ffdd57;
+}
+
+#Conteudo-Principal button {
+  background-color: #1B3795;
+  color: #fff;
+  padding: 15px 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 22px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+
+#Conteudo-Principal button:hover {
+  background-color:  #1E44A3;
+  color: #f9f9f9;
+}
+
+#resultadoProjetos, #resultadoTarefas {
+  margin-right: 60px;
+  overflow-x: auto; 
+}
+
+.projeto, .tarefa {
+  background-color: #f9f9f9;
+  color: #555;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.projeto h3, .tarefa h3 {
+  font-size: 28px;
+  background-color: #fafafa;
+  color: #333;
+}
+
+.projeto p, .tarefa p {
+  font-size: 20px;
+  color: #666;
+  background-color: #fafafa;
+}
+
+form {
+  background-color: #fafafa;
+  color: #666;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 20px;
+  background-color: #fff;
+  color: #333;
+}
+
+form button {
+  background-color: #1E44A3;
+  color: #ccc;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 42px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #1E44A3;
+  color: #ccc;
+}
+
+table {
+  width: auto; /* Ajusta a largura conforme o conteúdo */
+  max-width: 90%;
+  margin: 0 auto; 
+}
+
+th, td {
+  width: auto; 
+  max-width: 90%; 
+  margin: 0 auto; 
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+th {
+  background-color: white;
+}
+
+td {
+  word-break: break-word;
+}
+
+@media screen and (max-width: 768px) {
   #sidebar {
-    width: 300px;
-    font-size: 24px;
-    height: 110vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    color: #fff;
-    background-color: #1B3795;
+    width: 200px;
   }
-  
-  #Menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-left: 0;
-    padding-top: 80px; 
-  }
-  
-  #Menu img {
-    width: 120px;
-    height: auto; 
-    border-radius: 50%; 
-    margin-bottom: 10px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  #Menu h3 {
-    margin-bottom: 20px;
-    font-size: 28px;
-  }
-  
-  .Menu-Item, .Menu-Configuracao {
-    width: 100%;
-    text-decoration: none;
-    background-color: #1B3795;
-    color: #ccc;
-    padding: 10px 25px; 
-    border-left: 4px solid transparent;
-    text-align: left;
-    font-size: 22px;
-    margin-bottom: 8px;
-  }
-  
-  .Menu-Item:hover, .Menu-Configuracao:hover {
-    background-color: #1F47AB;
-    color: #fff;
-    border-left: 4px solid #fff;
-  }
-  
-  #Configuracao {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  
+
   #Conteudo-Principal {
-    height: 100vh;
-    margin: 0 0 0 20vh;
-    flex: 0 0 60%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 22px;
+    margin-left: 0;
   }
-  
-  #mudar-tema {
-    background-color: #1B3795;
-    color: #ccc;
-    border-left: 4px solid transparent;
-    font-size: 24px;
-    border-top: none;
-    border-bottom: none;
-    border-right: none;
-    cursor: pointer;
-    padding: 12px 25px;
-    text-align: left;
+
+  table {
+    font-size: 16px;
   }
-  
-  #mudar-tema:hover {
-    background-color: #1F47AB;
-    color: #fff;
-    border-left: 4px solid #fff;
-  }
-  
-  h1, h2 {
-    font-size: 40px;
-    font-weight: bold;
-    color: #333;
-    background-color: #fafafa;
-    margin-bottom: 20px;
-  }
-  
-  #filtroProjetos, #filtroTarefas {
-    width: 100%;
-    background-color: #fafafa;
-    color: #333;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-  }
-  
-  #filtroProjetos label, #filtroTarefas label {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    display: block;
-    color: #555;
-    background-color: #fafafa;
-  }
-  
-  #filtroProjetos select, #filtroTarefas select, #filtroTarefas input {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 25px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 20px;
-    background-color: #fff;
-    color: #555;
-    transition: all 0.3s ease;
-  }
-  
-  #filtroProjetos select:hover, #filtroTarefas select:hover, #filtroTarefas input:hover {
-    border-color: #ffdd57;
-  }
-  
-  #Conteudo-Principal button {
-    background-color: #1B3795;
-    color: #fff;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 6px;
-    font-size: 22px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
-  }
-  
-  #Conteudo-Principal button:hover {
-    background-color:  #1E44A3;
-    color: #f9f9f9;
-  }
-  
-  #resultadoProjetos, #resultadoTarefas {
-    margin-top: 30px;
-  }
-  
-  .projeto, .tarefa {
-    background-color: #f9f9f9;
-    color: #555;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .projeto h3, .tarefa h3 {
-    font-size: 28px;
-    background-color: #fafafa;
-    color: #333;
-  }
-  
-  .projeto p, .tarefa p {
-    font-size: 20px;
-    color: #666;
-    background-color: #fafafa;
-  }
-  
-  form {
-    background-color: #fafafa;
-    color: #666;
-    padding: 35px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 25px;
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 12px;
-    font-weight: bold;
-    font-size: 20px;
-    color: #333;
-    background-color: #fafafa;
-  }
-  
-  form input, form select, form textarea {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 20px;
-    background-color: #fff;
-    color: #333;
-    transition: all 0.3s ease;
-  }
-  
-  form input:hover, form select:hover, form textarea:hover {
-    border-color: #2453C7;
-  }
-  
-  form button {
-    background-color: #1E44A3;
-    color: #fff;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 6px;
-    font-size: 22px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
-  }
-  
-  form button:hover {
-    background-color: #1E44A3;
-    color: #fff;
-  }
-  
-  
+}

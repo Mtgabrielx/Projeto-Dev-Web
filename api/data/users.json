@@ -9,12 +9,54 @@
     "id": 2,
     "username": "gabriel",
     "password": "255d3b1a7d7a30ae41260e82be3571f0b9c15475848ff3b09203c256dbe19c8ec3745e0a19f474f4b6c2a3920af93369c3baa1792cfb02ad8dba469fec791891",
+    "role": "Gerente"
+  },
+  {
+    "id": 8,
+    "username": "Francisco",
+    "password": "fb85a02a3d7495a376cff119e4d9603c1016420d69160f5d91d28f991318e38aaf8acb6737aa2254834038da620a38fcc4c0423132624071770090941bfa827e",
     "role": "Funcionário"
   },
   {
-    "id": 3,
-    "username": "teste",
-    "password": "9bd14656b8d19f8d9a195969d652f5e73b62fe27a2c76e7bdda279ed65c5f23b6c6e2e2a2ea97f7a7990f75181bf927179690dd029499ebafbc792d6d2314d31",
+    "id": 9,
+    "username": "Laura",
+    "password": "c4203e6e81ef4c655904320b84f5c5627cae94e1684e9d0df950e7a089a1bc63d4d04e6fd193e1872768a0dfb8bb454c5ddd3e0c518247ba463cdde2126c692e",
+    "role": "Funcionário"
+  },
+  {
+    "id": 10,
+    "username": "Isaque",
+    "password": "8035699b12b5f73607eaf6ed150b4820f4685bcb95710485dc5b938df1cb1b8389aa098ebb77d38a3433637df584eae38335ee0788ac7815e76e6e74db6e62e7",
+    "role": "Gerente"
+  },
+  {
+    "id": 11,
+    "username": "Pedro",
+    "password": "bd21752c4eaf909f7c92e4843feb641e13d49ed3659ae535b75ae7bb59bde8838f232fd17977e34c4117ccd3a7d1bb4dab3af7306ec733721100f9120edb1aea",
+    "role": "Funcionário"
+  },
+  {
+    "id": 12,
+    "username": "Maria",
+    "password": "b47dfcd43c67e4ecd00de6c73da67c98b37c052e049b8790e9aae671f653e27475c1319892fa1a86edf3012312d0b16d6e10f7a7904227e246bf651dea93e146",
+    "role": "Funcionário"
+  },
+  {
+    "id": 13,
+    "username": "João",
+    "password": "9c5afe5c4965571a7a11ed7bdcbe6f778390be641a6f823e695a8d655a34a66c86ea04cdd864e73b9f4425d115b48d1bf2c8a8aaa1095c1e97e0c95c517f2f8e",
+    "role": "Funcionário"
+  },
+  {
+    "id": 14,
+    "username": "a",
+    "password": "acfbb61ba6fb0dcd9c450d4a8c0f63eaa23d289771649118535b0b74cde85f3a16ebd9348308f8ed6b3b48b7cbfda784cf1d0abfe5a21587649a854e9b4007d7",
+    "role": "Funcionário"
+  },
+  {
+    "id": 15,
+    "username": "b",
+    "password": "d4247eb536f5193acf1bfd615df5592f37089e1fddabd2f3bed9d35b8dfa24f2e445da29db026e7299702f6946ee884b1d392f02a7ab7b26deff531b7e677614",
     "role": "Funcionário"
   }
 ]

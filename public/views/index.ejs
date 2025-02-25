@@ -20,6 +20,7 @@
             <nav id="Menu">
                 <img src="/src/padrao2.png" alt="User Photo">
                 <h3>Gabriel</h3>
+                <a href="/Perfil" class="Menu-Item" data-route="/Perfil">Perfil</a>
                 <a href="/Criar-Projeto" class="Menu-Item" data-route="/Criar-Projeto">Novo Projeto</a>
                 <a href="/Buscar-Projeto" class="Menu-Item" data-route="/Buscar-Projeto">Pesquisar por  Projeto</a>
                 <a href="/Buscar-Tarefa" class="Menu-Item" data-route="/Buscar-Tarefa">Pesquisar por Tarefa</a>
@@ -54,13 +55,10 @@
     </nav>
     
     <script>
-        // Obtém a URL atual da página
         const currentPath = window.location.pathname;
     
-        // Seleciona todos os links do menu
         const menuItems = document.querySelectorAll('.Menu-Item');
     
-        // Itera pelos links e adiciona a classe 'active' ao link correspondente
         menuItems.forEach(item => {
             if (item.getAttribute('href') === currentPath) {
                 item.classList.add('active');
@@ -68,6 +66,7 @@
                 item.classList.remove('active');
             }
         });
+        
     </script>    
 </body>
 </html>

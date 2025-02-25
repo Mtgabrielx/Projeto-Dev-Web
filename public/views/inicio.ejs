@@ -10,47 +10,140 @@
 </head>
 <body>
     <nav>
-        <a href="/login">Login</a>
-        <a href="/cadastro">Cadastro</a>
-        <button type="button" id="mudar-tema" >Mudar Tema</a>
+        <div class="left-nav">
+            <img src="/src/devtasker-logo-inicio.png" alt="Devtasker Logo" class="logo">
+            <a href="/login">Login</a>
+            <a href="/cadastro">Cadastro</a>
+            <button type="button" id="mudar-tema">Mudar Tema</button>
+        </div>
+        <div class="font-size-controls">
+            <button type="button" class="button" id="Aminus" onclick="fontchange(18)">A-</button>
+            <button type="button" class="button" id="A" onclick="fontchange(23)">A</button>
+            <button type="button" class="button" id="Aplus" onclick="fontchange(27)">A+</button>
+        </div>
     </nav>
-
-    <div class="container">
+    
+    <div id="TituloDescricao">
         <div class="left-section">
-            <h1>Gerenciador De Tarefas</h1>
-            <p>Nosso Gerenciador de Projetos é a ferramenta perfeita para equipes que buscam organização, produtividade e resultados. Ele oferece tudo o que você precisa para planejar, executar e monitorar projetos com eficiência.</p>
+            <h1 id="titulo-gerenciador">Gerenciador de Tarefas</h1>
+            <p id="descricao-gerenciador">DevTasker é um gerenciador de tarefas prático e eficiente, criado para equipes que buscam melhorar a organização e a produtividade nos projetos, facilitando o acompanhamento e a execução das tarefas.</p>
         </div>
-
-        <div class="right-section">
-        </div>
+        <img src="/src/gerenciador2.png" alt="Imagem do Gerenciador de Tarefas" class="imagem-gerenciador">
     </div>
 
     <div id="Conteudo">
-        <div class="card">
-            <img src="/src/target.png" alt="Alvo"  title="Imagem de um alvo">
-            <h1>Público-Alvo</h1>
-            <p class="card-Texto">O produto é voltado a área de engenharia de computação, principalmente na criação de softwares, contudo não é limitado a esse grupo,
-                podendo ser utilizado para outras atividades ou até mesmo para uso pessoal.</p>
-        </div>
-        <div class="card">
-            <img src="/src/crescente.png" alt="Grafico" title="Imagem de um Gráfico crescente">
-            <h1>Benefícios</h1>
-            <p class="card-Texto">Melhorar o desenvolvimento de um projeto, pois com a visão holística do projeto, torna-se possível ver em quais são os pontos de dificuldade,
-                além de permitir um workflow mais dinâmico ao permitir a mudança de tarefas enquanto o projeto ainda está sendo desenvolvido</p>
-        </div>
-        <div class="card">
-            <img src="/src/cadeado1.webp" alt="Cadeado" title="Imagem de um Cadeado">
-            <h1>Segurança</h1>
-            <p class="card-Texto">Gestão de responsabilidade, pois é possível saber quem é responsável pela tarefa e se ele está cumprindo o prazo para a mesma e controle de privacidade,
-                pois cada projeto será acessado somente por aqueles que estão o desenvolvendo e pelo Gerente.</p>
+        <div class="cards-container">
+            <div class="card">
+                <img src="/src/alvo2.png" alt="Alvo" title="Imagem de um alvo">
+                <h1>Público-Alvo</h1>
+                <p class="card-Texto">Embora o principal foco do DevTasker seja Engenharia de Computação, ele é uma ferramenta versátil que pode ser adaptada para outras áreas ou até mesmo para uso pessoal.</p>
+            </div>
+
+            <div class="card">
+                <img src="/src/arrow.png" alt="Gráfico" title="Imagem de um Gráfico crescente">
+                <h1>Benefícios</h1>
+                <p class="card-Texto">Oferecendo uma visão completa do andamento do projeto, o DevTasker permite identificar rapidamente áreas que precisam de atenção. Ele também facilita a dinâmica de trabalho, permitindo reorganizar tarefas durante a execução do projeto.</p>
+            </div>
+
+            <div class="card">
+                <img src="/src/seguranca.png" alt="Cadeado" title="Imagem de um Cadeado">
+                <h1>Segurança</h1>
+                <p class="card-Texto">A ferramenta gerencia responsabilidades, monitorando tarefas e prazos, e assegura a privacidade, limitando o acesso apenas aos membros e ao gerente, tudo de forma prática no DevTasker.</p>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy;Todos os direitos reservados</p>
+        <p>&copy; Todos os direitos reservados</p>
     </footer>
 
+    <script>
+        // Função para mudar o tema e armazenar a escolha no localStorage
+        function mudarTema() {
+            const temaAtual = localStorage.getItem('tema') || 'padrao';
+            const novoTema = temaAtual === 'padrao' ? 'alternativo' : 'padrao';
+    
+            // Alterna entre os temas
+            const linkEstilo = document.getElementById('Estilo');
+            if (novoTema === 'alternativo') {
+                linkEstilo.setAttribute('href', '/css/alternativo/inicio.css');
+            } else {
+                linkEstilo.setAttribute('href', '/css/padrao/inicio.css');
+            }
+    
+            // Salva o tema escolhido no localStorage
+            localStorage.setItem('tema', novoTema);
+        }
+    
+        // Função para aplicar o tema armazenado
+        function aplicarTemaArmazenado() {
+            const temaArmazenado = localStorage.getItem('tema') || 'padrao';
+    
+            const linkEstilo = document.getElementById('Estilo');
+            if (temaArmazenado === 'alternativo') {
+                linkEstilo.setAttribute('href', '/css/alternativo/inicio.css');
+            } else {
+                linkEstilo.setAttribute('href', '/css/padrao/inicio.css');
+            }
+        }
+    
+        // Aplica o tema armazenado ao carregar a página
+        window.onload = function() {
+            aplicarTemaArmazenado();
+            applyStoredFontSize(); // Aplica o tamanho de fonte salvo
+        };
+    
+        // Evento para mudar o tema ao clicar no botão
+        document.getElementById('mudar-tema').addEventListener('click', mudarTema);
+    </script>
+    
+    <script>
+        // Função para mudar o tamanho da fonte e armazenar no localStorage
+        function fontchange(n) {
+            // Seleciona os elementos que precisam ter o tamanho da fonte alterado
+            var descricao = document.getElementById('descricao-gerenciador');
+            var cardsTexto = document.querySelectorAll('.card-Texto');
 
+            descricao.style.fontSize = n + "px";
+            
+            cardsTexto.forEach(function(card) {
+                card.style.fontSize = n + "px";
+            });
+
+            // Salvar o tamanho da fonte no localStorage
+            localStorage.setItem('fontSize', n);
+
+            updateActiveButton(n);
+        }
+
+        // Função para aplicar o tamanho de fonte armazenado
+        function applyStoredFontSize() {
+            const storedFontSize = localStorage.getItem('fontSize');
+            if (storedFontSize) {
+                var descricao = document.getElementById('descricao-gerenciador');
+                var cardsTexto = document.querySelectorAll('.card-Texto');
+
+                descricao.style.fontSize = storedFontSize + "px"; 
+                cardsTexto.forEach(function(card) {
+                    card.style.fontSize = storedFontSize + "px";
+                });
+
+                updateActiveButton(parseInt(storedFontSize)); 
+            }
+        }
+
+        function updateActiveButton(fontSize) {
+            var buttons = document.querySelectorAll(".font-size-controls .button");
+            buttons.forEach(function(button) {
+                if (parseInt(button.textContent) === fontSize) {
+                    button.classList.add("active");
+                } else {
+                    button.classList.remove("active");
+                }
+            });
+        }
+
+        window.onload = applyStoredFontSize;
+    </script>
 </body>
 </html>
-

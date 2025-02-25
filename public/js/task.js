@@ -1,4 +1,4 @@
-function filtrarTarefas(){
+function filtrarTarefas() {
   const searchForm = document.getElementById('searchForm');
 
   if (searchForm) {
@@ -20,9 +20,8 @@ function filtrarTarefas(){
         
         const titleText = row.cells[0].textContent.toLowerCase();
         const responsibleText = row.cells[2].textContent.toLowerCase();
-        const statusText = row.cells[4].textContent.toLowerCase().replace(/[\r\n\t ]+/g, ' ').trim();;
+        const statusText = row.cells[4].textContent.toLowerCase().replace(/[\r\n\t ]+/g, ' ').trim();
         const matchesTitle = titleText.includes(titleQuery);
-        // Se o status selecionado for vazio (opção "Todas"), ignora o filtro de status.
         const matchesStatus = statusQuery === '' || statusText === statusQuery;
         const matchesResponsible = responsibleText.includes(responsibleQuery);
 
@@ -37,19 +36,35 @@ function filtrarTarefas(){
   }
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', () => {
   const mudar_tema = document.getElementById('mudar-tema');
   const Estilo = document.getElementById('Estilo');
 
   const temas = {
-      normal: '/css/padrao/task.css',
-      alternativo: '/css/alternativo/task-alternativo.css'
+    normal: '/css/padrao/task.css',
+    alternativo: '/css/alternativo/task-alternativo.css'
   };
 
-  mudar_tema.addEventListener('click', () => {
+  // Verificar se existe um tema salvo no localStorage
+  const temaSalvo = localStorage.getItem('temaSelecionado');
+  if (temaSalvo && Object.values(temas).includes(temaSalvo)) {
+    Estilo.setAttribute('href', temaSalvo);
+}
+
+mudar_tema.addEventListener('click', () => {
+    const tema_atual = Estilo.getAttribute('href');
+    const novo_tema = tema_atual === temas.normal ? temas.alternativo : temas.normal;
+    Estilo.setAttribute('href', novo_tema);
+    localStorage.setItem('temaSelecionado', novo_tema);
+});
+});const temaSalvo = localStorage.getItem('temaSelecionado');
+if (temaSalvo && Object.values(temas).includes(temaSalvo)) {
+  Estilo.setAttribute('href', temaSalvo);
+}
+
+mudar_tema.addEventListener('click', () => {
   const tema_atual = Estilo.getAttribute('href');
   const novo_tema = tema_atual === temas.normal ? temas.alternativo : temas.normal;
-
   Estilo.setAttribute('href', novo_tema);
-  });
-})
+  localStorage.setItem('temaSelecionado', novo_tema);
+});

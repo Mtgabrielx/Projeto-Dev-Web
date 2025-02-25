@@ -7,23 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
         alternativo: '/css/alternativo/pesquisar-projeto-alternativo.css'
     };
 
+    const temaSalvo = localStorage.getItem('temaSelecionado');
+    if (temaSalvo && Object.values(temas).includes(temaSalvo)) {
+        Estilo.setAttribute('href', temaSalvo);
+    }
+
     mudar_tema.addEventListener('click', () => {
         const tema_atual = Estilo.getAttribute('href');
         const novo_tema = tema_atual === temas.normal ? temas.alternativo : temas.normal;
         Estilo.setAttribute('href', novo_tema);
+        localStorage.setItem('temaSelecionado', novo_tema);
     });
-    
-    // Lógica de ativar a classe active no menu
+
     const menuItems = document.querySelectorAll('.Menu-Item');
     const currentPath = window.location.pathname;
 
     menuItems.forEach(item => {
         const itemPath = item.getAttribute('href');
-        if (itemPath === currentPath) {
-            item.classList.add('active');
-        } else {
-            item.classList.remove('active');
-        }
+        item.classList.toggle('active', itemPath === currentPath);
     });
 });
 

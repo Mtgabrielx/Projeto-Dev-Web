@@ -1,0 +1,45 @@
+{
+  "nome": "Dashboard de Análises de Dados",
+  "Tarefas": [
+    {
+      "id": 1,
+      "title": "Criar Interface Gráfica",
+      "description": "Desenvolver layout responsivo em HTML, CSS e JS.",
+      "responsible": "João",
+      "deadline": "2025-01-20",
+      "status": "Concluída"
+    },
+    {
+      "id": 2,
+      "title": "Otimizar Consultas",
+      "description": "Melhorar desempenho das queries no banco.\r\n",
+      "responsible": "Pedro",
+      "deadline": "2025-02-05",
+      "status": "Concluída"
+    },
+    {
+      "id": 3,
+      "title": "Criar Painel de Relatórios",
+      "description": "Gerar gráficos dinâmicos com Chart.js ou D3.js.",
+      "responsible": "João",
+      "deadline": "2025-02-15",
+      "status": "Concluída"
+    },
+    {
+      "id": 4,
+      "title": "Configurar Logs e Monitoramento",
+      "description": " Implementar logs de erro e métricas.",
+      "responsible": "Maria",
+      "deadline": "2025-02-26",
+      "status": "Em Progresso"
+    },
+    {
+      "id": 5,
+      "title": "Deploy da Aplicação",
+      "description": "Configurar ambiente de produção com Docker.",
+      "responsible": "Laura",
+      "deadline": "2025-02-27",
+      "status": "Pendente"
+    }
+  ]
+}

@@ -1,38 +1,38 @@
-document.addEventListener('DOMContentLoaded', ()=>{
-    const mudar_tema = document.getElementById('mudar-tema');
-    // Link do tema atual
-    const Estilo = document.getElementById('Estilo');
+document.addEventListener('DOMContentLoaded', () => {
+  const mudar_tema = document.getElementById('mudar-tema');
+  const Estilo = document.getElementById('Estilo');
 
-    // Arquivos de tema disponíveis
-    const temas = {
-        normal: 'css/padrao/sing-in-up.css',
-        alternativo: 'css/alternativo/sing-in-up-alternativo.css'
-    };
+  const temas = {
+      normal: 'css/padrao/sing-in-up.css',
+      alternativo: 'css/alternativo/sing-in-up-alternativo.css'
+  };
 
-    // Alternar tema
-    mudar_tema.addEventListener('click', () => {
-    // Verifica o tema atual e alterna para o outro
-    const tema_atual = Estilo.getAttribute('href');
-    const novo_tema = tema_atual === temas.normal ? temas.alternativo : temas.normal;
+  const temaSalvo = localStorage.getItem('temaSelecionado');
+  if (temaSalvo && Object.values(temas).includes(temaSalvo)) {
+      Estilo.setAttribute('href', temaSalvo);
+  }
 
-    // Define o novo tema
-    Estilo.setAttribute('href', novo_tema);
-    });
-})
+  mudar_tema.addEventListener('click', () => {
+      const tema_atual = Estilo.getAttribute('href');
+      const novo_tema = tema_atual === temas.normal ? temas.alternativo : temas.normal;
+      Estilo.setAttribute('href', novo_tema);
+      localStorage.setItem('temaSelecionado', novo_tema);
+  });
+});
 
 window.onload = function () {
-    const errorMessage = document.getElementById("error-message")?.value;
-    console.log(errorMessage  )
-    if (errorMessage === "not_logged_in"){
-      alert("Faça login para acessar")
-    }
-    else if (errorMessage === "black_list_token"){
-      alert("Token Vencido")
-    }
-    else if (errorMessage === "invalid_token"){
-      alert("Token Inválido")
-    }
-    else if (errorMessage){
-      alert(errorMessage);
-    }
-  };
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const Message = urlParams.get('msg');
+  if (Message === "not_logged_in") {
+      alert("Faça login para acessar");
+  } else if (Message === "black_list_token") {
+      alert("Token Vencido");
+  } else if (Message === "invalid_token") {
+      alert("Token Inválido");
+  } else if (Message === "Sucess") {
+      alert("Usuário Criado com sucesso");
+  } else if (Message) {
+      alert("Algo deu errado");
+  }
+};

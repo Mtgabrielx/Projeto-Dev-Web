@@ -1,13 +1,25 @@
 [
   {
-    "id": 1,
-    "Titulo": "Gerenciador de tarefas",
-    "Descricao": "Teste do gerenciador",
-    "Prazo": "2002-11-29",
+    "id": 6,
+    "Titulo": "Dashboard de Análises de Dados",
+    "Descricao": "Dashboard interativo para análise de métricas, visualização de gráficos dinâmicos e geração de relatórios automatizados.",
+    "Prazo": "2025-02-27",
     "Prioridade": "Alta",
     "Status": "Ativo",
     "acessivel": [
-      "gabriel"
+      "João",
+      "Pedro",
+      "Maria",
+      "Laura"
     ]
+  },
+  {
+    "id": 7,
+    "Titulo": "teste",
+    "Descricao": "teste",
+    "Prazo": "0001-01-01",
+    "Prioridade": "Alta",
+    "Status": "Ativo",
+    "acessivel": []
   }
 ]

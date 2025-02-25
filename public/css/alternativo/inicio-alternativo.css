@@ -1,43 +1,84 @@
-* {
+* {  
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 html {
-    font-size: 18px; 
+    font-size: 18px;
 }
 
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    color: #ffffff; /* Cor do texto alterada para branco */
+    color: #fff;
     line-height: 1.6;
-    font-size: 18px;
+    font-size: 18px;  /* Tamanho de fonte padrão */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #000000; /* Cor de fundo alterada para preto */
+    background-color: #000;
+    overflow-x: hidden;
 }
 
 #mudar-tema {
-    background-color: #ffffff; /* Cor de fundo do botão alterada para branco */
-    color: #000000; /* Cor do texto do botão alterada para preto */
-    font-size: 1.2rem;
+    background-color: black;
+    color: white;
+    font-size: 1.4rem;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 #mudar-tema:hover {
-    background-color: #e0e0e0; /* Alteração no hover para cor de fundo mais clara */
+    background-color: #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: #000;
+    color: #fff;
+    height: 80px;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+}
+
+nav .logo {
+    width: 90px;
+    height: auto;
+    margin-right: 20px;
+    position: relative;
+    top: 10px;
+}
+
+nav a,
+nav button {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.4rem;
+    padding: 12px 18px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+nav a:hover,
+nav button:hover {
+    background-color: #333;
 }
 
 .container {
     display: flex;
     flex-direction: row;
     flex: 1;
+    width: 100%;
 }
 
 .left-section {
@@ -46,65 +87,106 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #000000; /* Fundo alterado para preto */
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Sombra em branco */
+    background-color: transparent;
+    box-shadow: none;
 }
 
-.left-section h1 {
-    font-size: 3rem;
-    color: #ffffff; /* Cor do texto alterada para branco */
-    margin-bottom: 20px;
+button.tamanho-texto {
+    background-color: #fff;
+    color: #000;
+    font-size: 2rem;
+    padding: 15px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 15px;
 }
 
-.left-section p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #ffffff; /* Cor do texto alterada para branco */
+button#Aminus {
+    font-size: 1.1rem; 
 }
 
-.right-section {
-    flex: 1;
-    background: url('/src/Gestao-de-Tarefas.png') no-repeat center center/cover; /* Imagem de fundo sem filtro */
-    position: relative;
+button#A {
+    font-size: 1.4rem; 
 }
 
-nav {
+button#Aplus {
+    font-size: 1.6rem;
+}
+
+button.A {
+    background-color: #fff;
+    color: #000;
+}
+
+button.A:hover {
+    background-color: #ccc;
+}
+
+#TituloDescricao {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
-    padding: 15px 50px;
-    background: #000000; /* Cor de fundo alterada para preto */
-    color: white;
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Sombra em branco */
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 20px 50px;
+    margin-bottom: 10px;
+    box-shadow: none;
 }
 
-nav a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.1rem;
-    padding: 10px 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+#TituloDescricao .left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20px;
+    background-color: transparent;
 }
 
-nav a:hover {
-    background-color: #333333; /* Hover com fundo mais escuro */
+#TituloDescricao h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    white-space: nowrap;
+}
+
+#TituloDescricao p {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.imagem-gerenciador {
+    width: 54%;
+    height: auto;
+    object-fit: cover;
+    padding: 0;
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+}
+
+.imagem-gerenciador:hover {
+    transform: scale(1.03);
 }
 
 #Conteudo {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 50px 20px;
-    background-color: #000000; /* Cor de fundo alterada para preto */
-    color: #ffffff; /* Cor do texto alterada para branco */
+    background-color: #000;
+    color: #fff;
+    margin-bottom: 30px;
 }
 
 .card {
-    background-color: #ffffff; /* Cor de fundo da carta alterada para branco */
-    color: #000000; /* Cor do texto da carta alterada para preto */
-    border: 1px solid #ddd;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
     padding: 30px;
     text-align: center;
     flex: 1;
@@ -114,12 +196,12 @@ nav a:hover {
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
 }
 
 .card h1 {
     font-size: 1.8rem;
-    color: #000000; /* Cor do título alterada para preto */
+    color: #fff;
     margin-bottom: 15px;
 }
 
@@ -131,11 +213,22 @@ nav a:hover {
 }
 
 footer {
-    color: #ffffff; /* Cor do texto no rodapé alterada para branco */
+    color: #fff;
     margin-top: auto;
     padding: 15px 20px;
     text-align: center;
-    background: #000000; /* Cor de fundo do rodapé alterada para preto */
+    background: #000;
     font-size: 1rem;
-    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1); /* Sombra em branco */
+    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    padding: -60px;
+}
+
+.card {
+    flex: 1;
+    margin: 0 15px;
 }

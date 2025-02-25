@@ -12,9 +12,9 @@
     <div id="Tela-Inicio">
         <aside id="sidebar">
             <nav id="Menu">
-                <img src="/src/padrao3.jpg" alt="User Photo">
+                <img src="/src/devtasker-logo.png" alt="Devtasker Logo">
                 <h3><%= user.username %></h3>
-                <% if (user.role === "gerente" || user.role === "administrador") { %>
+                <% if (user.role === "Gerente" || user.role === "administrador") { %>
                     <a href="/Criar-Projeto" class="Menu-Item">Novo Projeto</a>
                 <% } %>
                 <% if (user.role === "administrador") { %>

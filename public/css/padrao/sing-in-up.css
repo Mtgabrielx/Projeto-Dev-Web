@@ -1,4 +1,4 @@
-* {
+* { 
     font-family: Arial, sans-serif;
 }
 
@@ -21,20 +21,20 @@ body {
 }
 
 .card {
-    background-color: #1B3795;
+    background-color: #1d3996;
     color: #fff;
-    padding: 40px;
-    border-radius: 10px;
+    padding: 20px;
+    border-radius: 15px; /* Alterado para um arredondamento maior */
     width: 280px;
 }
 
 .card-header {
     margin-top: -25px;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     opacity: 0.8;
     color: #fff;
     background-color: #1d3996;
-    font-size: 30px;
+    font-size: 36px; /* Aumentado */
 }
 
 .card-header::after {
@@ -42,7 +42,6 @@ body {
     width: 160px;
     height: 1px;
     background-color: #fff;
-    color: #1d3996;
     display: block;
     margin-top: -20px;
     margin-left: -5px;
@@ -51,7 +50,7 @@ body {
 .card-content label {
     color: #fff;
     background-color: #1d3996;
-    font-size: 20px;
+    font-size: 24px; /* Aumentado */
     opacity: 0.8;
 }
 
@@ -71,6 +70,7 @@ body {
     border-bottom: 1px solid #fff;
     outline: none;
     color: #fff;
+    font-size: 22px; /* Aumentado */
 }
 
 .card-footer {
@@ -85,32 +85,33 @@ body {
     border: none;
     color: #1d3996;
     margin: 10px 0;
-    border-radius: 10px;
-    font-size: 20px;
+    border-radius: 6px;
+    font-size: 22px;
     font-weight: bold;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .card-footer .submit:hover {
-    color: #1d3996;
+    background-color: #E8F0FE;
 }
 
 #mudar-tema {
+    width: 60%;
+    height: 40px;
     background-color: #fff;
-    padding: 15px;
-    border-radius: 15px;
-    color: #1d3996;
-    font-size: 16px;
     border: none;
+    color: #1d3996;
+    margin: 10px 0;
+    border-radius: 6px;
+    font-size: 22px; /* Aumentado */
+    font-weight: bold;
     cursor: pointer;
-    transition: color 0.3s ease, font-size 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 #mudar-tema:hover {
-    color: #1d3996;
-    background-color: #f1f1f1;
-    font-size: 18px;
+    background-color: #E8F0FE;
 }
 
 #Tema {
@@ -118,38 +119,35 @@ body {
     margin-top: 15px;
     margin-bottom: -5px;
     color: #fff;
-}
-
-.custom-div:hover {
-    background-color: #1d3996;
-    color: white;
+    font-size: 24px; /* Aumentado */
 }
 
 .card-footer a {
     text-align: center;
-    font-size: 15px;
+    font-size: 20px; /* Aumentado */
     opacity: 0.8;
-    color: #fff;
+    color: white;
     background-color: #1d3996;
     text-decoration: none;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .card-footer a:hover {
-    color: #1d3996; /* Texto em azul */
-    background-color: #fff; /* Fundo branco */
-    padding: 5px; /* Pequeno preenchimento ao passar o mouse */
-    border-radius: 5px;
+    color: #FFFFFF;
+    transform: translateY(-3px);
 }
 
 #erroSenha {
     text-align: center;
+    font-size: 20px; /* Aumentado */
 }
 
 #footer {
     box-sizing: border-box;
     text-align: center;
-    background-color: #1B3795;
+    background-color: #1d3996;
     color: white;
+    height: 75px;
     padding: 10px 0;
+    font-size: 18px; /* Aumentado */
 }

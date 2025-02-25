@@ -1,41 +1,45 @@
-*{
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Arial', sans-serif;
   box-sizing: border-box;
 }
 
 body {
-  background-color: #e1e1e1;  
+  background-color: #f4f4f9;
   color: #1a1a1a;
 }
 
-a{
+a {
   text-decoration: none;
+  color: #1d3996;
 }
 
-#Tela-Inicio{
+a:hover {
+  color: #fe6502;
+}
+
+#Tela-Inicio {
   display: flex;
 }
 
-#sidebar{
+#sidebar {
   width: 250px;
-  font-size: 20px;
+  font-size: 18px;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: #1d3996;
   color: #fff;
-  background-color: #1a1a1a;
+  padding: 20px;
 }
 
 #Menu img {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  margin-bottom: 10px;
-  padding: 20px 0;
-  margin: 20px;
+  margin-bottom: 20px;
 }
 
 #Menu {
@@ -44,40 +48,46 @@ a{
   align-items: center;
 }
 
-#Menu h3{
+#Menu h3 {
   margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
 }
-.Menu-Item,.Menu-Configuracao {
+
+.Menu-Item, .Menu-Configuracao {
   width: 100%;
   text-decoration: none;
-  background-color: #1a1a1a;
+  background-color: #1d3996;
   color: #ccc;
   padding: 10px 0;
   border-left: 4px solid transparent;
   text-align: center;
+  font-size: 1.1rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-#Menu a:hover, #Configuracao a:hover {
-  background-color: #444;
-  color: #ffdd57;
-  border-left: 4px solid #ffdd57;
+.Menu-Item:hover, .Menu-Configuracao:hover {
+  background-color: #fe6502;
+  color: #fff;
+  border-left: 4px solid #fff;
 }
 
-#Configuracao{
+#Configuracao {
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-#Conteudo-Principal{
-  height: 100vh;
-  flex: 0 0 80%;
+#Conteudo-Principal {
+  flex: 1;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: 'Arial', sans-serif;
 }
 
 .container {
@@ -85,49 +95,39 @@ a{
   width: 90%;
 }
 
-#Conteudo-Principal{
-  height: 100vh;
-  flex: 0 0 80%;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  flex-direction: column;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
 table {
   border-collapse: collapse;
   margin: 20px 0;
+  width: 100%;
 }
 
 th, td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px;
   text-align: center;
+  font-size: 1rem;
 }
 
 th {
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: #1d3996;
+  color: #fff;
 }
 
 tr {
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #fff;
 }
 
 tr:hover {
   background-color: #f1f1f1;
-  color: #333;
 }
 
 .em-andamento {
-  color: #ffa500;
+  color: #fe6502;
   background-color: #fff4e5;
 }
 
 .nao-iniciado {
-  color: #0000ff;
+  color: #1d3996;
   background-color: #e5f0ff;
 }
 
@@ -182,17 +182,17 @@ tr:hover {
   width: 100%;
   margin: 5px 0;
   padding: 10px;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #fe6502;
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s;
 }
 
 .status-modal-content button:hover {
-  background-color: #e0e0e0;
-  color:  #333;
+  background-color: #d85c00;
 }
 
 .status-modal-content .close-modal {
@@ -202,5 +202,5 @@ tr:hover {
 
 .status-modal-content .close-modal:hover {
   background-color: #ff1a1a;
-  color: #333
+  color: #fff;
 }

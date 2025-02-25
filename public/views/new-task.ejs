@@ -10,8 +10,11 @@
 </head>
 <body>
   <header class="top-header">
+    <div class="logo-container">
+      <img src="/src/devtasker-logo-inicio.png" alt="Devtasker Logo" class="logo">
+    </div>
     <div class="user-info"><%= user.username %></div>
-    <button class="theme-toggle" id="mudar-tema">Mudar-Tema</button>
+    <button class="theme-toggle" id="mudar-tema">Mudar Tema</button>
     <div class="logout">
       <a href="/Pesquisar-Projeto">Sair</a>
     </div>
@@ -45,7 +48,7 @@
 
   <script>
     // Busca a lista de usuários no servidor
-    fetch('/api/nome')
+    fetch('/Listar/nome')
       .then(response => response.json())
       .then(users => {
         const dataList = document.getElementById('userList');

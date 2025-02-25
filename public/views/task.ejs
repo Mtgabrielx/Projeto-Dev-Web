@@ -11,18 +11,19 @@
 <body>
   <!-- Header fixo -->
   <header class="top-header">
+    <img src="/src/devtasker-logo-inicio.png" alt="Devtasker Logo" class="logo">
     <div class="user-info"><%= user.username %></div>
-    <button class="theme-toggle" id="mudar-tema">Mudar-Tema</button>
+    <button class="theme-toggle" id="mudar-tema">Mudar Tema</button>
     <div class="logout">
       <a href="/Pesquisar-Projeto">Sair</a>
     </div>
   </header>
   
   <div class="container">
-    <h1><%= Projeto %></h1>
+    <h1> Painel de Tarefas</h1>
     <!-- Seção superior: criar, pesquisar e deletar projeto -->
     <div class="header">
-      <% if (user.role === "gerente" || user.role === "administrador") { %>
+      <% if (user.role === "Gerente" || user.role === "administrador") { %>
         <a href="/projeto/<%= ProjetoID %>/new" class="create-btn">Criar Nova Tarefa</a>
       <% } %>
       
@@ -39,7 +40,7 @@
         <button type="submit" class="search-btn" onclick="filtrarTarefas()">Pesquisar</button>
       </form>
       
-      <% if (user.role === "gerente" || user.role === "administrador") { %>
+      <% if (user.role === "Gerente" || user.role === "administrador") { %>
         <form action="/projeto/<%= ProjetoID %>/del" method="POST" style="display:inline;">
           <button type="submit" class="delete-btn">Deletar Projeto</button>
         </form>
@@ -115,7 +116,7 @@
               </span>
             </td>
             <td>
-              <% if (user.role === "gerente" || user.role === "administrador") { %>
+              <% if (user.role === "Gerente" || user.role === "administrador") { %>
                 <a href="/projeto/<%= ProjetoID %>/edit/<%= task.id %>" class="edit-btn">Editar</a>
                 <form action="/projeto/<%= ProjetoID %>/delete/<%= task.id %>" method="POST" style="display:inline;">
                   <button type="submit" class="delete-btn">Excluir</button>

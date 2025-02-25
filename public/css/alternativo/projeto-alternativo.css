@@ -70,5 +70,22 @@
     font-weight: bold;
     transition: color 0.3s; 
 }
-
+.cards-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 2rem;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .cards-table thead {
+    background-color: #fafafa;
+  }
+  
+  .cards-table th,
+  .cards-table td {
+    padding: 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
   
